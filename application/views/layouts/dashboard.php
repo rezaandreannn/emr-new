@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EMR | Dashboard</title>
+    <link rel="shortcut icon" href="<?= base_url('assets/images/logo.png') ?>" type="image/x-icon">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -97,7 +98,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/adminlte.js'); ?>"></script>
     <!-- AdminLTE for demo purposes -->
-    <!-- <script src="<?= base_url('assets/AdminLTE/dist/js/demo.js'); ?>"></script> -->
+    <script src="<?= base_url('assets/AdminLTE/dist/js/demo.js'); ?>"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/pages/dashboard.js'); ?>"></script>
 </body>
