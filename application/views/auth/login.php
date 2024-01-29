@@ -29,11 +29,21 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+    <?php if ($this->session->flashdata('danger')) : ?>
+                                    <div class="alert alert-danger">
+                                        <?php echo $this->session->flashdata('danger'); ?>
+                                    </div>
+    <?php endif; ?>
+    <?php if ($this->session->flashdata('info')) : ?>
+                                    <div class="alert alert-info">
+                                        <?php echo $this->session->flashdata('info'); ?>
+                                    </div>
+    <?php endif; ?>
+      <p class="login-box-msg">Masuk untuk memulai EMR</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="<?php echo base_url('LoginController/LoginProses');?>" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" class="form-control" placeholder="Username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -41,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

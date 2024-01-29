@@ -71,26 +71,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = 'default';
-$query_builder = TRUE;
+$active_record = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
+//$db['default']['hostname'] = '202.91.14.3';
+//$db['default']['username'] = 'earsipmanado';
+//$db['default']['password'] = '34rs1pm4n4d0';
+//$db['default']['hostname'] = '10.0.0.1';
+//$db['default']['hostname'] = '192.168.10.41';
+// konfigurasi db asli
+// DESKTOP-FJQOGPK\SQLEXPRESS local sql
+// $db['default']['hostname'] = 'MSI\SQLEXPRESS';
+$db['default']['hostname'] = '192.168.2.50';
+$db['default']['username'] = 'admin';
+$db['default']['password'] = '123';
+$db['default']['database'] = 'DB_RSMM';
+// $db['default']['hostname'] = '192.168.2.50';
+// $db['default']['username'] = 'admin';
+// $db['default']['password'] = '123';
+// $db['default']['database'] = 'DB_RSMM';
+
+$db['default']['dbdriver'] = 'sqlsrv';
+$db['default']['dbprefix'] = '';
+$db['default']['pconnect'] = FALSE;
+$db['default']['db_debug'] = TRUE;
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = '';
+$db['default']['char_set'] = 'utf8';
+$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['swap_pre'] = '';
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;
+
+$db['hospital']['hostname'] = '192.168.2.50';
+$db['hospital']['username'] = 'admin';
+$db['hospital']['password'] = '123';
+$db['hospital']['database'] = 'PKU';
+// $db['default']['hostname'] = '192.168.2.50';
+// $db['default']['username'] = 'admin';
+// $db['default']['password'] = '123';
+// $db['default']['database'] = 'PKU';
+
+$db['hospital']['dbdriver'] = 'sqlsrv';
+$db['hospital']['dbprefix'] = '';
+$db['hospital']['pconnect'] = FALSE;
+$db['hospital']['db_debug'] = TRUE;
+$db['hospital']['cache_on'] = FALSE;
+$db['hospital']['cachedir'] = '';
+$db['hospital']['char_set'] = 'utf8';
+$db['hospital']['dbcollat'] = 'utf8_general_ci';
+$db['hospital']['swap_pre'] = '';
+$db['hospital']['autoinit'] = TRUE;
+$db['hospital']['stricton'] = FALSE;
+/* End of file database.php */
+/* Location: ./application/config/database.php */
