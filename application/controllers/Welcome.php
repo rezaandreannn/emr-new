@@ -24,4 +24,11 @@ class Welcome extends CI_Controller
 		$data['content'] = 'dashboard';
 		$this->load->view('layouts/dashboard', $data);
 	}
+
+
+	public function login()
+	{
+	
+		$this->load->view('auth/login');
+	}
 }
