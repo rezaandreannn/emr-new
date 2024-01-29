@@ -1,0 +1,18 @@
+<- menu rawat jalan perawat ->
+
+nurse record
+	-rawat jalan
+	-kebidanan
+	-form transfer pasien OP
+Riwayat Rekam Medis
+	- Berkas Rekam Medis
+	- Berkas Rekam Medis Harian
+
+<- menu rawat jalan dokter rawat jalan ->
+
+medis
+	- pemeriksaan rawat jalan
+
+Riwayat Rekam Medis
+	- Berkas Rekam Medis
+	- Berkas Rekam Medis Harian
