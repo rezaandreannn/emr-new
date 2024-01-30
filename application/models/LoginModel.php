@@ -1,11 +1,12 @@
 <?php
-    defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-    class LoginModel extends CI_Model
+class LoginModel extends CI_Model
+{
+
+    // get user detail with auto role
+    function get_user_detail_by_username_auto_role($params)
     {
-
-            // get user detail with auto role
-    function get_user_detail_by_username_auto_role($params) {
         $sql = "SELECT TOP 1 a.*, c.role_id, c.role_nm, c.default_page,user_name
                 FROM PKU.dbo.tac_com_user a
                 LEFT JOIN PKU.dbo.tac_com_role_user b ON a.user_id = b.user_id
@@ -22,8 +23,9 @@
     }
 
 
-            // get login auto role
-    function get_user_login_auto_role($username, $password, $portal) {
+    // get login auto role
+    function get_user_login_auto_role($username, $password, $portal)
+    {
         // load encrypt
         $this->load->library('encrypt');
         // process
@@ -43,4 +45,4 @@
             return FALSE;
         }
     }
-    }
+}

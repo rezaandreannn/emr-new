@@ -26,7 +26,10 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/daterangepicker/daterangepicker.css'); ?>">
     <!-- summernote -->
-    <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/summernote/summernote-bs4.min.css'); ?>">
+    <?php echo header_assets($header); ?>
+
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -47,7 +50,6 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <?php $this->load->view('partials/dashboard/_content_header'); ?>
             <!-- /.content-header -->
 
             <!-- Main content -->
@@ -101,6 +103,13 @@
     <script src="<?= base_url('assets/AdminLTE/dist/js/demo.js'); ?>"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/pages/dashboard.js'); ?>"></script>
+
+    <?php echo footer_assets($footer); ?>
+
+
+
+
+
 </body>
 
 </html>
