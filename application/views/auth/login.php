@@ -30,20 +30,21 @@
   <div class="card">
     <div class="card-body login-card-body">
     <?php if ($this->session->flashdata('danger')) : ?>
-                                    <div class="alert alert-danger">
-                                        <?php echo $this->session->flashdata('danger'); ?>
-                                    </div>
+        <div class="alert alert-danger">
+            <?php echo $this->session->flashdata('danger'); ?>
+        </div>
     <?php endif; ?>
-    <?php if ($this->session->flashdata('info')) : ?>
-                                    <div class="alert alert-info">
-                                        <?php echo $this->session->flashdata('info'); ?>
-                                    </div>
+    <?php if ($this->session->flashdata('warning')) : ?>
+        <div class="alert alert-warning">
+            <?php echo $this->session->flashdata('warning'); ?>
+        </div>
     <?php endif; ?>
       <p class="login-box-msg">Masuk untuk memulai EMR</p>
 
       <form action="<?php echo base_url('LoginController/LoginProses');?>" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username" name="username">
+          <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username');?>">
+          <span class="text-danger"><?php echo form_error('username'); ?></span>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

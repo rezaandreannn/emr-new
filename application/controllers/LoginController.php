@@ -46,17 +46,23 @@ class LoginController extends CI_Controller
                 $this->session->set_userdata($sess);
                 redirect('welcome');
                 }
+                else {
+                
+                    $this->session->set_flashdata('danger', 'User Nonaktif');
+                    $this->load->view('auth/login');
+                    
+                }
+                
                
             }
             else {
-                $url = base_url();
-                echo $this->session->set_flashdata('danger', 'Username Atau Password Salah');
-                redirect($url);
+                $this->session->set_flashdata('danger', 'Username atau Password salah');
+                $this->load->view('auth/login');
             }
         }
         else{
             $url = base_url();
-            echo $this->session->set_flashdata('info', 'Username dan Password tidak boleh kosong');
+            echo $this->session->set_flashdata('warning', 'Username dan Password tidak boleh kosong');
             redirect($url);
         }
 	}

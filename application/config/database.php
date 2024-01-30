@@ -81,9 +81,9 @@ $active_record = TRUE;
 // konfigurasi db asli
 // DESKTOP-FJQOGPK\SQLEXPRESS local sql
 // $db['default']['hostname'] = 'MSI\SQLEXPRESS';
-$db['default']['hostname'] = '192.168.2.50';
-$db['default']['username'] = 'admin';
-$db['default']['password'] = '123';
+$db['default']['hostname'] = 'MSI\SQLEXPRESS';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
 $db['default']['database'] = 'DB_RSMM';
 // $db['default']['hostname'] = '192.168.2.50';
 // $db['default']['username'] = 'admin';
@@ -102,9 +102,9 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-$db['hospital']['hostname'] = '192.168.2.50';
-$db['hospital']['username'] = 'admin';
-$db['hospital']['password'] = '123';
+$db['hospital']['hostname'] = 'MSI\SQLEXPRESS';
+$db['hospital']['username'] = '';
+$db['hospital']['password'] = '';
 $db['hospital']['database'] = 'PKU';
 // $db['default']['hostname'] = '192.168.2.50';
 // $db['default']['username'] = 'admin';
