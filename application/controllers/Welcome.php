@@ -24,7 +24,13 @@ class Welcome extends CI_Controller
 	{
 		// var_dump($this->session->userdata('user_name'));
 		// die;
-		$data['content'] = 'dashboard';
+		$data = [
+            'title' => 'Rawat Jalan',
+            'content' => 'dashboard',
+            'header' => datatable_header(),
+            'footer' => datatable_footer()
+        ];
+		
 		$this->load->view('layouts/dashboard', $data);
 	}
 
