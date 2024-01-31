@@ -25,7 +25,7 @@ if (!function_exists('datatable_footer')) {
             $(function() {
                 $("#example1").DataTable({
                     "responsive": true,
-                    "lengthChange": false,
+                    "lengthChange": true,
                     "autoWidth": false,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo(\'#example1_wrapper .col-md-6:eq(0)\');
@@ -37,6 +37,8 @@ if (!function_exists('datatable_footer')) {
                     "info": true,
                     "autoWidth": false,
                     "responsive": true,
+                    "lengthMenu": [10, 15, 25, 50], 
+                    "pageLength": 10
                 });
             });
             </script>'

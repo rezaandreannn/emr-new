@@ -1,15 +1,5 @@
 <?php
 
-function add_assets($pos, $params)
-{
-    $ci = &get_instance();
-    if (!is_array($params)) {
-        $params = array($params);
-    }
-    $ci->config->set_item($pos, $params);
-    return;
-}
-
 if (!function_exists('header_assets')) {
     function header_assets($headers = array())
     {

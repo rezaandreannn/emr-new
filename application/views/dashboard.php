@@ -1,8 +1,3 @@
-<?php echo add_assets('header', array(
-    'te',
-    'ds'
-)); ?>
-
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->

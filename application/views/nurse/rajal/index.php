@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
-
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -21,29 +17,36 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><?= $title ?></h3>
+                <div class="form-group row" style="width: 60%;">
+                    <label for="select-dokter" class="col-6 col-sm-2 col-form-label">Pilih Dokter</label>
+                    <div class="col-10 col-sm-8 col-md-6">
+                        <select name="dokter" id="select-dokter" class="form-control">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>NO</th>
+                            <th>No MR</th>
+                            <th>Nama Pasien</th>
+                            <th>Alamat</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-                            <td>X</td>
+                            <td width="5%">1</td>
+                            <td width="10%">000000</td>
+                            <td width="20%">Alexander</td>
+                            <td width="40%">Jl. imam bonjol</td>
+                            <td width="10%">Perawat</td>
+                            <td><a href="http://" class="badge badge-info">Entry</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,7 +55,3 @@
     </div>
     </div><!-- /.container-fluid -->
 </section>
-
-
-
-<!-- scripts -->

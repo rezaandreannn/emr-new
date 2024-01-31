@@ -26,9 +26,7 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/daterangepicker/daterangepicker.css'); ?>">
     <!-- summernote -->
-    <?php echo header_assets($header); ?>
-
-
+    <?php echo header_assets(!empty($header) ? $header : array()); ?>
 
 </head>
 
@@ -104,11 +102,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/pages/dashboard.js'); ?>"></script>
 
-    <?php echo footer_assets($footer); ?>
-
-
-
-
+    <?php echo footer_assets(!empty($footer) ? $footer : array()) ?>
 
 </body>
 
