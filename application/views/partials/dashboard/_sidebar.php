@@ -59,7 +59,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a href="<?= base_url('prwt/rajal') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') ? 'active' : '' ?>">
+=======
+
+                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
+
+>>>>>>> fc872e9c246726f07fc2d668c819283c38809fbc
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rawat Jalan</p>
                             </a>
