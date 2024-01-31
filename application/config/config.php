@@ -23,7 +23,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://localhost/emr.rsumm.co.id/';
+=======
+$config['base_url'] = 'http://localhost/emr-new';
+>>>>>>> dba928297553000181946228870d26a0a4757ae0
 
 /*
 |--------------------------------------------------------------------------
