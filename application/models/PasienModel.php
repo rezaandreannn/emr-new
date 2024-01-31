@@ -4,10 +4,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class PasienModel extends CI_Model
 {
 
-//get data pasien rajal by dokter
-function get_pasien_rajal_by_kode_dokter($params) {
-    
-    $sql = "SELECT a.NOMOR,a.NO_MR,a.TANGGAL,c.Kode_Dokter, b.NAMA_PASIEN,b.ALAMAT, b.KOTA,b.PROVINSI,b.NO_MR,d.FS_STATUS,
+    //get data pasien rajal by dokter
+    function get_pasien_rajal_by_kode_dokter($params)
+    {
+
+        $sql = "SELECT a.NOMOR,a.NO_MR,a.TANGGAL,c.Kode_Dokter, b.NAMA_PASIEN,b.ALAMAT, b.KOTA,b.PROVINSI,b.NO_MR,d.FS_STATUS,
     e.FS_CARA_PULANG,e.FS_TERAPI,e.FS_KD_TRS,c.NO_REG, c.KODEREKANAN, e.HASIL_ECHO
     from DB_RSMM.dbo.ANTRIAN a
     LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN b ON a.NO_MR=b.NO_MR
@@ -17,15 +18,13 @@ function get_pasien_rajal_by_kode_dokter($params) {
     WHERE 
     a.TANGGAL=? AND DOKTER = ? AND c.TANGGAL = ? AND c.Kode_Dokter = ?
     ORDER BY a.NOMOR";
-    $query = $this->db->query($sql, $params);
-    if ($query->num_rows() > 0) {
-        $result = $query->result_array();
-        $query->free_result();
-        return $result;
-    } else {
-        return array();
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
     }
-}
-
-
 }

@@ -57,9 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 // nurse rajal 
 $route['prwt/rajal'] = 'Nurse/RajalController';
-<<<<<<< HEAD
 $route['prwt/rajal/create'] = 'Nurse/RajalController/create';
-=======
+
 $route['prwt/bidan'] = 'Nurse/BidanController';
 $route['dashboard'] = 'DashboardController';
->>>>>>> dba928297553000181946228870d26a0a4757ae0

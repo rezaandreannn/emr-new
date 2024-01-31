@@ -20,7 +20,7 @@ class RajalController extends CI_Controller
         $kodeDokter = 0;
 
         if ($this->input->get('dokter')) {
-            $kodeDokter =$this->input->get('dokter');
+            $kodeDokter = $this->input->get('dokter');
         }
 
         $datenow = date('Y-m-d');
@@ -30,20 +30,15 @@ class RajalController extends CI_Controller
             'content' => 'nurse/rajal/index',
             'header' => datatable_header(),
             'footer' => datatable_footer(),
-            'select2Header'=>select2_header(),
-            'select2Footers'=>select2_footer(),
-            'dokters' => $this->RawatJalanModel->get_dokter(),
-            'pasiens' => $this->PasienModel->get_pasien_rajal_by_kode_dokter(array($datenow,$kodeDokter,$datenow,$kodeDokter))
+            'select2Header' => select2_header(),
+            'select2Footers' => select2_footer(),
+            'dokters' => $this->Dokter_model->get_dokter(),
+            'pasiens' => $this->PasienModel->get_pasien_rajal_by_kode_dokter(array($datenow, $kodeDokter, $datenow, $kodeDokter))
         ];
-        // var_dump($data['pasiens']);
+        // var_dump($data['dokters']);
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
-
-    public function add_process(){
-        var_dump('ok');
-    }
-
 
     public function create()
     {
@@ -52,5 +47,17 @@ class RajalController extends CI_Controller
             'content' => 'nurse/rajal/create',
         ];
         $this->load->view('layouts/dashboard', $data);
+    }
+
+    public function store()
+    {
+    }
+
+    public function edit()
+    {
+    }
+
+    public function update()
+    {
     }
 }

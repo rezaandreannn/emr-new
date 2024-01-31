@@ -89,11 +89,10 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-<<<<<<< HEAD
-$autoload['helper'] = array('url', 'form', 'security', 'file', 'text', 'template', 'datatable', 'menu');
-=======
-$autoload['helper'] = array('url', 'form', 'security', 'file', 'text', 'template', 'datatable' ,'select2');
->>>>>>> fc872e9c246726f07fc2d668c819283c38809fbc
+
+$autoload['helper'] = array('url', 'form', 'security', 'file', 'text', 'template', 'datatable', 'menu', 'select2', 'html');
+
+
 
 /*
 | -------------------------------------------------------------------
@@ -136,4 +135,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('Dokter_model');

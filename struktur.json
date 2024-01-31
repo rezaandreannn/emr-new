@@ -1,9 +1,0 @@
-{
-    "controllers" : "Dokter",
-    "medis" : {
-        "name" : "Rawat inap",
-        "name" : "Rawat Jalan",
-        ""
-    }
-
-}
