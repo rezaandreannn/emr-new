@@ -28,6 +28,10 @@
     <!-- summernote -->
     <?php echo header_assets(!empty($header) ? $header : array()); ?>
 
+    <!-- select2 -->
+    <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/select2/css/select2.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -101,6 +105,21 @@
     <script src="<?= base_url('assets/AdminLTE/dist/js/demo.js'); ?>"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/pages/dashboard.js'); ?>"></script>
+
+    <!-- select2 -->
+    <script src="<?= base_url('assets/AdminLTE/plugins/select2/js/select2.full.min.js');?>"></script>
+
+    <script>
+        $(function () {
+    //Initialize Select2 Elements
+        $('.select2').select2()
+
+    //Initialize Select2 Elements
+        $('.select2bs4').select2({
+        theme: 'bootstrap4'
+        });
+    });
+     </script>
 
     <?php echo footer_assets(!empty($footer) ? $footer : array()) ?>
 

@@ -70,11 +70,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-<<<<<<< HEAD
+
                             <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
-=======
-                            <a href="<?= base_url('prwt/rajal'); ?>" class="nav-link">
->>>>>>> 359b0f38cbf4103aee9d2f8c230a0cd086f2121e
+
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rawat Jalan</p>
                             </a>
