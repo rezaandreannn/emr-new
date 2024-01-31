@@ -34,22 +34,11 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item">
+                    <a href="<?= base_url('dashboard') ?>" class="nav-link <?= ($this->uri->uri_string() === 'dashboard') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        <p> Dashboard</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
@@ -61,7 +50,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
                         <p>
                             Keperawatan
@@ -70,17 +59,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-<<<<<<< HEAD
-                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
-=======
-                            <a href="<?= base_url('prwt/rajal'); ?>" class="nav-link">
->>>>>>> 359b0f38cbf4103aee9d2f8c230a0cd086f2121e
+                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rawat Jalan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="<?= base_url('prwt/bidan') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/bidan') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kebidanan</p>
                             </a>
