@@ -55,4 +55,6 @@ $route['default_controller'] = 'LoginController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// nurse rajal 
 $route['prwt/rajal'] = 'Nurse/RajalController';
+$route['prwt/rajal/create'] = 'Nurse/RajalController/create';

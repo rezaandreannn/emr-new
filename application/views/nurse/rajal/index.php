@@ -46,7 +46,7 @@
                             <td width="20%">Alexander</td>
                             <td width="40%">Jl. imam bonjol</td>
                             <td width="10%">Perawat</td>
-                            <td><a href="http://" class="badge badge-info">Entry</a></td>
+                            <td><a href="<?= base_url('prwt/rajal/create') ?>" class="badge badge-info">Entry</a></td>
                         </tr>
                     </tbody>
                 </table>

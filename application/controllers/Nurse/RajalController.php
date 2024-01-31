@@ -25,8 +25,12 @@ class RajalController extends CI_Controller
     }
 
 
-    public function login()
+    public function create()
     {
-        $this->load->view('auth/login');
+        $data = [
+            'title' => 'Form Rawat Jalan',
+            'content' => 'nurse/rajal/create',
+        ];
+        $this->load->view('layouts/dashboard', $data);
     }
 }
