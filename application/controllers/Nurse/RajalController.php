@@ -20,7 +20,7 @@ class RajalController extends CI_Controller
         $kodeDokter = 0;
 
         if ($this->input->get('dokter')) {
-            $kodeDokter =$this->input->get('dokter');
+            $kodeDokter = $this->input->get('dokter');
         }
 
         $datenow = date('Y-m-d');
@@ -30,23 +30,48 @@ class RajalController extends CI_Controller
             'content' => 'nurse/rajal/index',
             'header' => datatable_header(),
             'footer' => datatable_footer(),
-            'select2Header'=>select2_header(),
-            'select2Footers'=>select2_footer(),
-            'dokters' => $this->RawatJalanModel->get_dokter(),
-            'pasiens' => $this->PasienModel->get_pasien_rajal_by_kode_dokter(array($datenow,$kodeDokter,$datenow,$kodeDokter))
+            'select2Header' => select2_header(),
+            'select2Footers' => select2_footer(),
+            'dokters' => $this->Dokter_model->get_dokter(),
+            'pasiens' => $this->PasienModel->get_pasien_rajal_by_kode_dokter(array($datenow, $kodeDokter, $datenow, $kodeDokter))
         ];
-        // var_dump($data['pasiens']);
+        // var_dump($data['dokters']);
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
 
-    public function add_process(){
-        var_dump('ok');
+    public function create($no_register)
+
+    {
+
+        $get_mr_pasien=$this->PasienModel->find_pasien_by_register($no_register);
+
+        foreach($get_mr_pasien as $get_mr){
+            $mr=$get_mr['No_MR'];
+        }
+        // var_dump($mr);
+        // die;
+
+        $data = [
+            'title' => 'Form Rawat Jalan',
+            'content' => 'nurse/rajal/create',
+            'header' => datatable_header(),
+            'footer' => datatable_footer(),
+            'historys' => $this->PasienModel->get_history_by_mr(array($mr)),
+            'biodata' => $this->PasienModel->get_biodata_pasien_by_mr(array($mr))
+        ];
+        $this->load->view('layouts/dashboard', $data);
     }
 
-
-    public function login()
+    public function store()
     {
-        $this->load->view('auth/login');
+    }
+
+    public function edit()
+    {
+    }
+
+    public function update()
+    {
     }
 }

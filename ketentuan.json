@@ -1,0 +1,19 @@
+{
+    "aturan_penamaan_model": {
+        "format": "Huruf Depan Besar",
+        "pemisah_kata": "Underscore / _",
+        "akhiran": "model",
+        "contoh" : "Test_model"
+    },
+    "aturan_penamaan_controller" : {
+        "format": "Huruf Depan Besar",
+        "pemisah_kata": "Underscore / _",
+        "akhiran": "controller",
+        "contoh" : "Test_controller"
+    },
+    "aturan_penamaan_variable" : {
+        "format": "huruf kecil semua",
+        "pemisah_kata": "Underscore / _",
+        "contoh" : "$title"
+    }
+}
