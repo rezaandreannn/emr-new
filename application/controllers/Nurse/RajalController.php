@@ -39,12 +39,13 @@ class RajalController extends CI_Controller
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
-
-    public function create()
+    
+    public function create($no_mr)
     {
         $data = [
             'title' => 'Form Rawat Jalan',
             'content' => 'nurse/rajal/create',
+            'historys' => $this->PasienModel->get_history_by_mr(array($no_mr))
         ];
         $this->load->view('layouts/dashboard', $data);
     }

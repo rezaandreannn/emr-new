@@ -27,4 +27,27 @@ class PasienModel extends CI_Model
             return array();
         }
     }
+
+    // get history pasien by no mr
+    function get_history_by_mr($params="") {
+        $sql = "SELECT top 10 A.TANGGAL,A.STATUS,A.NO_REG,B.NAMA_PASIEN, B.ALAMAT, B.KOTA,B.PROVINSI,B.TGL_LAHIR,B.JENIS_KELAMIN, I.NAMA_DOKTER,K.SPESIALIS,B.FS_ALERGI,L.FS_FORM,M.FS_KD_TRS
+        FROM PENDAFTARAN A
+        LEFT JOIN REGISTER_PASIEN B ON A.NO_MR=B.NO_MR 
+        LEFT JOIN DOKTER I ON A.KODE_DOKTER=I.KODE_DOKTER
+        LEFT JOIN REKANAN J ON A.KODEREKANAN=J.KODEREKANAN
+        LEFT JOIN M_SPESIALIS K ON I.SPESIALIS=K.SPESIALIS
+        LEFT JOIN PKU.dbo.TAC_RJ_STATUS L ON A.NO_REG=L.FS_KD_REG
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS M ON A.NO_REG=M.FS_KD_REG
+        WHERE A.NO_MR = ?
+        ORDER BY TANGGAL DESC
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
 }

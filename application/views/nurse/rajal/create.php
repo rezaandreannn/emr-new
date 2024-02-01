@@ -181,32 +181,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($historys as $history) { ?>
                         <tr>
-                            <td>21/01/2024</td>
-                            <td>dr. Agung B Prasetyono, Sp.PD</td>
+                            <td><?= $history['TANGGAL'] ?></td>
+                            <td><?= $history['NAMA_DOKTER']?><br><?=$history['DOK2']?></td>
                             <td>
-                                Spesialis Penyakit Dalam
+                               <?= $history['SPESIALIS']?>
                             </td>
                             <td> -</td>
                             <td>
-                                <div class="badge badge-success">
-                                    Rajal
-                                </div>
+                                <?php if ($history['KODE_RUANG']==''){?>
+                                    <div class="badge badge-primary">
+                                        Rawat Jalan
+                                    </div>
+                                <?php } elseif($history['KODE_RUANG']!==''){?>
+                                    <div class="badge badge-primary">
+                                        Rawat Jalan
+                                    </div>
+                                <?php }?>
                             </td>
                         </tr>
-                        <tr>
-                            <td>21/01/2024</td>
-                            <td>dr. Agung B Prasetyono, Sp.PD</td>
-                            <td>
-                                Spesialis Penyakit Dalam
-                            </td>
-                            <td> -</td>
-                            <td>
-                                <div class="badge badge-danger">
-                                    Ranap
-                                </div>
-                            </td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
