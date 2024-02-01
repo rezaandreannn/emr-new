@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
+
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
@@ -51,8 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'menu-open' : '' ?>">
-=======
->>>>>>> 29e6abd9c84aed92e35a4c64448ecd4bb333f1a6
+
                     <a href="#" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
                         <p>
