@@ -25,7 +25,9 @@
                                 <option value="">-- pilih dokter --</option>
                                 <?php
                                 foreach ($dokters as $dokter) { ?>
-                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?php if($this->input->get('dokter')==$dokter['KODE_DOKTER']){ echo 'selected';}?>><?= $dokter['NAMA_DOKTER'] ?></option>
+                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?php if ($this->input->get('dokter') == $dokter['KODE_DOKTER']) {
+                                                                                        echo 'selected';
+                                                                                    } ?>><?= $dokter['NAMA_DOKTER'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
