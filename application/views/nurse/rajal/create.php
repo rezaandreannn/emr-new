@@ -90,7 +90,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Histori (Reza Andrean) - (214942)</h4>
+                <h4 class="modal-title">Histori (<?=$biodata['NAMA_PASIEN']?>) - (<?=$biodata['NO_MR']?>)</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,7 +110,7 @@
                     <?php
                     foreach ($historys as $history) { ?>
                         <tr>
-                            <td><?= $history['TANGGAL'] ?></td>
+                            <td><?=date('d-m-Y',strtotime($history['TANGGAL']))?></td>
                             <td><?= $history['NAMA_DOKTER']?></td>
                             <td>
                                <?= $history['SPESIALIS']?>
