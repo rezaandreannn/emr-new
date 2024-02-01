@@ -13,7 +13,7 @@
                 <img src="<?= base_url('assets/AdminLTE/dist/img/user2-160x160.jpg'); ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander</a>
+                <a href="#" class="d-block"><?php echo $this->session->userdata('user_name') ?></a>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
                         <p>
@@ -59,13 +59,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-<<<<<<< HEAD
                             <a href="<?= base_url('prwt/rajal') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') ? 'active' : '' ?>">
-=======
-
-                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
-
->>>>>>> fc872e9c246726f07fc2d668c819283c38809fbc
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rawat Jalan</p>
                             </a>
