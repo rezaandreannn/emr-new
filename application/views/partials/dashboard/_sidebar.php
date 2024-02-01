@@ -2,7 +2,8 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="<?= base_url('assets/images/logo.png'); ?>" alt="RSUMM Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">E Medical Record</span>
+        <span class="brand-text font-weight-light">E-Rekam Medis <span class="badge bg-success" style="font-size: xx-small; position: relative; top: -10px; left: -3px;">versi baru</span></span>
+
     </a>
 
     <!-- Sidebar -->
