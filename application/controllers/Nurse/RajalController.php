@@ -40,7 +40,7 @@ class RajalController extends CI_Controller
         $this->load->view('layouts/dashboard', $data);
     }
 
-    public function create()
+    public function create($no_register)
     {
         $data = [
             'title' => 'Form Rawat Jalan',
