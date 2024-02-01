@@ -3,7 +3,7 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0"><?= $title ?></h1>
-            </div><!-- /.col -->
+            </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Perawat</a></li>
@@ -23,20 +23,20 @@
                 <div class="card bg-light d-flex flex-fill">
 
                     <div class="card-header text-muted border-bottom-0">
-                        <?=$biodata['NO_MR']?>
+                        <?= $biodata['NO_MR'] ?>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="lead"><b><?=$biodata['NAMA_PASIEN']?></b></h2>
-                                <p class="text-muted text-sm"><?php if($biodata['JENIS_KELAMIN']=='P'){
-                                echo 'Perempuan';
-                                }else{
-                                   echo 'Laki-Laki';
-                                }?> / <?=date('d-m-Y',strtotime($biodata['TGL_LAHIR']))?> / <?=$biodata['HP2']?></p>
+                                <h2 class="lead"><b><?= $biodata['NAMA_PASIEN'] ?></b></h2>
+                                <p class="text-muted text-sm"><?php if ($biodata['JENIS_KELAMIN'] == 'P') {
+                                                                    echo 'Perempuan';
+                                                                } else {
+                                                                    echo 'Laki-Laki';
+                                                                } ?> / <?= date('d-m-Y', strtotime($biodata['TGL_LAHIR'])) ?> / <?= $biodata['HP2'] ?></p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span><?=$biodata['ALAMAT']?></li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span><?=$biodata['HP1']?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span><?= $biodata['ALAMAT'] ?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span><?= $biodata['HP1'] ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Histori (Reza Andrean) - (214942)</h4>
+                <h4 class="modal-title">Histori (<?= $biodata['NAMA_PASIEN'] ?>) - (<?= $biodata['NO_MR'] ?>)</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,27 +107,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    foreach ($historys as $history) { ?>
-                        <tr>
-                            <td><?= $history['TANGGAL'] ?></td>
-                            <td><?= $history['NAMA_DOKTER']?></td>
-                            <td>
-                               <?= $history['SPESIALIS']?>
-                            </td>
-                            <td> -</td>
-                            <td>
-                                <?php if ($history['KODE_RUANG']==''){?>
-                                    <div class="badge badge-primary">
-                                        Rawat Jalan
-                                    </div>
-                                <?php } elseif($history['KODE_RUANG']!==''){?>
-                                    <div class="badge badge-success">
-                                        Rawat Inap
-                                    </div>
-                                <?php }?>
-                            </td>
-                        </tr>
+                        <?php
+                        foreach ($histories as $history) { ?>
+                            <tr>
+                                <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
+                                <td><?= $history['NAMA_DOKTER'] ?></td>
+                                <td>
+                                    <?= $history['SPESIALIS'] ?>
+                                </td>
+                                <td> -</td>
+                                <td>
+                                    <?php if ($history['KODE_RUANG'] == '') { ?>
+                                        <div class="badge badge-primary">
+                                            Rawat Jalan
+                                        </div>
+                                    <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
+                                        <div class="badge badge-success">
+                                            Rawat Inap
+                                        </div>
+                                    <?php } ?>
+                                </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
