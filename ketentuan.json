@@ -15,5 +15,11 @@
         "format": "huruf kecil semua",
         "pemisah_kata": "Underscore / _",
         "contoh" : "$title"
+    },
+    "aturan_penamaan_helper" : {
+        "format": "huruf kecil semua",
+        "pemisah_kata": "Underscore / _",
+        "akhiran": "controller",
+        "contoh" : "test_helper"
     }
 }
