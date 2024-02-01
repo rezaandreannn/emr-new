@@ -90,7 +90,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Histori (Reza Andrean) - (214942)</h4>
+                <h4 class="modal-title">Histori (<?=$biodata['NAMA_PASIEN']?>) - (<?=$biodata['NO_MR']?>)</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,6 +107,7 @@
                         </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                         <?php
                         foreach ($histories as $history) { ?>
                             <tr>
@@ -128,6 +129,29 @@
                                     <?php } ?>
                                 </td>
                             </tr>
+=======
+                    <?php
+                    foreach ($historys as $history) { ?>
+                        <tr>
+                            <td><?=date('d-m-Y',strtotime($history['TANGGAL']))?></td>
+                            <td><?= $history['NAMA_DOKTER']?></td>
+                            <td>
+                               <?= $history['SPESIALIS']?>
+                            </td>
+                            <td> -</td>
+                            <td>
+                                <?php if ($history['KODE_RUANG']==''){?>
+                                    <div class="badge badge-primary">
+                                        Rawat Jalan
+                                    </div>
+                                <?php } elseif($history['KODE_RUANG']!==''){?>
+                                    <div class="badge badge-success">
+                                        Rawat Inap
+                                    </div>
+                                <?php }?>
+                            </td>
+                        </tr>
+>>>>>>> 91a9fe949e5030f5a53ee97c271c8c3a00b0133a
                         <?php } ?>
                     </tbody>
                 </table>
