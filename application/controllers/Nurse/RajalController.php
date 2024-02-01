@@ -39,18 +39,26 @@ class RajalController extends CI_Controller
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
-<<<<<<< HEAD
-    
-    public function create($no_mr)
-=======
 
     public function create($no_register)
->>>>>>> 232c142cc791810c8ea87ea9086bc6aa78b2db22
+
     {
+
+        $get_mr_pasien=$this->PasienModel->find_pasien_by_register($no_register);
+
+        foreach($get_mr_pasien as $get_mr){
+            $mr=$get_mr['No_MR'];
+        }
+        // var_dump($mr);
+        // die;
+
         $data = [
             'title' => 'Form Rawat Jalan',
             'content' => 'nurse/rajal/create',
-            'historys' => $this->PasienModel->get_history_by_mr(array($no_mr))
+            'header' => datatable_header(),
+            'footer' => datatable_footer(),
+            'historys' => $this->PasienModel->get_history_by_mr(array($mr)),
+            'biodata' => $this->PasienModel->get_biodata_pasien_by_mr(array($mr))
         ];
         $this->load->view('layouts/dashboard', $data);
     }
