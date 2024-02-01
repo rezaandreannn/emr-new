@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label>Nadi</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
                     <div class="input-group-append">
                         <span class="input-group-text">x/menit</span>
                     </div>
@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label>Berat Badan</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
                     <div class="input-group-append">
                         <span class="input-group-text">kg</span>
                     </div>
@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label>Tinggi Badan</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
                     <div class="input-group-append">
                         <span class="input-group-text">cm</span>
                     </div>
