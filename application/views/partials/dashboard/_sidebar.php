@@ -40,7 +40,7 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
                         <p>
