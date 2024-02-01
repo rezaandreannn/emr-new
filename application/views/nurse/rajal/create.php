@@ -21,17 +21,22 @@
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 d-flex align-items-stretch flex-column">
                 <div class="card bg-light d-flex flex-fill">
+
                     <div class="card-header text-muted border-bottom-0">
-                        No MR. 214942
+                        <?=$biodata['NO_MR']?>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="lead"><b>Reza Andrean</b></h2>
-                                <p class="text-muted text-sm">Laki-laki / 22-03-1997 / 1807062203970004</p>
+                                <h2 class="lead"><b><?=$biodata['NAMA_PASIEN']?></b></h2>
+                                <p class="text-muted text-sm"><?php if($biodata['JENIS_KELAMIN']=='P'){
+                                echo 'Perempuan';
+                                }else{
+                                   echo 'Laki-Laki';
+                                }?> / <?=date('d-m-Y',strtotime($biodata['TGL_LAHIR']))?> / <?=$biodata['HP2']?></p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>Selorejo, Batanghari, Lamtim</li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>+6282374958627</li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span><?=$biodata['ALAMAT']?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span><?=$biodata['HP1']?></li>
                                 </ul>
                             </div>
                         </div>
@@ -91,7 +96,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped">
+                <table class="table table-striped" id="example1">
                     <thead>
                         <tr>
                             <th style="width: 10px">Tgl Kunjungan</th>
@@ -102,32 +107,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($historys as $history) { ?>
                         <tr>
-                            <td>21/01/2024</td>
-                            <td>dr. Agung B Prasetyono, Sp.PD</td>
+                            <td><?= $history['TANGGAL'] ?></td>
+                            <td><?= $history['NAMA_DOKTER']?></td>
                             <td>
-                                Spesialis Penyakit Dalam
+                               <?= $history['SPESIALIS']?>
                             </td>
                             <td> -</td>
                             <td>
-                                <div class="badge badge-success">
-                                    Rajal
-                                </div>
+                                <?php if ($history['KODE_RUANG']==''){?>
+                                    <div class="badge badge-primary">
+                                        Rawat Jalan
+                                    </div>
+                                <?php } elseif($history['KODE_RUANG']!==''){?>
+                                    <div class="badge badge-success">
+                                        Rawat Inap
+                                    </div>
+                                <?php }?>
                             </td>
                         </tr>
-                        <tr>
-                            <td>21/01/2024</td>
-                            <td>dr. Agung B Prasetyono, Sp.PD</td>
-                            <td>
-                                Spesialis Penyakit Dalam
-                            </td>
-                            <td> -</td>
-                            <td>
-                                <div class="badge badge-danger">
-                                    Ranap
-                                </div>
-                            </td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

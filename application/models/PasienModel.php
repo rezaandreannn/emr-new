@@ -26,4 +26,59 @@ class PasienModel extends CI_Model
             return array();
         }
     }
+
+    // get history pasien by no mr
+    function get_history_by_mr($params="") {
+        $sql = "SELECT A.TANGGAL,A.STATUS,A.NO_REG,A.KODE_RUANG,B.NAMA_PASIEN, B.ALAMAT, B.KOTA,B.PROVINSI,B.TGL_LAHIR,B.JENIS_KELAMIN, I.NAMA_DOKTER,K.SPESIALIS,B.FS_ALERGI,L.FS_FORM,M.FS_KD_TRS
+        FROM DB_RSMM.dbo.PENDAFTARAN A
+        LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN B ON A.NO_MR=B.NO_MR 
+        LEFT JOIN DB_RSMM.dbo.DOKTER I ON A.KODE_DOKTER=I.KODE_DOKTER
+        LEFT JOIN DB_RSMM.dbo.REKANAN J ON A.KODEREKANAN=J.KODEREKANAN
+        LEFT JOIN DB_RSMM.dbo.M_SPESIALIS K ON I.SPESIALIS=K.SPESIALIS
+        LEFT JOIN PKU.dbo.TAC_RJ_STATUS L ON A.NO_REG=L.FS_KD_REG
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS M ON A.NO_REG=M.FS_KD_REG
+        WHERE A.NO_MR = ?
+        ORDER BY TANGGAL DESC
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    // get history pasien by no mr
+    function find_pasien_by_register($params="") {
+        $sql = "SELECT No_MR
+        FROM DB_RSMM.dbo.PENDAFTARAN 
+        WHERE No_reg = ?
+        ORDER BY TANGGAL DESC
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_biodata_pasien_by_mr($params) {
+        $sql = "SELECT a.NAMA_PASIEN,a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
+        a.TGL_LAHIR,FS_ALERGI
+        FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        WHERE a.NO_MR = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
 }
