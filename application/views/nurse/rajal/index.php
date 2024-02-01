@@ -65,7 +65,15 @@
                                 <?php }
                                 } ?>
                             </td>
-                            <td width="45%"><a href="<?= base_url('prwt/rajal/create/' . $pasien['NO_REG']) ?>" class="btn btn-sm btn-primary">Masuk</a></td>
+                            <?php
+                            $button_title = 'Masuk';
+                            $button_url = 'prwt/rajal/create/' . $pasien['NO_REG'];
+                            if ($pasien['FS_STATUS'] != '') {
+                                $button_title = 'Edit';
+                                $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG'];
+                            }
+                            ?>
+                            <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>

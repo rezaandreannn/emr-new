@@ -8,7 +8,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Perawat</a></li>
                     <li class="breadcrumb-item active">Rawat Jalan</li>
-                    <li class="breadcrumb-item active">Form Tambah</li>
+                    <li class="breadcrumb-item active">Form Edit</li>
                 </ol>
             </div>
         </div>
