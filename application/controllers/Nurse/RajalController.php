@@ -39,8 +39,13 @@ class RajalController extends CI_Controller
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
+<<<<<<< HEAD
     
     public function create($no_mr)
+=======
+
+    public function create($no_register)
+>>>>>>> 232c142cc791810c8ea87ea9086bc6aa78b2db22
     {
         $data = [
             'title' => 'Form Rawat Jalan',

@@ -65,14 +65,13 @@
                                 <?php }
                                 } ?>
                             </td>
-                            <td width="45%"><a href="" class="btn btn-sm btn-primary">Masuk</a></td>
+                            <td width="45%"><a href="<?= base_url('prwt/rajal/create/' . $pasien['NO_REG']) ?>" class="btn btn-sm btn-primary">Masuk</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
-    </div>
-    </div>
+
     </div><!-- /.container-fluid -->
 </section>
 
@@ -82,27 +81,4 @@
         document.myForm.submit();
 
     };
-
-
-
-
-    // $("#dokter").change(function(){
-    //   // alert("pilih tahun");
-
-    // var dokter = $("#dokter").val();
-
-    // alert(dokter);
-
-    // $(".filter").submit();
-    //                 });
-
-    // $("#dokter").change(function(){
-    //   // alert("pilih tahun");
-
-    // var dokter = $("#dokter").val();
-
-
-
-    // $(".filter").submit();
-    //                 });
 </script>
