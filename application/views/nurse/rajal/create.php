@@ -80,14 +80,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Anamnesa / Allow Anamnesa <code>*</code></label>
-                            <textarea class="form-control" rows="3" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="<?= set_value('FS_ANAMNESA');?>"  placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Pemeriksaan Fisik</label>
-                            <textarea class="form-control" rows="3" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI');?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -113,14 +113,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Suhu</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="" class="form-control" name="FS_SUHU" value="<?= set_value('FS_SUHU');?>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nadi</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_NADI" value="<?= set_value('FS_NADI');?>">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">x/menit</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Respirasi</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="FS_R" value="<?= set_value('FS_R');?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">x/menit</span>
                                 </div>
@@ -131,7 +142,7 @@
                         <div class="form-group">
                             <label>Tekanan Darah</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="FS_TD" value="<?= set_value('FS_TD');?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">mmHg</span>
                                 </div>
@@ -140,11 +151,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nadi</label>
+                            <label>Tinggi Badan</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_TB" value="<?= set_value('FS_TB');?>">
                                 <div class="input-group-append">
-                                    <span class="input-group-text">x/menit</span>
+                                    <span class="input-group-text">cm</span>
                                 </div>
                             </div>
                         </div>
@@ -153,21 +164,119 @@
                         <div class="form-group">
                             <label>Berat Badan</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_BB" value="<?= set_value('FS_BB');?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">kg</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Asasmen Nyeri</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Tinggi Badan</label>
+                            <label>Ada Nyeri?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="FS_NYERI" id="exampleRadios1" value="1">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="FS_NYERI" id="exampleRadios2" value="0">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Tidak
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Quality</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">cm</span>
-                                </div>
+                            <select name="FS_NYERIQ" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value="0" >Tidak Ada</option>
+                                <option value="1" >Seperti Di Tusuk-Tusuk</option>
+                                <option value="2" >Seperti Terbakar</option>
+                                <option value="3" >Seperti Tertimpa Beban</option>
+                                <option value="4" >Ngilu</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Provokatif</label>
+                            <div class="input-group mb-3">
+                            <select name="FS_NYERIP" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value="0" >Tidak Ada Nyeri</option>
+                                <option value="2" >Biologik</option>
+                                <option value="3" >Kimiawi</option>
+                                <option value="4" >Mekanik / Rudapaksa</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Severity</label>
+                            <div class="input-group mb-3">
+                            <select name="FS_NYERIS" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value="0" >0</option>
+                                <option value="1" >1</option>
+                                <option value="2" >2</option>
+                                <option value="3" >3</option>
+                                <option value="4" >4</option>
+                                <option value="5" >5</option>
+                                <option value="6" >6</option>
+                                <option value="7" >7</option>
+                                <option value="8" >8</option>
+                                <option value="9" >9</option>
+                                <option value="10" >10</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Regio</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_NYERIR" value="<?= set_value('FS_NYERIR');?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Time</label>
+                            <div class="input-group mb-3">
+                            <select name="FS_NYERIT" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value="0" >Tidak Ada</option>
+                                <option value="1" >Kadang-Kadang</option>
+                                <option value="2" >Sering</option>
+                                <option value="3" >Menetap</option>
+                            </select>
                             </div>
                         </div>
                     </div>
@@ -193,23 +302,23 @@
                     <div class="col-md-6">
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                                <input type="checkbox" id="checkboxPrimary3">
-                                <label for="checkboxPrimary3">
+                                <input type="checkbox" id="checkboxPrimary1" name="FS_CARA_BERJALAN1" value="<?= set_value('FS_CARA_BERJALAN1');?>">
+                                <label for="checkboxPrimary1">
                                     Pasien berjalan tidak seimbang / sempoyongan
                                 </label>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                                <input type="checkbox" id="checkboxPrimary3">
-                                <label for="checkboxPrimary3">
+                                <input type="checkbox" id="checkboxPrimary2" name="FS_CARA_BERJALAN2" value="<?= set_value('FS_CARA_BERJALAN2');?>">
+                                <label for="checkboxPrimary2">
                                     Pasien berjalan menggunakan alat bantu
                                 </label>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                                <input type="checkbox" id="checkboxPrimary3">
+                                <input type="checkbox" id="checkboxPrimary3" name="FS_CARA_DUDUK" value="<?= set_value('FS_CARA_DUDUK');?>">
                                 <label for="checkboxPrimary3">
                                     Pada saat akan duduk pasien memegang benda untuk menopang
                                 </label>
@@ -220,16 +329,16 @@
                     <div class="col-md-6">
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                                <input type="checkbox" id="checkboxPrimary3">
-                                <label for="checkboxPrimary3">
+                                <input type="checkbox" id="checkboxPrimary4" name="intervensi1" value="<?= set_value('intervensi1');?>">
+                                <label for="checkboxPrimary4">
                                     Edukasi
                                 </label>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                                <input type="checkbox" id="checkboxPrimary3">
-                                <label for="checkboxPrimary3">
+                                <input type="checkbox" id="checkboxPrimary5" name="intervensi2" value="<?= set_value('intervensi2');?>">
+                                <label for="checkboxPrimary5">
                                     Pasang Stiker Resiko Jatuh (*resiko tinggi)
                                 </label>
                             </div>
@@ -262,26 +371,26 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Riwayat Penyakit Alergi</label>
-                            <input type="text" name="" class="form-control">
+                            <label>Riwayat Penyakit Dahulu</label>
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= set_value('FIS_RIW_PENYAKIT_DAHULU');?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Riwayat Alergi</label>
-                            <input type="text" name="" class="form-control">
+                            <label>Riwayat Penyakit keluarga</label>
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= set_value('FS_RIW_PENYAKIT_DAHULU2');?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Reaksi Alergi</label>
-                            <input type="text" name="" class="form-control">
+                            <label>Riwayat Alergi<code>*</code></label>
+                            <input type="text" class="form-control" name="FS_ALERGI" value="<?= set_value('FS_ALERGI');?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Riwayat Penyakit Alergi</label>
-                            <input type="text" name="" class="form-control">
+                            <label>Reaksi Alergi<code>*</code></label>
+                            <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= set_value('FS_REAK_ALERGI');?>">
                         </div>
                     </div>
                     <!-- include form -->
@@ -307,45 +416,57 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Status Psikologis</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_STATUS_PSIK" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" onclick='document.getElementById("civstaton3").disabled = true'>Tenang</option>
+                                <option value="2" onclick='document.getElementById("civstaton3").disabled = true'>Cemas</option>
+                                <option value="3" onclick='document.getElementById("civstaton3").disabled = true'>Takut</option>
+                                <option value="4" onclick='document.getElementById("civstaton3").disabled = true'>Marah</option>
+                                <option value="5" onclick='document.getElementById("civstaton3").disabled = true'>Sedih</option>
+                                <option VALUE="6" onclick='document.getElementById("civstaton3").disabled = false'>Lainnya</option>
                             </select>
+                            <input type="hidden" name="FS_STATUS_PSIK2" id="civstaton3" size="32">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Hubungan Dengan Anggota Keluarga</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_HUB_KELUARGA" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" selected>Baik</option>
+                                <option value="2">Tidak Baik</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Status fungssional</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_ST_FUNGSIONAL" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" selected>Mandiri</option>
+                                <option value="2">Perlu Bantuan</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penglihatan</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_PENGLIHATAN" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" selected>Normal</option>
+                                <option value="2">Kabur</option>
+                                <option value="3">Kaca Mata</option>
+                                <option value="4">Lensa Kontak</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penciuman</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_PENCIUMAN" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" selected>Normal</option>
+                                <option value="2">Tidak Normal</option>
                             </select>
                         </div>
                     </div>
@@ -354,7 +475,13 @@
                             <label>Pendengaran</label>
                             <select name="" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1" selected>Normal</option>
+                                <option value="2">Tidak Normal (Kanan)</option>
+                                <option value="3">Tidak Normal (Kiri)</option>
+                                <option value="4">Tidak Normal (Kanan & Kiri)</option>
+                                <option value="5">Alat Bantu Dengar (Kanan)</option>
+                                <option value="6">Alat Bantu Dengar (Kiri)</option>
+                                <option value="7">Alat Bantu Dengar (Kanan & Kiri)</option>
                             </select>
                         </div>
                     </div>
@@ -381,24 +508,32 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penurunan berat badan yang tidak diinginkan selama 6 bulan terakhir</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_NUTRISI1" class="form-control" onchange="sn1(this)">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="0">Tidak</option>
+                                <option value="1">Tidak Yakin</option>
+                                <option value="2">Ya (1-5 Kg)</option>
+                                <option value="3">Ya (6-10 Kg)</option>
+                                <option value="4">Ya (11-15 Kg)</option>
+                                <option value="5">Ya (>15 Kg)</option>
                             </select>
+                            <input type="hidden" id="hasil_sn1">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Asupan makanan menurun dikarenakan adanya penurunan nafsu makan</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_NUTRISI2" class="form-control" onchange="sn2(this)">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="0">Tidak</option>
+                                <option value="1">Ya</option>
                             </select>
+                            <input type="hidden" id="hasil_sn2">
                         </div>
                     </div>
                     <label for="kesimpulan" class="col-sm-2 col-form-label">Kesimpulan : </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control-plaintext" id="kesimpulan" readonly>
+                        <input type="text" class="form-control-plaintext" id="kesimpulan_skrining_nutrisi" readonly>
                     </div>
                     <!-- include form -->
                 </div>
@@ -423,17 +558,35 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Agama</label>
-                            <select name="" id="" class="form-control">
+                            <select name="FS_AGAMA" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <option value="1">Islam</option>
+                                <option value="2">Kristen</option>
+                                <option value="3">Katholik</option>
+                                <option value="4">Hindu</option>
+                                <option value="5">Buda</option>
+                                <option value="6">Konghucu</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nilai/Kepercayaan khusus</label>
-                            <input type="text" class="form-control">
+                            <!-- <input type="text" class="form-control" name="FS_NILAI_KHUSUS" value="<?= set_value('FS_NILAI_KHUSUS');?>"> -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios1" value="option1">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Tidak
+                                </label>
+                            </div>
                         </div>
+                        <input type="text" name="FS_NILAI_KHUSUS2" id="civstaton4" disabled="" size="32">
                     </div>
                     <!-- include form -->
                 </div>
@@ -458,34 +611,40 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Masalah Keperawatan</label>
-                            <select name="" id="" class="form-control select2bs4">
+                            <select name="tujuan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <?php foreach($list_masalah_keperawatan as $masalah_perawat){?>
+                                    <option value="<?=$masalah_perawat['FS_KD_DAFTAR_DIAGNOSA']?>"><?=$masalah_perawat['FS_NM_DIAGNOSA']?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Rencana Keperawatan</label>
-                            <select name="" id="" class="form-control select2bs4">
+                            <select name="tembusan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <?php foreach($list_rencana_keperawatan as $rencana_perawat){?>
+                                    <option value="<?=$rencana_perawat['FS_KD_TRS']?>"><?=$rencana_perawat['FS_NM_REN_KEP']?></option>
+                                    <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Pasien terduga TB (Kode ICD 10 bila terdiagnosa TBC)</label>
-                            <select name="" id="" class="form-control select2bs4">
+                            <select name="kode_icd_x" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
-                                <option value=""></option>
+                                <?php foreach($list_icd as $icd){?>
+                                    <option value="<?=$icd['KODE']?>"><?=$icd['KET']?> | <?=$icd['KODE']?></option>
+                                    <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tanggal Expired Rujukan (jika pasien BPJS)</label>
-                            <input type="date" name="" id="" class="form-control">
+                            <input type="date" name="FS_SKDP_FASKES"  id="" class="form-control" value="<?= set_value('FS_SKDP_FASKES');?>">
                         </div>
                     </div>
                     <!-- include form -->
@@ -555,3 +714,29 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function sn1(selected) {
+        var value1 = selected.value
+        $("#hasil_sn1").html(value1);
+        score_skrining_nutrisi();
+    };
+    function sn2(selected) {
+        var value2 = selected.value
+        $("#hasil_sn2").html(value2);
+        score_skrining_nutrisi();
+    };
+</script>
+
+<script type="text/javascript">
+  function score_skrining_nutrisi() {
+    var sn = parseInt($("#hasil_sn1").text()) + parseInt($("#hasil_sn2").text());
+    $("#totalsn").html(sn);
+    if (sn >= 2) {
+      $("#kesimpulan_skrining_nutrisi").val("LAPORKAN KE DOKTER");
+    } else if (sn < 2) {
+      $("#kesimpulan_skrining_nutrisi").val("NORMAL");
+    }
+  }
+</script>

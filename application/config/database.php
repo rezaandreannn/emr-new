@@ -83,9 +83,9 @@ $active_record = TRUE;
 // $db['default']['hostname'] = 'MSI\SQLEXPRESS';
 // $db['default']['username'] = '';
 // $db['default']['password'] = '';
-$db['default']['hostname'] = '192.168.2.50';
-$db['default']['username'] = 'admin';
-$db['default']['password'] = '123';
+$db['default']['hostname'] = 'MSI\SQLEXPRESS';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
 $db['default']['database'] = 'DB_RSMM';
 
 $db['default']['dbdriver'] = 'sqlsrv';
@@ -103,9 +103,9 @@ $db['default']['stricton'] = FALSE;
 // $db['hospital']['hostname'] = 'MSI\SQLEXPRESS';
 // $db['hospital']['username'] = '';
 // $db['hospital']['password'] = '';
-$db['default']['hostname'] = '192.168.2.50';
-$db['default']['username'] = 'admin';
-$db['default']['password'] = '123';
+$db['default']['hostname'] = 'MSI\SQLEXPRESS';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
 $db['default']['database'] = 'PKU';
 
 $db['hospital']['dbdriver'] = 'sqlsrv';

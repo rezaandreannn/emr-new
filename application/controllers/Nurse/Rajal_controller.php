@@ -13,6 +13,7 @@ class Rajal_controller extends CI_Controller
         }
         $this->load->model('RawatJalanModel');
         $this->load->model('PasienModel');
+        $this->load->model('Perawat_model');
     }
 
     public function index()
@@ -57,6 +58,9 @@ class Rajal_controller extends CI_Controller
             'content' => 'nurse/rajal/create',
             'header' => datatable_header(),
             'footer' => datatable_footer(),
+            'list_masalah_keperawatan' => $this->Perawat_model->list_masalah_keperawatan(),
+            'list_rencana_keperawatan' => $this->Perawat_model->rencana_keperawatan(),
+            'list_icd' => $this->Perawat_model->get_icd(),
             'histories' => $this->PasienModel->get_history_by_mr(array($mr)),
             'biodata' => $this->PasienModel->get_biodata_pasien_by_mr(array($mr))
         ];
