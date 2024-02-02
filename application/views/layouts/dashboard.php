@@ -20,6 +20,8 @@
     <!-- <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>"> -->
     <!-- Theme style -->
     <?= link_tag('assets/AdminLTE/dist/css/adminlte.min.css') ?>
+    <!-- icheck -->
+    <?= link_tag('assets/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
     <?php echo header_assets(!empty($header) ? $header : array()); ?>

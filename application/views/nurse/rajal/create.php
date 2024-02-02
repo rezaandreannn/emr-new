@@ -65,7 +65,39 @@
         <!-- form -->
         <div class="card card-secondary">
             <div class="card-header card-success">
-                <h3 class="card-title">Alergi : (-)</h3>
+                <h3 class="card-title">Allowanamnesa dan Pemeriksaan Fisik</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Anamnesa / Allow Anamnesa <code>*</code></label>
+                            <textarea class="form-control" rows="3" placeholder="Masukan ..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pemeriksaan Fisik</label>
+                            <textarea class="form-control" rows="3" placeholder="Masukan ..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- include form -->
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Vital Sign</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
@@ -77,11 +109,397 @@
             </div>
 
             <!-- include form -->
-            <?php $this->load->view('components/form_rajal'); ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Suhu</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Respirasi</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">x/menit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tekanan Darah</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">mmHg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nadi</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">x/menit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Berat Badan</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tinggi Badan</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Assesmen Jatuh</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
             <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary3">
+                                <label for="checkboxPrimary3">
+                                    Pasien berjalan tidak seimbang / sempoyongan
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary3">
+                                <label for="checkboxPrimary3">
+                                    Pasien berjalan menggunakan alat bantu
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary3">
+                                <label for="checkboxPrimary3">
+                                    Pada saat akan duduk pasien memegang benda untuk menopang
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary3">
+                                <label for="checkboxPrimary3">
+                                    Edukasi
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary3">
+                                <label for="checkboxPrimary3">
+                                    Pasang Stiker Resiko Jatuh (*resiko tinggi)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="kesimpulan" class="col-sm-2 col-form-label">Kesimpulan : </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="kesimpulan" readonly>
+                    </div>
+
+                </div>
+            </div>
+            <!-- include form -->
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Riwayat Kesehatan & Alergi</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Riwayat Penyakit Alergi</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Riwayat Alergi</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Reaksi Alergi</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Riwayat Penyakit Alergi</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Status Psikologis, Sosial dan Fungsional </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Status Psikologis</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Hubungan Dengan Anggota Keluarga</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Status fungssional</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Penglihatan</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Penciuman</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pendengaran</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Skrining Nutrisi </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Penurunan berat badan yang tidak diinginkan selama 6 bulan terakhir</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Asupan makanan menurun dikarenakan adanya penurunan nafsu makan</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="kesimpulan" class="col-sm-2 col-form-label">Kesimpulan : </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="kesimpulan" readonly>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Spiritual dan Kultural pasien </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Agama</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai/Kepercayaan khusus</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
+        <div class="card card-secondary">
+            <div class="card-header card-success">
+                <h3 class="card-title">Keperawatan </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- include form -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Masalah Keperawatan</label>
+                            <select name="" id="" class="form-control select2bs4">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Rencana Keperawatan</label>
+                            <select name="" id="" class="form-control select2bs4">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pasien terduga TB (Kode ICD 10 bila terdiagnosa TBC)</label>
+                            <select name="" id="" class="form-control select2bs4">
+                                <option value="">-- pilih --</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tanggal Expired Rujukan (jika pasien BPJS)</label>
+                            <input type="date" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
         </div>
         <!-- form -->
+        <!-- button -->
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary mb-2">Simpan</button>
+        </div>
+        <!-- button -->
+
     </div>
 </section>
 
