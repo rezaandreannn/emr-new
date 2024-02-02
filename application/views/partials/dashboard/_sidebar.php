@@ -41,8 +41,8 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') || $this->uri->uri_string() === 'prwt/bidan'  ? 'active' : '' ?>">
+                <li class="nav-item <?= ($this->uri->segment(1) == 'prwt'  ? 'menu-open' : '') ?>">
+                    <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'prwt'  ? 'active' : '') ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
                         <p>
                             Keperawatan
@@ -51,13 +51,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/rajal') ? 'active' : '' ?>">
+                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link <?= ($this->uri->segment(2) == 'rajal'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rawat Jalan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('prwt/bidan') ?>" class="nav-link <?= ($this->uri->uri_string() === 'prwt/bidan') ? 'active' : '' ?>">
+                            <a href="<?= base_url('prwt/bidan') ?>" class="nav-link <?= ($this->uri->segment(2) == 'bidan'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kebidanan</p>
                             </a>

@@ -47,6 +47,10 @@
                     <i class="fas fa-user-circle mr-2"></i> Profil
                 </a>
                 <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="nav-icon fas fa-cog mr-2"></i> Pengaturan
+                </a>
+                <div class="dropdown-divider"></div>
                 <a href="<?php echo base_url('logout') ?>" class="dropdown-item">
                     <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                 </a>
