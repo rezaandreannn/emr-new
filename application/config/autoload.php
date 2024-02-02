@@ -91,7 +91,7 @@ $autoload['drivers'] = array();
 */
 
 
-$autoload['helper'] = array('url', 'form', 'security', 'file', 'text', 'template', 'datatable', 'select2', 'html');
+$autoload['helper'] = array('url', 'form', 'security', 'file', 'text', 'template', 'datatable', 'select2', 'html', 'user');
 
 
 /*

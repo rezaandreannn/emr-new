@@ -19,9 +19,9 @@
         <div class="card">
             <form method="GET" name="myForm" id="myForm" action="<?= base_url('prwt/rajal'); ?>" class="filter">
                 <div class="card-header">
-                    <div class="form-group row" style="width: 60%;">
-                        <label for="select-dokter" class="col-6 col-sm-2 col-form-label">Pilih Dokter</label>
-                        <div class="col-10 col-sm-8 col-md-6">
+                    <div class="form-group row">
+                        <label for="select-dokter" class="col-12 col-sm-2 col-form-label">Pilih Dokter</label>
+                        <div class="col-12 col-sm-10 col-md-6">
                             <select name="dokter" id="dokter" class="form-control select2bs4" onchange="getKodeDokter(this)">
                                 <option value="">-- pilih dokter --</option>
                                 <?php
