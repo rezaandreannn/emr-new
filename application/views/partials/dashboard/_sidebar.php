@@ -14,7 +14,7 @@
                 <img src="<?= base_url('assets/AdminLTE/dist/img/user2-160x160.jpg'); ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?php echo $profile_user['NamaLengkap'] ?></a>
+                <a href="#" class="d-block"><?= full_name($this->session->userdata('user_id'), $this->session->userdata('role_id')) ?></a>
             </div>
         </div>
 

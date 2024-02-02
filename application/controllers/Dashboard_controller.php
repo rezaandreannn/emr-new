@@ -20,13 +20,10 @@ class Dashboard_controller extends CI_Controller
 
     public function index()
     {
-        // var_dump($this->session->userdata('user_name'));
-        // die;
-        $profile_user_login=$this->LoginModel->get_user_profil(array($this->session->userdata('user_id'), $this->session->userdata('role_id')));
+
         $data = [
             'title' => 'Rawat Jalan',
             'content' => 'dashboard',
-            'profile_user' => $profile_user_login,
             'header' => datatable_header(),
             'footer' => datatable_footer()
         ];
