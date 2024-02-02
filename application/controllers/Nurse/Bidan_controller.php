@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class BidanController extends CI_Controller
+class Bidan_controller extends CI_Controller
 {
     function __construct()
     {

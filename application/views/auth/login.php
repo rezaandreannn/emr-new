@@ -41,7 +41,7 @@
     <?php endif; ?>
       <p class="login-box-msg">Masuk untuk memulai EMR</p>
 
-      <form action="<?php echo base_url('LoginController/LoginProses');?>" method="post">
+      <form action="<?php echo base_url('login');?>" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username');?>">
           <span class="text-danger"><?php echo form_error('username'); ?></span>

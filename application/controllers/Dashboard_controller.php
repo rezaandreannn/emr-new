@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Dashboard_controller extends CI_Controller
 {
 
 
@@ -13,6 +13,7 @@ class Welcome extends CI_Controller
             $url = base_url();
             redirect($url);
         }
+        $this->load->model('LoginModel');
     }
 
 
@@ -21,9 +22,11 @@ class Welcome extends CI_Controller
     {
         // var_dump($this->session->userdata('user_name'));
         // die;
+        $profile_user_login=$this->LoginModel->get_user_profil(array($this->session->userdata('user_id'), $this->session->userdata('role_id')));
         $data = [
             'title' => 'Rawat Jalan',
             'content' => 'dashboard',
+            'profile_user' => $profile_user_login,
             'header' => datatable_header(),
             'footer' => datatable_footer()
         ];
