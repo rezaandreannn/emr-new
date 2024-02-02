@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class RajalController extends CI_Controller
+class Rajal_controller extends CI_Controller
 {
     function __construct()
     {

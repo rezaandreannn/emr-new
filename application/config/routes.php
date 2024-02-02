@@ -51,19 +51,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 
-$route['default_controller'] = 'LoginController';
+$route['default_controller'] = 'Login_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Auth Routes
-$route['logout'] = 'LoginController/logout';
+$route['logout'] = 'Login_controller/Logout';
+$route['login'] = 'Login_controller/Login_proses';
 
 // Nurse Rajal Routes
-$route['prwt/rajal'] = 'Nurse/RajalController';
-$route['prwt/rajal/create/(:any)'] = 'Nurse/RajalController/create/$1';
-$route['prwt/rajal/edit/(:any)'] = 'Nurse/RajalController/edit/$1';
+$route['prwt/rajal'] = 'Nurse/Rajal_controller';
+$route['prwt/rajal/create/(:any)'] = 'Nurse/Rajal_controller/create/$1';
+$route['prwt/rajal/edit/(:any)'] = 'Nurse/Rajal_controller/edit/$1';
 
 
 
-$route['prwt/bidan'] = 'Nurse/BidanController';
-$route['dashboard'] = 'DashboardController';
+$route['prwt/bidan'] = 'Nurse/Bidan_controller';
+$route['dashboard'] = 'Dashboard_controller';
