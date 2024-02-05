@@ -61,8 +61,9 @@ $route['login'] = 'Login_controller/Login_proses';
 
 // Nurse Rajal Routes
 $route['prwt/rajal'] = 'Nurse/Rajal_controller';
-$route['prwt/rajal/create/(:any)'] = 'Nurse/Rajal_controller/create/$1';
-$route['prwt/rajal/edit/(:any)'] = 'Nurse/Rajal_controller/edit/$1';
+$route['prwt/rajal/create/(:any)/(:any)'] = 'Nurse/Rajal_controller/create/$1/$2';
+$route['prwt/rajal/store'] = 'Nurse/Rajal_controller/store';
+$route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
 
 
 
