@@ -59,12 +59,16 @@ $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'Login_controller/Logout';
 $route['login'] = 'Login_controller/Login_proses';
 
+// -- POLIKLINIK -- //
 // Nurse Rajal Routes
 $route['prwt/rajal'] = 'Nurse/Rajal_controller';
 $route['prwt/rajal/create/(:any)'] = 'Nurse/Rajal_controller/create/$1';
 $route['prwt/rajal/edit/(:any)'] = 'Nurse/Rajal_controller/edit/$1';
 
-
+// dokter routes
+$route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/index';
+$route['poliklinik/periksa'] = 'Poliklinik/Dokter/Assesmen_controller/create';
+// -- POLIKLINIK -- //
 
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
