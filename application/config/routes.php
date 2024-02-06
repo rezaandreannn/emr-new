@@ -51,19 +51,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 
-$route['default_controller'] = 'LoginController';
+$route['default_controller'] = 'Login_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Auth Routes
-$route['logout'] = 'LoginController/logout';
+$route['logout'] = 'Login_controller/Logout';
+$route['login'] = 'Login_controller/Login_proses';
 
+// -- POLIKLINIK -- //
 // Nurse Rajal Routes
-$route['prwt/rajal'] = 'Nurse/RajalController';
-$route['prwt/rajal/create/(:any)'] = 'Nurse/RajalController/create/$1';
-$route['prwt/rajal/edit/(:any)'] = 'Nurse/RajalController/edit/$1';
+$route['prwt/rajal'] = 'Nurse/Rajal_controller';
+$route['prwt/rajal/create/(:any)/(:any)'] = 'Nurse/Rajal_controller/create/$1/$2';
+$route['prwt/rajal/store'] = 'Nurse/Rajal_controller/store';
+$route['prwt/rajal/update'] = 'Nurse/Rajal_controller/update';
+$route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
 
+// dokter routes
+$route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/index';
+$route['poliklinik/periksa'] = 'Poliklinik/Dokter/Assesmen_controller/create';
+// -- POLIKLINIK -- //
 
+<<<<<<< HEAD
 // Nurse Bidan Routes
 $route['prwt/bidan'] = 'Nurse/BidanController';
 
@@ -78,3 +87,7 @@ $route['rm/berkas_harian'] = 'Rm/HarianController';
 
 
 $route['dashboard'] = 'DashboardController';
+=======
+$route['prwt/bidan'] = 'Nurse/Bidan_controller';
+$route['dashboard'] = 'Dashboard_controller';
+>>>>>>> 2d4a3c07accabfe63802e69f1c4cb7e2ba4089d4

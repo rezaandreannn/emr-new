@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class LoginController extends CI_Controller
+class Login_controller extends CI_Controller
 {
     function __construct()
     {
@@ -10,12 +10,13 @@ class LoginController extends CI_Controller
         $this->load->model('LoginModel');
     }
     //catatan untuk mengambil data user di Controller/base/operatorbase.php di fungsi base_view_app()
+
     public function index()
     {
         $this->load->view('auth/login');
     }
 
-    public function LoginProses()
+    public function Login_proses()
     {
         $this->form_validation->set_rules('username', 'user_name', 'required');
         $this->form_validation->set_rules('password', 'user_pass', 'required');
@@ -38,31 +39,29 @@ class LoginController extends CI_Controller
                 if ($User['lock_st'] == '0') {
                     // output
                     $this->session->set_userdata($sess);
-                    redirect('welcome');
+                    redirect('dashboard');
                 } else {
-                    $url = base_url();
-                    echo $this->session->set_flashdata('danger', 'Username Atau Password Salah');
-                    redirect($url);
+                    echo $this->session->set_flashdata('danger', 'Username anda sudah tidak aktif');      
+                    $this->load->view('auth/login');
                 }
-            } else {
-                $url = base_url();
-                echo $this->session->set_flashdata('warning', 'Username dan Password tidak boleh kosong');
-                redirect($url);
             }
+            else {
+                echo $this->session->set_flashdata('warning', 'Username anda password salah');      
+                $this->load->view('auth/login');
+            } 
         }
-
-        function logout()
-        {
-            $this->session->sess_destroy();
-            $url = base_url('');
+        else {
+            $url = base_url();
+            echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
             redirect($url);
         }
     }
 
-    function logout()
+    function Logout()
     {
         $this->session->sess_destroy();
         $url = base_url('');
         redirect($url);
     }
 }
+

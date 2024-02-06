@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PasienModel extends CI_Model
+class Pasien_model extends CI_Model
 {
 
     //get data pasien rajal by dokter
@@ -68,9 +68,11 @@ class PasienModel extends CI_Model
     }
 
     function get_biodata_pasien_by_mr($params) {
-        $sql = "SELECT a.NAMA_PASIEN,a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
-        a.TGL_LAHIR,FS_ALERGI
+     
+        $sql = "SELECT top 1 a.NAMA_PASIEN,a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
+        a.TGL_LAHIR,FS_ALERGI, b.No_MR, b.No_Reg
         FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR = b.No_MR 
         WHERE a.NO_MR = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
@@ -81,4 +83,22 @@ class PasienModel extends CI_Model
             return 0;
         }
     }
+
+    function get_riwayat_kesehatan_pasien_by_no_reg($params) { 
+        $sql = "SELECT b.NO_REG,a.NAMA_PASIEN,a.NO_MR,a.ALAMAT, a.JENIS_KELAMIN, c.NAMA_DOKTER, E.NAMAREKANAN,
+        a.TGL_LAHIR,FS_ALERGI,a.FS_ALERGI,a.FS_REAK_ALERGI,a.FS_RIW_PENYAKIT_DAHULU,a.FS_RIW_PENYAKIT_DAHULU2
+        FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR=b.NO_MR
+        LEFT JOIN DB_RSMM.dbo.DOKTER c ON b.KODE_DOKTER=c.KODE_DOKTER
+        LEFT JOIN DB_RSMM.dbo.REKANAN E ON b.KODEREKANAN=E.KODEREKANAN
+        WHERE b.NO_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+     }
 }
