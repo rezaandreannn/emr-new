@@ -245,12 +245,14 @@ class Rajal_controller extends CI_Controller
    
                    $this->db->trans_commit();
                    // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
-                   redirect('prwt/rajal/create/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+                   $kode_dokter = $this->input->post('FS_KD_MEDIS');
+                   redirect('prwt/rajal?dokter='.$kode_dokter);
                    
                     } 
                 catch (\Throwable $th) {
                     //throw $th;
                     $this->db->trans_rollback();
+                    echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar'); 
                     redirect('prwt/rajal/create/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
                     }
             }
@@ -511,13 +513,15 @@ class Rajal_controller extends CI_Controller
    
                    $this->db->trans_commit();
                    // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
-                   redirect('prwt/rajal/create/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+                   $kode_dokter = $this->input->post('FS_KD_MEDIS');
+                   redirect('prwt/rajal?dokter='.$kode_dokter);
                    
                     } 
                 catch (\Throwable $th) {
                     //throw $th;
                     $this->db->trans_rollback();
-                    redirect('prwt/rajal/edit/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+                    echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar'); 
+                    redirect('prwt/rajal/edit/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));
                     }
             
             
