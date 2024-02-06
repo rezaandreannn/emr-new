@@ -11,8 +11,8 @@ class Assesmen_controller extends CI_Controller
             $url = base_url();
             redirect($url);
         }
-        $this->load->model('RawatJalanModel');
-        $this->load->model('PasienModel');
+        $this->load->model('Rawat_jalan_model');
+        $this->load->model('Pasien_model');
         $this->load->model('Perawat_model');
     }
 

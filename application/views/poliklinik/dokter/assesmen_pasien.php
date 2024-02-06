@@ -159,10 +159,122 @@
             </div>
             <!-- include form -->
         </div>
+        <div class="row">
+
+
+            <!-- terapi -->
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header card-success">
+                        <h3 class="card-title">Terapi</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- include form -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Pilih Paket Obat</label>
+                                    <div class="input-group mb-3">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">-- pilih --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="namaobat1">Nama Obat</label>
+                                <select name="" class="namaobat1 select2 form-control" multiple id="namaobat1" style="width: 100%">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="numero">Numero</label>
+                                <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="dosis">Signa</label>
+                                <textarea name="dosis" class="dosis form-control" style="width: 100%" onkeypress="handleKeyPress(event)" rows="1"></textarea>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="FS_TERAPI">Terapi</label>
+                                <textarea rows="18" class="form-control resep plainText" cols="70" name="FS_TERAPI"></textarea>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- resep racikan -->
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header card-success">
+                        <h3 class="card-title">Resep Racikan</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- include form -->
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-5">
+                                <label for="namaobatracikan">Nama Obat</label>
+                                <select name="" class="namaobatracikan select2 form-control" multiple id="namaobatracikan" style="width: 100%">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="numero">Numero</label>
+                                <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="numero">m.f</label>
+                                <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="dosis">Signa</label>
+                                <textarea name="dosis" class="dosis form-control" style="width: 100%" onkeypress="handleKeyPress(event)" rows="1"></textarea>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="FS_TERAPI">Resep Racikan</label>
+                                <textarea rows="18" class="form-control resep plainText" cols="70" name="FS_TERAPI"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- include form -->
+                </div>
+            </div>
+        </div>
 
         <div class="card card-secondary">
             <div class="card-header card-success">
-                <h3 class="card-title">Terapi</h3>
+                <h3 class="card-title">Kondisi Pasien Pulang</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
@@ -177,7 +289,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Pilih Paket Obat</label>
+                            <label>Cara Pulang</label>
                             <div class="input-group mb-3">
                                 <select name="" id="" class="form-control">
                                     <option value="">-- pilih --</option>
@@ -187,131 +299,23 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="namaobat1">Nama Obat</label>
-                        <select name="" class="namaobat1 select2 form-control" multiple id="namaobat1" style="width: 100%">
-                            <option></option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="numero">Numero</label>
-                        <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="dosis">Signa</label>
-                        <textarea name="dosis" class="dosis form-control" style="width: 100%" onkeypress="handleKeyPress(event)" rows="1"></textarea>
-                    </div>
-
-                    <div class="col-md-12 mt-3">
-                        <label for="FS_TERAPI">Terapi</label>
-                        <textarea rows="18" class="form-control resep plainText" cols="70" name="FS_TERAPI"></textarea>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-        </div>
-        <!-- include form -->
-    </div>
-
-    <div class="card card-secondary">
-        <div class="card-header card-success">
-            <h3 class="card-title">Resep Racikan</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-        <!-- include form -->
-        <div class="card-body">
-            <div class="row">
-
-                <div class="col-md-5">
-                    <label for="namaobatracikan">Nama Obat</label>
-                    <select name="" class="namaobatracikan select2 form-control" multiple id="namaobatracikan" style="width: 100%">
-                        <option></option>
-                    </select>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="numero">Numero</label>
-                    <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
-                </div>
-
-                <div class="col-md-2">
-                    <label for="numero">m.f</label>
-                    <input type="text" class="numero form-control" name="numero" style="width: 100%" onkeypress="handleKeyPress(event)" />
-                </div>
-
-                <div class="col-md-2">
-                    <label for="dosis">Signa</label>
-                    <textarea name="dosis" class="dosis form-control" style="width: 100%" onkeypress="handleKeyPress(event)" rows="1"></textarea>
-                </div>
-
-                <div class="col-md-12 mt-3">
-                    <label for="FS_TERAPI">Resep Racikan</label>
-                    <textarea rows="18" class="form-control resep plainText" cols="70" name="FS_TERAPI"></textarea>
-                </div>
-
-            </div>
-        </div>
-        <!-- include form -->
-    </div>
-
-    <div class="card card-secondary">
-        <div class="card-header card-success">
-            <h3 class="card-title">Kondisi Pasien Pulang</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-        <!-- include form -->
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Cara Pulang</label>
+                        <label>Rencana</label>
                         <div class="input-group mb-3">
-                            <select name="" id="" class="form-control">
-                                <option value="">-- pilih --</option>
-
-                            </select>
+                            <input type="text" name="" id="" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label>Rencana</label>
-                    <div class="input-group mb-3">
-                        <input type="text" name="" id="" class="form-control">
-                    </div>
-                </div>
             </div>
+            <!-- include form -->
         </div>
-        <!-- include form -->
-    </div>
 
+        <!-- form -->
 
-    <!-- form -->
-    <!-- button -->
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary mb-2"> <i class="fas fa-save"></i> Simpan</button>
-    </div>
-    <!-- button -->
+        <!-- button -->
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary mb-2"> <i class="fas fa-save"></i> Simpan</button>
+        </div>
+        <!-- button -->
 
     </div>
 </section>
