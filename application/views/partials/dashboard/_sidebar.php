@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= base_url('dashboard') ?>" class="brand-link">
         <img src="<?= base_url('assets/images/logo.png'); ?>" alt="RSUMM Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">E-Rekam Medis <span class="badge bg-success" style="font-size: xx-small; position: relative; top: -10px; left: -3px;">versi baru</span></span>
 
@@ -63,9 +63,32 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/inline.html" class="nav-link">
+                            <a href="<?= base_url('prwt/rencana_op') ?>" class="nav-link  <?= ($this->uri->segment(2) == 'rencana_op'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Transfer Pasien OP</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item <?= ($this->uri->segment(1) == 'rm'  ? 'menu-open' : '') ?>">
+                    <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'rm'  ? 'active' : '') ?>">
+                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <p>
+                            Riwayat Rekam Medis
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Berkas Rekam Medis</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('rm/berkas_harian') ?>" class="nav-link <?= ($this->uri->segment(2) == 'berkas_harian'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Berkas Rekam Medis Harian</p>
                             </a>
                         </li>
                     </ul>

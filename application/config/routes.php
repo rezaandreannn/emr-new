@@ -64,6 +64,17 @@ $route['prwt/rajal/create/(:any)'] = 'Nurse/RajalController/create/$1';
 $route['prwt/rajal/edit/(:any)'] = 'Nurse/RajalController/edit/$1';
 
 
-
+// Nurse Bidan Routes
 $route['prwt/bidan'] = 'Nurse/BidanController';
+
+// Nurse Rencana OP Routes
+$route['prwt/rencana_op'] = 'Nurse/RencanaController';
+
+
+// RM Berkas Harian Routes
+$route['rm/berkas_harian'] = 'Rm/HarianController';
+
+
+
+
 $route['dashboard'] = 'DashboardController';
