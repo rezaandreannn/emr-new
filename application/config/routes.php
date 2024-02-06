@@ -72,9 +72,6 @@ $route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/inde
 $route['poliklinik/periksa'] = 'Poliklinik/Dokter/Assesmen_controller/create';
 // -- POLIKLINIK -- //
 
-<<<<<<< HEAD
-// Nurse Bidan Routes
-$route['prwt/bidan'] = 'Nurse/BidanController';
 
 // Nurse Rencana OP Routes
 $route['prwt/rencana_op'] = 'Nurse/RencanaController';
@@ -83,11 +80,6 @@ $route['prwt/rencana_op'] = 'Nurse/RencanaController';
 // RM Berkas Harian Routes
 $route['rm/berkas_harian'] = 'Rm/HarianController';
 
-
-
-
-$route['dashboard'] = 'DashboardController';
-=======
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
->>>>>>> 2d4a3c07accabfe63802e69f1c4cb7e2ba4089d4
+
