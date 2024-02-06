@@ -270,8 +270,6 @@ class Rajal_controller extends CI_Controller
         foreach ($get_mr_pasien as $get_mr) {
             $mr = $get_mr['No_MR'];
         }
-        // var_dump($mr);
-        // die;
 
         $data = [
             'title' => 'Form edit Rawat Jalan',
@@ -294,12 +292,239 @@ class Rajal_controller extends CI_Controller
             'histories' => $this->Pasien_model->get_history_by_mr(array($mr)),
             'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr(array($mr))
         ];
-        // var_dump($data['rencana_keperawatan']);
-        // die;
+  
         $this->load->view('layouts/dashboard', $data);
     }
 
     public function update()
     {
+        $this->form_validation->set_rules('FS_ANAMNESA', 'FS_ANAMNESA', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_EDUKASI', 'FS_EDUKASI', 'max_length[64]');
+        $this->form_validation->set_rules('FS_SUHU', 'FS_SUHU', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_NADI', 'FS_NADI', 'max_length[64]');
+        $this->form_validation->set_rules('FS_R', 'FS_R', 'max_length[64]');
+        $this->form_validation->set_rules('FS_TD', 'FS_TD', 'max_length[64]');
+        $this->form_validation->set_rules('FS_TB', 'FS_TB', 'max_length[64]');
+        $this->form_validation->set_rules('FS_BB', 'FS_BB', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERI', 'FS_NYERI', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERIP', 'FS_NYERIP', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERIQ', 'FS_NYERIQ', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERIR', 'FS_NYERIR', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERIS', 'FS_NYERIS', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NYERIT', 'FS_NYERIT', 'max_length[64]');
+        $this->form_validation->set_rules('FS_CARA_BERJALAN1', 'FS_CARA_BERJALAN1', 'max_length[64]');
+        $this->form_validation->set_rules('FS_CARA_BERJALAN2', 'FS_CARA_BERJALAN2', 'max_length[64]');
+        $this->form_validation->set_rules('intervensi1', 'intervensi1', 'max_length[64]');
+        $this->form_validation->set_rules('intervensi2', 'intervensi2', 'max_length[64]');
+        $this->form_validation->set_rules('FS_CARA_DUDUK', 'FS_CARA_DUDUK', 'max_length[64]');
+        $this->form_validation->set_rules('FS_RIW_PENYAKIT_DAHULU', 'FS_RIW_PENYAKIT_DAHULU', 'max_length[64]');
+        $this->form_validation->set_rules('FS_RIW_PENYAKIT_DAHULU2', 'FS_RIW_PENYAKIT_DAHULU2', 'max_length[64]');
+        $this->form_validation->set_rules('FS_ALERGI', 'FS_ALERGI', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_REAK_ALERGI', 'FS_REAK_ALERGI', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_STATUS_PSIK', 'FS_STATUS_PSIK', 'max_length[64]');
+        $this->form_validation->set_rules('FS_STATUS_PSIK2', 'FS_STATUS_PSIK2', 'max_length[64]');
+        $this->form_validation->set_rules('FS_HUB_KELUARGA', 'FS_HUB_KELUARGA', 'max_length[64]');
+        $this->form_validation->set_rules('FS_ST_FUNGSIONAL', 'FS_ST_FUNGSIONAL', 'max_length[64]');
+        $this->form_validation->set_rules('FS_PENGELIHATAN', 'FS_PENGELIHATAN', 'max_length[64]');
+        $this->form_validation->set_rules('FS_PENCIUMAN', 'FS_PENCIUMAN', 'max_length[64]');
+        $this->form_validation->set_rules('FS_PENDENGARAN', 'FS_PENDENGARAN', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NUTRISI1', 'FS_NUTRISI1', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NUTRISI2', 'FS_NUTRISI2', 'max_length[64]');
+        $this->form_validation->set_rules('FS_AGAMA', 'FS_AGAMA', 'max_length[64]');
+        $this->form_validation->set_rules('FS_NILAI_KHUSUS', 'FS_NILAI_KHUSUS', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_NILAI_KHUSUS2', 'FS_NILAI_KHUSUS2', 'max_length[64]');
+        // $this->form_validation->set_rules('tujuan', 'tujuan', );
+        // $this->form_validation->set_rules('tembusan', 'tembusan', 'max_length[64]');
+        $this->form_validation->set_rules('FS_SKDP_FASKES', 'FS_SKDP_FASKES', 'max_length[64]');
+        $this->form_validation->set_rules('kode_icd_x', 'kode_icd_x', 'max_length[64]');
+        if ($this->form_validation->run() !== false) {
+           
+                try {
+                    // query edit_proses proses
+                    // insert status rj
+                    $status_rj = array(
+                       '1',
+                       $this->session->userdata('user_id'),
+                       date('Y-m-d'),
+                       $this->input->post('FS_KD_REG')
+                   );
+          
+                   $this->Rawat_jalan_model->update_status_rj($status_rj);
+                   
+                   // end input status rj
+                   // insert vital sign rj
+                   $vital_sign = array(
+                    $this->input->post('FS_SUHU'),
+                    $this->input->post('FS_NADI'),
+                    $this->input->post('FS_R'),
+                    $this->input->post('FS_TD'),
+                    $this->input->post('FS_TB'),
+                    $this->input->post('FS_BB'),
+                    $this->session->userdata('user_id'),
+                    date('Y-m-d'),
+                    $this->input->post('FS_KD_REG')
+                   );
+                   $this->Rawat_jalan_model->update_vital_sign($vital_sign);
+                   // end insert vital sign
+                   //insert nyeri
+                   $nyeri = array(
+                    $this->input->post('FS_NYERIP'),
+                    $this->input->post('FS_NYERIQ'),
+                    $this->input->post('FS_NYERIR'),
+                    $this->input->post('FS_NYERIS'),
+                    $this->input->post('FS_NYERIT'),
+                    $this->session->userdata('user_id'),
+                    date('Y-m-d'),
+                    $this->input->post('FS_NYERI'),
+                    $this->input->post('FS_KD_REG')
+                   );
+                   $this->Rawat_jalan_model->update_nyeri($nyeri);
+                   //end insert nyeri
+                   //resiko jatuh
+                   $resiko_jatuh = array(
+                       $this->input->post('FS_CARA_BERJALAN1'),
+                       $this->input->post('FS_CARA_BERJALAN2'),
+                       $this->input->post('FS_CARA_DUDUK'),
+                       $this->input->post('intervensi1')? 'Ya' : 'Tidak',
+                       $this->input->post('intervensi2')? 'Ya' : 'Tidak',
+                       $this->session->userdata('user_id'),
+                       date('Y-m-d'),
+                       $this->input->post('FS_KD_REG')
+
+                   ); 
+                   $this->Rawat_jalan_model->update_resiko_jatuh($resiko_jatuh);
+   
+                   //asasmen perawat
+                   $asasmen_perawat = array(
+
+                       $this->input->post('FS_RIW_PENYAKIT_DAHULU'),
+                       $this->input->post('FS_RIW_PENYAKIT_DAHULU2'),
+                       '',
+                       '',
+                       $this->input->post('FS_STATUS_PSIK'),
+                       $this->input->post('FS_STATUS_PSIK2'),
+                       $this->input->post('FS_HUB_KELUARGA'),
+                       $this->input->post('FS_ST_FUNGSIONAL'),
+                       $this->input->post('FS_AGAMA'),
+                       $this->input->post('FS_NILAI_KHUSUS'),
+                       $this->input->post('FS_NILAI_KHUSUS'),
+                       $this->input->post('FS_ANAMNESA'),
+                       $this->input->post('FS_PENGELIHATAN'),
+                       $this->input->post('FS_PENCIUMAN'),
+                       $this->input->post('FS_PENDENGARAN'),
+                       $this->input->post('FS_RIW_IMUNISASI') ? $this->input->post('FS_RIW_IMUNISASI') : '0',
+                       $this->input->post('FS_RIW_IMUNISASI_KET') ? $this->input->post('FS_RIW_IMUNISASI_KET') : '0',
+                       $this->input->post('FS_RIW_TUMBUH') ? $this->input->post('FS_RIW_TUMBUH') : '0',
+                       $this->input->post('FS_RIW_TUMBUH_KET') ? $this->input->post('FS_RIW_TUMBUH_KET') : '0',
+                       '',
+                       $this->input->post('FS_EDUKASI'),
+                       $this->input->post('FS_SKDP_FASKES'),
+                       $this->session->userdata('user_id'),
+                       date('Y-m-d'),
+                       $this->input->post('FS_KD_REG'),
+                   );
+                   $this->Rawat_jalan_model->update_asesmen_perawat($asasmen_perawat);
+   
+                   //insert alergi
+                   $alergi = array(
+                       $this->input->post('FS_ALERGI'),
+                       $this->input->post('FS_REAK_ALERGI'),
+                       $this->input->post('FS_RIW_PENYAKIT_DAHULU'),
+                       $this->input->post('FS_RIW_PENYAKIT_DAHULU2'),
+                       $this->input->post('FS_MR')
+                   );
+                   $this->Rawat_jalan_model->insert_alergi($alergi);
+   
+                   //insert nutrisi
+                   $nutrisi = array(
+                       $this->input->post('FS_NUTRISI1'),
+                       $this->input->post('FS_NUTRISI2'),
+                       $this->input->post('FS_NUTRISI_ANAK1') ? $this->input->post('FS_NUTRISI_ANAK1') : '',
+                       $this->input->post('FS_NUTRISI_ANAK2') ? $this->input->post('FS_NUTRISI_ANAK2') : '',
+                       $this->input->post('FS_NUTRISI_ANAK3') ? $this->input->post('FS_NUTRISI_ANAK3') : '',
+                       $this->input->post('FS_NUTRISI_ANAK4') ? $this->input->post('FS_NUTRISI_ANAK4') : '',
+                       $this->session->userdata('user_id'),
+                       date('Y-m-d'),
+                       $this->input->post('FS_KD_REG')
+                   );
+                   $this->Rawat_jalan_model->update_nutrisi($nutrisi);
+
+                   $riwayat = array(
+                    $this->input->post('FS_KD_REG'),
+                    $this->input->post('FS_SUHU_0'),
+                    $this->input->post('FS_NADI_0'),
+                    $this->input->post('FS_R_0'),
+                    $this->input->post('FS_TD_0'),
+                    $this->input->post('FS_TB_0'),
+                    $this->input->post('FS_BB_0'),
+                    $this->input->post('FS_NYERIP_0'),
+                    $this->input->post('FS_NYERIQ_0'),
+                    $this->input->post('FS_NYERIR_0'),
+                    $this->input->post('FS_NYERIS_0'),
+                    $this->input->post('FS_NYERIT_0'),
+                    $this->input->post('FS_NYERI_0'),
+                    $this->input->post('FS_CARA_BERJALAN1_0'),
+                    $this->input->post('FS_CARA_BERJALAN2_0'),
+                    $this->input->post('FS_CARA_DUDUK_0'),
+                    $this->input->post('FS_STATUS_PSIK_0'),
+                    $this->input->post('FS_STATUS_PSIK2_0'),
+                    $this->input->post('FS_HUB_KELUARGA_0'),
+                    $this->input->post('FS_ST_FUNGSIONAL_0'),
+                    $this->input->post('FS_AGAMA_0'),
+                    $this->input->post('FS_NILAI_KHUSUS_0'), 
+                    $this->input->post('FS_ANAMNESA_0'),
+                    $this->input->post('FS_PENGELIHATAN_0'),
+                    $this->input->post('FS_PENCIUMAN_0'),
+                    $this->input->post('FS_PENDENGARAN_0'),
+                    $this->input->post('FS_EDUKASI_0'),
+                    $this->input->post('FS_ALERGI_0'),
+                    $this->input->post('FS_REAK_ALERGI_0'),
+                    $this->input->post('FS_RIW_PENYAKIT_DAHULU_0'),
+                    $this->input->post('FS_RIW_PENYAKIT_DAHULU2_0'),
+                    $this->input->post('FS_NUTRISI1_0'),
+                    $this->input->post('FS_NUTRISI2_0'),
+                    $this->input->post('FS_NUTRISI_ANAK1_0') ? $this->input->post('FS_NUTRISI_ANAK1_0') : '',
+                    $this->input->post('FS_NUTRISI_ANAK2_0') ? $this->input->post('FS_NUTRISI_ANAK2_0') : '',
+                    $this->input->post('FS_NUTRISI_ANAK3_0') ? $this->input->post('FS_NUTRISI_ANAK1_0') : '',
+                    $this->input->post('FS_NUTRISI_ANAK4_0') ? $this->input->post('FS_NUTRISI_ANAK1_0') : '',
+                    $this->com_user['user_name'],
+                    date('Y-m-d H:i:s'),
+                );
+
+                $this->Rawat_jalan_model->insert_riwayat_perawat($riwayat);
+
+                
+                $masalah_kep = $this->input->post('tujuan');
+                $this->Rawat_jalan_model->delete_masalah_kep($this->input->post('FS_KD_REG'));
+                   if (!empty($masalah_kep)) {
+                       foreach ($masalah_kep as $value) {
+                           $this->Rawat_jalan_model->insert_masalah_kep(array($this->input->post('FS_KD_REG'), $value));
+                       }
+                   }
+                   $rencana_kep = $this->input->post('tembusan');
+                   $this->Rawat_jalan_model->delete_rencana_kep($this->input->post('FS_KD_REG'));
+                   if (!empty($rencana_kep)) {
+                       foreach ($rencana_kep as $value) {
+                           $this->Rawat_jalan_model->insert_rencana_kep(array($this->input->post('FS_KD_REG'), $value));
+                       }
+                   }
+   
+                   $this->db->trans_commit();
+                   // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
+                   redirect('prwt/rajal/create/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+                   
+                    } 
+                catch (\Throwable $th) {
+                    //throw $th;
+                    $this->db->trans_rollback();
+                    redirect('prwt/rajal/edit/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+                    }
+            
+            
+        } else {
+            // handle error
+            echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');      
+            redirect('prwt/rajal/edit/'.$this->input->post('FS_KD_REG').'/'.$this->input->post('FS_KD_MEDIS'));;
+        }
     }
 }

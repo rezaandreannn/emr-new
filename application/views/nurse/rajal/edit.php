@@ -75,7 +75,7 @@
                 </div>
             </div>
             <!-- include form -->
-            <form action="<?php echo base_url('prwt/rajal/store');?>" method="post">
+            <form action="<?php echo base_url('prwt/rajal/update');?>" method="post">
             <input type="hidden" name="FS_KD_REG" value="<?= $no_reg ?>" />
             <input type="hidden" name="FS_MR" value="<?= $biodata['NO_MR'] ?>" />
             <input type="hidden" name="FS_KD_MEDIS" value="<?= $kode_dokter ?>" />
@@ -89,13 +89,15 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Anamnesa / Allow Anamnesa <code>*</code></label>
+                            <input type="hidden" name="FS_AGAMA_0" value="<?= $asesmen_perawat['FS_ANAMNESA'] ?>">
                             <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="" placeholder="Masukan ..."><?= $asesmen_perawat['FS_ANAMNESA'] ?></textarea>
                         </div>
                     </div>
-
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Pemeriksaan Fisik</label>
+                            <input type="hidden" name="FS_EDUKASI_0" value="<?= $asesmen_perawat['FS_EDUKASI'] ?>">
                             <textarea class="form-control" rows="3" name="FS_EDUKASI" value="" placeholder="Masukan ..."><?= $asesmen_perawat['FS_EDUKASI'] ?></textarea>
                         </div>
                     </div>
@@ -122,6 +124,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Suhu</label>
+                            <input type="hidden" name="FS_SUHU_0" class="form-control" value="<?= $vs['FS_SUHU'] ?>">
                             <input type="text" name="FS_SUHU" class="form-control" name="FS_SUHU" value="<?= $vs['FS_SUHU'] ?>">
                         </div>
                     </div>
@@ -129,6 +132,7 @@
                         <div class="form-group">
                             <label>Nadi</label>
                             <div class="input-group mb-3">
+                                <input type="hidden" name="FS_NADI_0" class="form-control" value="<?= $vs['FS_NADI'] ?>">
                                 <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_NADI" value="<?= $vs['FS_NADI'] ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">x/menit</span>
@@ -140,6 +144,7 @@
                         <div class="form-group">
                             <label>Respirasi</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_R_0" class="form-control" value="<?= $vs['FS_R'] ?>">
                                 <input type="text" class="form-control" name="FS_R" value="<?= $vs['FS_R']; ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">x/menit</span>
@@ -151,6 +156,7 @@
                         <div class="form-group">
                             <label>Tekanan Darah</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_TD_0" class="form-control" value="<?= $vs['FS_TD'] ?>">
                                 <input type="text" class="form-control" name="FS_TD" value="<?= $vs['FS_TD']; ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">mmHg</span>
@@ -162,6 +168,7 @@
                         <div class="form-group">
                             <label>Tinggi Badan</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_TB_0" class="form-control" value="<?= $vs['FS_TB'] ?>">
                                 <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_TB" value="<?= $vs['FS_TB']; ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">cm</span>
@@ -173,6 +180,7 @@
                         <div class="form-group">
                             <label>Berat Badan</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_BB_0" class="form-control" value="<?= $vs['FS_BB'] ?>">
                                 <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" name="FS_BB" value="<?= $vs['FS_BB']; ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text">kg</span>
@@ -204,7 +212,8 @@
                         <div class="form-group">
                             <label>Ada Nyeri?</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FS_NYERI" id="exampleRadios1" value="1" <?= $asesmen_nyeri['FS_NYERI']=='1   ' ? 'checked' : ''?>>
+                            <input type="hidden" name="FS_NYERI_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERI'] ?>">
+                                <input class="form-check-input" type="radio" name="FS_NYERI" id="exampleRadios1" value="1" <?= $asesmen_nyeri['FS_NYERI']=='1' ? 'checked' : ''?>>
                                 <label class="form-check-label" for="exampleRadios1">
                                     Ya
                                 </label>
@@ -221,6 +230,7 @@
                         <div class="form-group">
                             <label>Quality</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_NYERIQ_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERIQ'] ?>">
                                 <select name="FS_NYERIQ" id="" class="form-control">
                                    
                                     <option value="0" <?= $asesmen_nyeri['FS_NYERIQ']=='0' ? 'selected' : ''?>>Tidak Ada</option>
@@ -236,6 +246,7 @@
                         <div class="form-group">
                             <label>Provokatif</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_NYERIP_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERIP'] ?>">
                                 <select name="FS_NYERIP" id="" class="form-control">
                                    
                                     <option value="0" <?= $asesmen_nyeri['FS_NYERIQ']=='0' ? 'selected' : ''?>>Tidak Ada Nyeri</option>
@@ -250,6 +261,7 @@
                         <div class="form-group">
                             <label>Severity</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_NYERIS_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERIS'] ?>">
                                 <select name="FS_NYERIS" id="" class="form-control">
                                
                                     <option value="0" <?= $asesmen_nyeri['FS_NYERIS']=='0' ? 'selected' : ''?>>0</option>
@@ -271,6 +283,7 @@
                         <div class="form-group">
                             <label>Regio</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_NYERIR_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERIR'] ?>">
                                 <input type="text" class="form-control" name="FS_NYERIR" value="<?= $asesmen_nyeri['FS_NYERIR']?>">
                             </div>
                         </div>
@@ -279,6 +292,7 @@
                         <div class="form-group">
                             <label>Time</label>
                             <div class="input-group mb-3">
+                            <input type="hidden" name="FS_NYERIT_0" class="form-control" value="<?= $asesmen_nyeri['FS_NYERIT'] ?>">
                                 <select name="FS_NYERIT" id="" class="form-control">
                     
                                     <option value="0" <?= $asesmen_nyeri['FS_NYERIT']=='0' ? 'selected' : ''?>>Tidak Ada</option>
@@ -311,6 +325,7 @@
                 <div class="col-md-6">
                         <div class="form-group clearfix">
                         <label>Pasien berjalan tidak seimbang / sempoyongan</label>
+                        <input type="hidden" name="FS_CARA_BERJALAN1_0" class="form-control" value="<?= $asesmen_jatuh['FS_CARA_BERJALAN1'] ?>">
                             <select name="FS_CARA_BERJALAN1" class="form-control" onchange="click1(this)">
                                 <option value="">--Pilih Data--</option>
                                 <option value="0" <?= $asesmen_jatuh['FS_CARA_BERJALAN1']=='0' ? 'selected' : ''?>>TIDAK</option>
@@ -321,6 +336,7 @@
                             <label>
                                 Pasien berjalan menggunakan alat bantu
                             </label>
+                            <input type="hidden" name="FS_CARA_BERJALAN2_0" class="form-control" value="<?= $asesmen_jatuh['FS_CARA_BERJALAN2'] ?>">
                             <select name="FS_CARA_BERJALAN2" class="form-control" onchange="click2(this)">
                                 <option value="">--Pilih Data--</option>
                                 <option value="0" <?= $asesmen_jatuh['FS_CARA_BERJALAN2']=='0' ? 'selected' : ''?>>TIDAK</option>
@@ -332,6 +348,7 @@
                             <label for="check3">
                                 Pada saat akan duduk pasien memegang benda untuk menopang
                             </label>
+                            <input type="hidden" name="FS_CARA_DUDUK_0" class="form-control" value="<?= $asesmen_jatuh['FS_CARA_DUDUK'] ?>">
                             <select name="FS_CARA_DUDUK" class="form-control" onchange="click3(this)">
                                 <option value="">--Pilih Data--</option>
                                 <option value="0" <?= $asesmen_jatuh['FS_CARA_DUDUK']=='0' ? 'selected' : ''?>>TIDAK</option>
@@ -389,24 +406,28 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit Dahulu</label>
+                            <input type="hidden" name="FS_RIW_PENYAKIT_DAHULU_0" class="form-control" value="<?= $riw_kesehatan['FS_RIW_PENYAKIT_DAHULU'] ?>">
                             <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= $riw_kesehatan['FS_RIW_PENYAKIT_DAHULU'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit keluarga</label>
+                            <input type="hidden" name="FS_RIW_PENYAKIT_DAHULU2_0" class="form-control" value="<?= $riw_kesehatan['FS_RIW_PENYAKIT_DAHULU2'] ?>">
                             <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= $riw_kesehatan['FS_RIW_PENYAKIT_DAHULU2']; ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Alergi<code>*</code></label>
+                            <input type="hidden" name="FS_ALERGI_0" class="form-control" value="<?= $riw_kesehatan['FS_ALERGI'] ?>">
                             <input type="text" class="form-control" name="FS_ALERGI" value="<?= $riw_kesehatan['FS_ALERGI']; ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Reaksi Alergi<code>*</code></label>
+                            <input type="hidden" name="FS_REAK_ALERGI_0" class="form-control" value="<?= $riw_kesehatan['FS_REAK_ALERGI'] ?>">
                             <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= $riw_kesehatan['FS_REAK_ALERGI']; ?>">
                         </div>
                     </div>
@@ -433,6 +454,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Status Psikologis</label>
+                            <input type="hidden" name="FS_STATUS_PSIK_0" class="form-control" value="<?= $asesmen_perawat['FS_STATUS_PSIK'] ?>">
                             <select name="FS_STATUS_PSIK" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?= $asesmen_perawat['FS_STATUS_PSIK']=='1' ? 'selected' : '' ?> onclick='document.getElementById("civstaton3").disabled = true'>Tenang</option>
@@ -448,6 +470,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Hubungan Dengan Anggota Keluarga</label>
+                            <input type="hidden" name="FS_HUB_KELUARGA_0" class="form-control" value="<?= $asesmen_perawat['FS_HUB_KELUARGA'] ?>">
                             <select name="FS_HUB_KELUARGA" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?=$asesmen_perawat['FS_HUB_KELUARGA']=='1' ? 'selected' : '' ?>>Baik</option>
@@ -458,6 +481,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Status fungsional</label>
+                            <input type="hidden" name="FS_ST_FUNGSIONAL_0" class="form-control" value="<?= $asesmen_perawat['FS_ST_FUNGSIONAL'] ?>">
                             <select name="FS_ST_FUNGSIONAL" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?=$asesmen_perawat['FS_ST_FUNGSIONAL']=='1' ? 'selected' : '' ?>>Mandiri</option>
@@ -468,6 +492,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penglihatan</label>
+                            <input type="hidden" name="FS_PENGELIHATAN_0" class="form-control" value="<?= $asesmen_perawat['FS_PENGELIHATAN'] ?>">
                             <select name="FS_PENGELIHATAN" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?=$asesmen_perawat['FS_PENGELIHATAN']=='1' ? 'selected' : '' ?>>Normal</option>
@@ -480,6 +505,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penciuman</label>
+                            <input type="hidden" name="FS_PENCIUMAN_0" class="form-control" value="<?= $asesmen_perawat['FS_PENCIUMAN'] ?>">
                             <select name="FS_PENCIUMAN" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?=$asesmen_perawat['FS_PENCIUMAN']=='1' ? 'selected' : '' ?>>Normal</option>
@@ -490,6 +516,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Pendengaran</label>
+                            <input type="hidden" name="FS_PENDENGARAN_0" class="form-control" value="<?= $asesmen_perawat['FS_PENDENGARAN'] ?>">
                             <select name="FS_PENDENGARAN" id="" class="form-control">
                                 <option value="">-- pilih --</option>
                                 <option value="1" <?=$asesmen_perawat['FS_PENDENGARAN']=='1' ? 'selected' : '' ?>>Normal</option>
@@ -525,6 +552,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Penurunan berat badan yang tidak diinginkan selama 6 bulan terakhir</label>
+                            <input type="hidden" name="FS_NUTRISI1_0" class="form-control" value="<?= $nutrisi['FS_NUTRISI1'] ?>">
                             <select name="FS_NUTRISI1" class="form-control" onchange="sn1(this)">
                                 <option value="">-- pilih --</option>
                                 <option value="0" <?= $nutrisi['FS_NUTRISI1']=='0' ? 'selected' : ''?>>Tidak</option>
@@ -540,6 +568,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Asupan makanan menurun dikarenakan adanya penurunan nafsu makan</label>
+                            <input type="hidden" name="FS_NUTRISI2_0" class="form-control" value="<?= $nutrisi['FS_NUTRISI2'] ?>">
                             <select name="FS_NUTRISI2" class="form-control" onchange="sn2(this)">
                                 <option value="">-- pilih --</option>
                                 <option value="0" <?= $nutrisi['FS_NUTRISI2']=='0' ? 'selected' : ''?>>Tidak</option>
@@ -575,6 +604,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Agama</label>
+                            <input type="hidden" name="FS_AGAMA_0" class="form-control" value="<?= $asesmen_perawat['FS_AGAMA'] ?>">
                             <select name="FS_AGAMA" id="" class="form-control">
                         
                                 <option value="1" <?=$asesmen_perawat['FS_AGAMA']=='1' ? 'selected' : '' ?>>Islam</option>
@@ -589,6 +619,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nilai/Kepercayaan khusus</label>
+                            <input type="hidden" name="FS_NILAI_KHUSUS_0" class="form-control" value="<?= $asesmen_perawat['FS_NILAI_KHUSUS'] ?>">
                             <!-- <input type="text" class="form-control" name="FS_NILAI_KHUSUS" value="<?= set_value('FS_NILAI_KHUSUS'); ?>"> -->
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios1" <?=$asesmen_perawat['FS_NILAI_KHUSUS']=='2' ? 'checked' : '' ?> value="2"  onclick='document.getElementById("civstaton4").disabled = true'>

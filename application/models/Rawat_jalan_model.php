@@ -27,9 +27,19 @@ function insert_status_rj($params) {
     return $this->db->query($sql, $params);
 }
 
+function update_status_rj($params) {
+    $sql = "UPDATE PKU.dbo.TAC_RJ_STATUS SET FS_STATUS = ?, mdb = ?, mdd = ? WHERE FS_KD_REG = ?";
+    return $this->db->query($sql, $params);
+}
+
 function insert_vital_sign($params) {
     $sql = "INSERT INTO PKU.dbo.TAC_RJ_VITAL_SIGN(FS_KD_REG, FS_SUHU, FS_NADI, FS_R, FS_TD,FS_TB,FS_BB,FS_KD_MEDIS, mdb, mdd, FS_JAM_TRS)
     VALUEs (?,?,?,?,?,?,?,?,?,?,?)";
+    return $this->db->query($sql, $params);
+}
+
+function update_vital_sign($params) {
+    $sql = "UPDATE PKU.dbo.TAC_RJ_VITAL_SIGN SET FS_SUHU = ?, FS_NADI =?, FS_R=?, FS_TD=?, FS_TB=?, FS_BB=?, mdb=?, mdd=? WHERE FS_KD_REG = ?";
     return $this->db->query($sql, $params);
 }
 
@@ -39,17 +49,36 @@ function insert_nyeri($params) {
     return $this->db->query($sql, $params);
 }
 
+function update_nyeri($params) {
+    $sql = "UPDATE PKU.dbo.TAC_RJ_NYERI SET FS_NYERIP = ?, FS_NYERIQ = ?, FS_NYERIR = ?, FS_NYERIS = ?, FS_NYERIT = ?, mdb = ?, mdd = ?,FS_NYERI=? WHERE FS_KD_REG = ?";
+    return $this->db->query($sql, $params);
+}
+
 function insert_resiko_jatuh($params) {
     $sql = "INSERT INTO PKU.dbo.TAC_RJ_JATUH(FS_KD_REG, FS_CARA_BERJALAN1, FS_CARA_BERJALAN2, FS_CARA_DUDUK,intervensi1,intervensi2, mdd, mdb)
     VALUES (?,?,?,?,?,?,?,?)";
     return $this->db->query($sql, $params);
 } 
 
+function update_resiko_jatuh($params) {
+    $sql = "UPDATE PKU.dbo.TAC_RJ_JATUH SET FS_CARA_BERJALAN1 = ?, FS_CARA_BERJALAN2 = ?, FS_CARA_DUDUK = ?,intervensi1 = ?,intervensi2 = ?, mdd = ?, mdb=? WHERE FS_KD_REG = ?";
+    return $this->db->query($sql, $params);
+}
+
 function insert_asesmen_perawat($params) {
     $sql = "INSERT INTO PKU.dbo.TAC_ASES_PER2(FS_KD_REG, FS_RIW_PENYAKIT_DAHULU, FS_RIW_PENYAKIT_DAHULU2, FS_RIW_PENYAKIT_KEL, FS_RIW_PENYAKIT_KEL2,
     FS_STATUS_PSIK,FS_STATUS_PSIK2,FS_HUB_KELUARGA,FS_ST_FUNGSIONAL,FS_AGAMA,FS_NILAI_KHUSUS,FS_NILAI_KHUSUS2,FS_ANAMNESA,FS_PENGELIHATAN,
     FS_PENCIUMAN,FS_PENDENGARAN,FS_RIW_IMUNISASI,FS_RIW_IMUNISASI_KET,FS_RIW_TUMBUH,FS_RIW_TUMBUH_KET,FS_HIGH_RISK,FS_EDUKASI,FS_SKDP_FASKES,mdb,mdd)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    return $this->db->query($sql, $params);
+}
+
+function update_asesmen_perawat($params) {
+    $sql = "UPDATE PKU.dbo.TAC_ASES_PER2 SET FS_RIW_PENYAKIT_DAHULU=?, FS_RIW_PENYAKIT_DAHULU2=?, FS_RIW_PENYAKIT_KEL=?, FS_RIW_PENYAKIT_KEL2=?,
+    FS_STATUS_PSIK=?,FS_STATUS_PSIK2=?,FS_HUB_KELUARGA=?,FS_ST_FUNGSIONAL=?,FS_AGAMA=?,FS_NILAI_KHUSUS=?,FS_NILAI_KHUSUS2=?,FS_ANAMNESA=?,
+    FS_PENGELIHATAN=?, FS_PENCIUMAN=?,FS_PENDENGARAN=?,FS_RIW_IMUNISASI=?,FS_RIW_IMUNISASI_KET=?,FS_RIW_TUMBUH=?,FS_RIW_TUMBUH_KET=?, FS_HIGH_RISK=?, 
+    FS_EDUKASI=?,FS_SKDP_FASKES=?,mdb=?,mdd=?
+    WHERE FS_KD_REG =?";
     return $this->db->query($sql, $params);
 }
 
@@ -65,6 +94,12 @@ function insert_nutrisi($params) {
     return $this->db->query($sql, $params);
 }
 
+function update_nutrisi($params) {
+    $sql = "UPDATE PKU.dbo.TAC_RJ_NUTRISI SET FS_NUTRISI1 = ?, FS_NUTRISI2 = ?,FS_NUTRISI_ANAK1=?,FS_NUTRISI_ANAK2=?,FS_NUTRISI_ANAK3=?,
+    FS_NUTRISI_ANAK4=?,  mdb = ?, mdd=? WHERE FS_KD_REG = ?";
+    return $this->db->query($sql, $params);
+}
+
 function insert_masalah_kep($params) {
     $sql = "INSERT INTO PKU.dbo.TAC_RJ_MASALAH_KEP(FS_KD_REG, FS_KD_MASALAH_KEP)
     VALUES (?,?)";
@@ -74,6 +109,24 @@ function insert_masalah_kep($params) {
 function insert_rencana_kep($params) {
     $sql = "INSERT INTO PKU.dbo.TAC_RJ_REN_KEP(FS_KD_REG, FS_KD_REN_KEP)
     VALUES (?,?)";
+    return $this->db->query($sql, $params);
+}
+
+function insert_riwayat_perawat($params) {
+    $sql = "INSERT INTO PKU.dbo.RIWAYAT_PERBAIKAN_PERAWAT_RAJAL(FS_KD_REG,FS_SUHU,FS_NADI,FS_R,FS_TD,FS_TB,FS_BB,FS_NYERIP,FS_NYERIQ,FS_NYERIR,FS_NYERIS,FS_NYERIT,FS_NYERI,FS_CARA_BERJALAN1,FS_CARA_BERJALAN2,FS_CARA_DUDUK,FS_STATUS_PSIK,FS_STATUS_PSIK2,FS_HUB_KELUARGA,FS_ST_FUNGSIONAL,FS_AGAMA,FS_NILAI_KHUSUS,FS_ANAMNESA,FS_PENGLIHATAN,FS_PENCIUMAN,FS_PENDENGARAN,FS_EDUKASI,FS_ALERGI,FS_REAK_ALERGI,FS_RIW_PENYAKIT_DAHULU,FS_RIW_PENYAKIT_DAHULU2,FS_NUTRISI1,FS_NUTRISI2,FS_NUTRISI_ANAK1,FS_NUTRISI_ANAK2,FS_NUTRISI_ANAK3,FS_NUTRISI_ANAK4,MDB, MDD) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    return $this->db->query($sql, $params);
+}
+
+function delete_masalah_kep($params) {
+    $sql = "DELETE PKU.dbo.TAC_RJ_MASALAH_KEP 
+    WHERE FS_KD_REG = ?";
+    return $this->db->query($sql, $params);
+}
+
+function delete_rencana_kep($params) {
+    $sql = "DELETE PKU.dbo.TAC_RJ_REN_KEP 
+    WHERE FS_KD_REG = ?";
     return $this->db->query($sql, $params);
 }
 
