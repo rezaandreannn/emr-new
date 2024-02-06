@@ -245,6 +245,8 @@ class Rajal_controller extends CI_Controller
    
                    $this->db->trans_commit();
                    // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
+                   echo $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
+                   
                    $kode_dokter = $this->input->post('FS_KD_MEDIS');
                    redirect('prwt/rajal?dokter='.$kode_dokter);
                    
@@ -512,7 +514,7 @@ class Rajal_controller extends CI_Controller
                    }
    
                    $this->db->trans_commit();
-                   // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
+                   echo $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
                    $kode_dokter = $this->input->post('FS_KD_MEDIS');
                    redirect('prwt/rajal?dokter='.$kode_dokter);
                    
