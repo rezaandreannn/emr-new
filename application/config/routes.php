@@ -77,14 +77,27 @@ $route['prwt/rencana_op'] = 'Nurse/RencanaController';
 
 
 // RM Berkas Harian Routes
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1985e9d5e7112fa0fc87943b57cf9aa0b38ab193
 $route['rm/berkas_harian'] = 'Rm/Harian_controller';
+
+// RM Berkas Rekam Medis
+$route['rm/berkas'] = 'Rm/Berkas_controller';
+
 // Nurse Bidan Routes
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
+<<<<<<< HEAD
 
 
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
 
 
+=======
+
+$route['prwt/bidan'] = 'Nurse/Bidan_controller';
+$route['dashboard'] = 'Dashboard_controller';
+>>>>>>> 1985e9d5e7112fa0fc87943b57cf9aa0b38ab193

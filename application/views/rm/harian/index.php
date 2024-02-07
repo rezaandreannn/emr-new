@@ -6,8 +6,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Perawat</a></li>
-                    <li class="breadcrumb-item active">Bidan</li>
+                    <li class="breadcrumb-item"><a href="#">Riwayat Rekam Medis</a></li>
+                    <li class="breadcrumb-item active">Berkas Rekam Medis Harian</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
