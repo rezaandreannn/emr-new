@@ -7,7 +7,7 @@ class Login_controller extends CI_Controller
     {
         parent::__construct();
         //validasi jika user belum login
-        $this->load->model('LoginModel');
+        $this->load->model('Login_model');
     }
     //catatan untuk mengambil data user di Controller/base/operatorbase.php di fungsi base_view_app()
 
@@ -24,10 +24,11 @@ class Login_controller extends CI_Controller
             $username = trim($this->input->post('username'));
             $password = trim($this->input->post('password'));
 
-            $User = $this->LoginModel->get_user_login_auto_role($username, $password, '2');
+            $User = $this->Login_model->get_user_login_auto_role($username, $password, '2');
 
 
             if (!empty($User)) {
+                
                 $this->session->set_userdata('masuk', TRUE);
                 $sess = array(
                     'user_id' => $User['user_id'],

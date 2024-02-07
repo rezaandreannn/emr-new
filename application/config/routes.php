@@ -69,27 +69,22 @@ $route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
 
 // dokter routes
 $route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/index';
-$route['poliklinik/periksa'] = 'Poliklinik/Dokter/Assesmen_controller/create';
+$route['poliklinik/periksa/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/create/$1/$2';
 // -- POLIKLINIK -- //
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2346f1ee4468f9adbae16db7190b2e6ba1ccaadb
 // Nurse Rencana OP Routes
 $route['prwt/rencana_op'] = 'Nurse/RencanaController';
 
 
 // RM Berkas Harian Routes
-<<<<<<< HEAD
+
 $route['rm/berkas_harian'] = 'Rm/Harian_controller';
 // Nurse Bidan Routes
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
-=======
-$route['rm/berkas_harian'] = 'Rm/HarianController';
+
 
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['dashboard'] = 'Dashboard_controller';
 
->>>>>>> 2346f1ee4468f9adbae16db7190b2e6ba1ccaadb
+

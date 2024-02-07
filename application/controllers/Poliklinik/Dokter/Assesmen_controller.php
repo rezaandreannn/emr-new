@@ -18,12 +18,8 @@ class Assesmen_controller extends CI_Controller
 
     public function index()
     {
-        $kodeDokter = 0;
 
-        if ($this->input->get('dokter')) {
-            $kodeDokter = $this->input->get('dokter');
-        }
-
+        $kodeDokter = $this->session->userdata('user_name');
         $datenow = date('Y-m-d');
 
         $data = [
@@ -33,17 +29,20 @@ class Assesmen_controller extends CI_Controller
             'footer' => datatable_footer(),
             'select2Header' => select2_header(),
             'select2Footers' => select2_footer(),
+            'pasiens' => $this->Pasien_model->get_pasien_dokter_by_kode_dokter(array($datenow, $kodeDokter, $datenow, $kodeDokter)),
+            
         ];
         // var_dump($data['dokters']);
         // die;
         $this->load->view('layouts/dashboard', $data);
     }
 
-    public function create()
+    public function create($no_register,$kode_dokter)
     {
         $data = [
             'title' => 'Tambah Data',
             'content' => 'poliklinik/dokter/assesmen_pasien',
+            'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register))
         ];
         // var_dump($data['dokters']);
         // die;

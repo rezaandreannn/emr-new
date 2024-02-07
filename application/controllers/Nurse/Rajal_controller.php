@@ -35,6 +35,7 @@ class Rajal_controller extends CI_Controller
             'select2Footers' => select2_footer(),
             'dokters' => $this->Dokter_model->get_dokter(),
             'pasiens' => $this->Pasien_model->get_pasien_rajal_by_kode_dokter(array($datenow, $kodeDokter, $datenow, $kodeDokter))
+           
         ];
         // var_dump($data['dokters']);
         // die;

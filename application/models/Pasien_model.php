@@ -27,6 +27,27 @@ class Pasien_model extends CI_Model
         }
     }
 
+    function get_pasien_dokter_by_kode_dokter($params) {
+        $sql = "SELECT a.NOMOR,a.NO_MR,a.TANGGAL,c.Kode_Dokter, b.NAMA_PASIEN,b.ALAMAT, b.KOTA,b.PROVINSI,b.NO_MR,d.FS_STATUS,
+        e.FS_CARA_PULANG,e.FS_TERAPI,e.FS_KD_TRS,c.NO_REG, c.KODEREKANAN,c.KODE_DOKTER, e.HASIL_ECHO
+        from DB_RSMM.dbo.ANTRIAN a
+        LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN b ON a.NO_MR=b.NO_MR
+        LEFT JOIN DB_RSMM.dbo.PENDAFTARAN c ON a.NO_MR=c.NO_MR
+        LEFT JOIN PKU.dbo.TAC_RJ_STATUS d ON c.NO_REG = d.FS_KD_REG
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS e ON c.NO_REG = e.FS_KD_REG
+        WHERE 
+        a.TANGGAL=? AND DOKTER = ? AND c.TANGGAL = ? AND c.Kode_Dokter = ?
+        ORDER BY a.NOMOR";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
     // get history pasien by no mr
     function get_history_by_mr($params="") {
         $sql = "SELECT A.TANGGAL,A.STATUS,A.NO_REG,A.KODE_RUANG,B.NAMA_PASIEN, B.ALAMAT, B.KOTA,B.PROVINSI,B.TGL_LAHIR,B.JENIS_KELAMIN, I.NAMA_DOKTER,K.SPESIALIS,B.FS_ALERGI,L.FS_FORM,M.FS_KD_TRS
@@ -74,6 +95,26 @@ class Pasien_model extends CI_Model
         FROM DB_RSMM.dbo.REGISTER_PASIEN a
         LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR = b.No_MR 
         WHERE a.NO_MR = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_biodata_pasien_by_mr_dokter($params) {
+        $sql = "SELECT b.NO_REG,a.NAMA_PASIEN, a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI, A.JENIS_KELAMIN,
+        a.TGL_LAHIR,c.SPESIALIS, c.NAMA_DOKTER, E.NAMAREKANAN,
+        b.TANGGAL,b.KODE_DOKTER,a.FS_HIGH_RISK,d.FS_KD_TRS
+        FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR=b.NO_MR
+        LEFT JOIN DB_RSMM.dbo.DOKTER c ON b.KODE_DOKTER=c.KODE_DOKTER
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS d ON b.NO_REG=d.FS_KD_REG
+        LEFT JOIN DB_RSMM.dbo.REKANAN E ON b.KODEREKANAN=E.KODEREKANAN
+        WHERE b.NO_REG = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();

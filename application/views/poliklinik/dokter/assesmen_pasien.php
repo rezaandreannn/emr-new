@@ -22,16 +22,22 @@
             <div class="col-12 col-sm-8 col-md-6 d-flex align-items-stretch flex-column">
                 <div class="card bg-light d-flex flex-fill">
                     <div class="card-header text-muted border-bottom-0">
-                        211232
+                        No MR : <?=$biodata['NO_MR']?>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="lead"><b>Apro</b></h2>
-                                <p class="text-muted text-sm">Laki -laki / 12-12-1990 / 1806071212900076</p>
+                                <h2 class="lead"><b><?=$biodata['NAMA_PASIEN']?></b></h2>
+                                <p class="text-muted text-sm"><?php if ($biodata['JENIS_KELAMIN'] == 'P') {
+                                                                    echo 'Perempuan';
+                                                                } else {
+                                                                    echo 'Laki-Laki';
+                                                                } ?> / <?= date('d-m-Y', strtotime($biodata['TGL_LAHIR'])) ?> / NIK : <?=$biodata['HP2']?></p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>Sukaraja</li>
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>+6282174736453</li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>ALAMAT : <?=$biodata['ALAMAT']?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>NO.HP : <?=$biodata['HP1']?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-user-md"></i></span>DOKTER : <?=$biodata['NAMA_DOKTER']?></li>
+                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-users"></i></span>REKANAN : <?=$biodata['NAMAREKANAN']?></li>
                                 </ul>
                             </div>
                         </div>
@@ -79,55 +85,55 @@
                             <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="<?= set_value('FS_ANAMNESA'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
-
+                    
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Pemeriksaan Fisik (O)</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            <label>Daftar Masalah</label>
+                            <textarea class="form-control" rows="3" name="FS_DAFTAR_MASALAH" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Diagnosa (A)</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            <label>Pemeriksaan Fisik (O)</label>
+                            <textarea class="form-control" rows="3" name="FS_CATATAN_FISIK" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tindakan (P)</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_TINDAKAN" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Diagnosa Sekunder</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Daftar Masalah</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            <label>Diagnosa (A)</label>
+                            <textarea class="form-control" rows="3" name="FS_DIAGNOSA" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Hasil USG</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_USG" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Diagnosa Sekunder</label>
+                            <textarea class="form-control" rows="3" name="FS_DIAGNOSA_SEKUNDER" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>EKG</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="exampleRadios1" value="1">
-                                <label class="form-check-label" for="exampleRadios1">
+                                <input class="form-check-input" type="radio" name="FS_EKG" id="ekgradio1" value="1">
+                                <label class="form-check-label" for="ekgradio1">
                                     Ya
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="" id="exampleRadios2" value="0">
-                                <label class="form-check-label" for="exampleRadios2">
+                                <input class="form-check-input" type="radio" name="FS_EKG" id="ekgradio2" value="0">
+                                <label class="form-check-label" for="ekgradio2">
                                     Tidak
                                 </label>
                             </div>
@@ -137,21 +143,35 @@
                         <div class="form-group">
                             <label>Order Lab Untuk Kontrol Selanjutnya</label>
                             <div class="input-group mb-3">
-                                <select name="" id="" class="form-control">
+                                <select name="tujuan[]" id="" class="form-control">
                                     <option value="">-- pilih --</option>
 
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Order Rad Untuk Kontrol Selanjutnya</label>
-                            <div class="input-group mb-3">
-                                <select name="" id="" class="form-control">
-                                    <option value="">-- pilih --</option>
-
-                                </select>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Order Rad Untuk Kontrol Selanjutnya</label>
+                                <div class="input-group mb-3">
+                                    <select name="tembusan[]" id="" class="form-control">
+                                        <option value="">-- pilih --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>bagian</label>
+                                <div class="input-group mb-3">
+                                    <select name="FS_BAGIAN" id="" class="form-control">
+                                        <option value="">- pilih -</option>
+                                        <option value="Sinistra">Sinistra</option>
+                                        <option value="Dextra">Dextra</option>
+                                        <option value="Bilateral">Bilateral</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -183,8 +203,16 @@
                                 <div class="form-group">
                                     <label>Pilih Paket Obat</label>
                                     <div class="input-group mb-3">
-                                        <select name="" id="" class="form-control">
+                                        <select name="namapaketdrtoumi" id="namapaketdrtoumi" class="form-control" onchange="click_terapi_dr_toumi(this)">
                                             <option value="">-- pilih --</option>
+                                            <option value="Dkd/ckd">Dkd/ckd</option>
+                                            <option value="Neuropati">Neuropati</option>
+                                            <option value="ISPA">ISPA</option>
+                                            <option value="Kapsul batuk">Kapsul batuk</option>
+                                            <option value="Dispepsia">Dispepsia</option>
+                                            <option value="Kapsul cemas">Kapsul cemas</option>
+                                            <option value="Dermatitis alergi">Dermatitis alergi</option>
+                                            <option value="Tinea">Tinea</option>
                                         </select>
                                     </div>
                                 </div>
@@ -262,7 +290,7 @@
 
                             <div class="col-md-12 mt-3">
                                 <label for="FS_TERAPI">Resep Racikan</label>
-                                <textarea rows="18" class="form-control resep plainText" cols="70" name="FS_TERAPI"></textarea>
+                                <textarea rows="18" class="form-control resep_racik plainText" cols="70" name="FS_TERAPI"></textarea>
                             </div>
 
                         </div>
@@ -291,8 +319,16 @@
                         <div class="form-group">
                             <label>Cara Pulang</label>
                             <div class="input-group mb-3">
-                                <select name="" id="" class="form-control">
-                                    <option value="">-- pilih --</option>
+                                <select name="" id="kondisi_pulang" class="form-control" onchange="click_kondisi_pulang(this)">>
+                                    <option value="">--Pilih Cara Pulang--</option>
+                                    <option value="0">Tidak Kontrol</option>
+                                    <option value="2">Kontrol</option>
+                                    <option value="3">Rawat Inap</option>
+                                    <option value="4">Rujuk Luar RS</option>
+                                    <!--<option value="5">PRB / Prolanis</option>-->
+                                    <option value="6">Rujuk Internal</option>
+                                    <option value="7">Kembali Ke Faskes Primer</option>
+                                    <option value="8">PRB</option>
 
                                 </select>
                             </div>
@@ -305,6 +341,73 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- include form -->
+        </div>
+
+        <div class="card card-secondary" id="form2" style="display: none">
+            <div class="card-header card-success">
+                <h3 class="card-title">SURAT KETERANGAN DALAM PERAWATAN</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- include form -->
+            <div class="card-body">
+                <!-- <div class="row"> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Belum dapat dikembalikan ke Fasilitas Perujuk dengan alasan</label>
+                            <div class="input-group mb-3">
+                                <select name="" id="" class="form-control">
+                                    <option value="">-- pilih --</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Rencana tindak lanjut yang akan dilakukan pada kunjungan selanjutnya :</label>
+                        <div class="input-group mb-3">
+                            <input type="text" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Rencana Kontrol Berikutnya : </label>
+                        <div class="input-group mb-3">
+                        <select name="" id="" class="form-control">
+                                    <option value="">-- pilih --</option>
+                                    <option value="1 Minggu">1 Minggu</option>
+                                    <option value="2 Minggu">2 Minggu</option>
+                                    <option value="Sebulan Kedepan">Sebulan Kedepan</option>
+
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Tanggal Kontrol Berikutnya : </label>
+                        <div class="input-group mb-3">
+                            <input type="date" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Tanggal Expired Rujukan Faskes : </label>
+                        <div class="input-group mb-3">
+                            <input type="date" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Keterangan Atau Pesan : </label>
+                        <div class="input-group mb-3">
+                        <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                        </div>
+                    </div>
+                <!-- </div> -->
             </div>
             <!-- include form -->
         </div>
@@ -373,3 +476,33 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+function click_kondisi_pulang(selected){
+    $("#form2").hide();
+            var checkbox1 = selected.value
+      
+            if (checkbox1 == "2") {
+            $("#form2").show();
+            } else {
+            $("#form2").hide();
+            }
+        }
+
+function click_terapi_dr_toumi(selected){
+    var resep = $(".resep").val();
+            var pilihan_resep = selected.value
+      
+            if (pilihan_resep == "Dkd/ckd") {
+                $(".resep").val(
+                resep +
+                "\n /R   Asam folat \n  S 1x1 mg   \n ---------------------------------------- \n \n /R   Bicnat \n  S 2x1  \n ---------------------------------------- \n \n /R   Erkade \n  S 1x1  \n ---------------------------------------- \n"
+            );
+            $("#namapaketdrtoumi").select2("data", null);
+                
+            } else {
+            $("#form2").hide();
+            }
+        }
+
+</script>

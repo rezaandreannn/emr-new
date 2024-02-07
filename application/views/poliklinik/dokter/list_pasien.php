@@ -32,19 +32,37 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php
+                    foreach ($pasiens as $pasien) { ?>
                     <tr>
-                        <td width="5%">1</td>
-                        <td width="10%">211212</td>
-                        <td width="20%">Apro</td>
-                        <td width="30%">sukaraja</td>
+                        <td width="5%"><?= $pasien['NOMOR'] ?></td>
+                        <td width="10%"><?= $pasien['NO_MR'] ?></td>
+                        <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>
+                        <td width="30%"><?= $pasien['NAMA_PASIEN'] ?></td>
                         <td width="10%">
-                            <div class="badge badge-warning text-white">Perawat</div>
+                        <?php if ($pasien['FS_STATUS'] == '') { ?>
+                                    <div class="badge badge-warning text-white">Perawat</div>
+                                <?php } elseif ($pasien['FS_STATUS'] == '1') { ?>
+                                    <div class="badge badge-danger">Dokter</div>
+                                    <?php } elseif ($pasien['FS_STATUS'] == '2') {
+                                    if ($pasien['FS_TERAPI'] == '' or $pasien['FS_TERAPI'] == '<p>-</p>') { ?>
+                                        <div class="badge badge-success">Selesai</div>
+                                    <?php } else { ?>
+                                        <div class="badge badge-info">Farmasi</div>
+                                <?php }
+                                } ?>
                         </td>
-
-                        <td width="45%"><a href="" class="btn btn-sm btn-primary">Entry</a></td>
+                        <?php
+                            $button_title = 'Masuk';
+                            $button_url = 'poliklinik/periksa/' . $pasien['NO_REG'] . '/' . $pasien['KODE_DOKTER'];
+                            if ($pasien['FS_STATUS'] == '2') {
+                                $button_title = 'Edit';
+                                $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG']. '/' . $pasien['KODE_DOKTER'];
+                            }
+                            ?>
+                            <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
                     </tr>
-
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

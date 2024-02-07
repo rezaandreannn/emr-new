@@ -13,7 +13,7 @@ class Dashboard_controller extends CI_Controller
             $url = base_url();
             redirect($url);
         }
-        $this->load->model('LoginModel');
+        $this->load->model('Login_model');
     }
 
 

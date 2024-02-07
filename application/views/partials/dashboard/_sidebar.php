@@ -72,6 +72,23 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item <?= ($this->uri->segment(1) == 'poliklinik'  ? 'menu-open' : '') ?>">
+                    <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'poliklinik'  ? 'active' : '') ?>">
+                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <p>
+                            Medis
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('poliklinik/daftar-pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'daftar-pasien'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pemeriksaan Rawat Jalan</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item <?= ($this->uri->segment(1) == 'rm'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'rm'  ? 'active' : '') ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
