@@ -82,7 +82,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('prwt/rajal') ?>" class="nav-link">
+                            <a href="<?= base_url('rm/berkas') ?>" class="nav-link <?= ($this->uri->segment(2) == 'berkas'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Berkas Rekam Medis</p>
                             </a>
