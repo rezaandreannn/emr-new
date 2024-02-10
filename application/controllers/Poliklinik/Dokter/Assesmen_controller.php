@@ -14,6 +14,10 @@ class Assesmen_controller extends CI_Controller
         $this->load->model('Rawat_jalan_model');
         $this->load->model('Pasien_model');
         $this->load->model('Perawat_model');
+        $this->load->model('Laboratorium_model');
+        $this->load->model('Radiologi_model');
+        $this->load->model('Obat_model');
+        $this->load->model('Dokter_model');
     }
 
     public function index()
@@ -42,7 +46,13 @@ class Assesmen_controller extends CI_Controller
         $data = [
             'title' => 'Tambah Data',
             'content' => 'poliklinik/dokter/assesmen_pasien',
-            'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register))
+            'kode_dokter'=>$kode_dokter,
+            'no_reg'=>$no_register,
+            'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register)),
+            'labs' => $this->Laboratorium_model->list_pemeriksaan_lab(),
+            'radiologis' => $this->Radiologi_model->list_pemeriksaan_rad(),
+            'obats' => $this->Obat_model->list_nama_obat(),
+            'dokters' => $this->Dokter_model->list_nama_dokter_spesialis(),
         ];
         // var_dump($data['dokters']);
         // die;

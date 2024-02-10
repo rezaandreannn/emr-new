@@ -18,4 +18,17 @@ class Dokter_model extends CI_Model
             return array();
         }
     }
+
+    function list_nama_dokter_spesialis($params="") {
+        $sql = "SELECT KODE_DOKTER, NAMA_DOKTER
+        FROM DB_RSMM.dbo.DOKTER WHERE Jenis_Profesi='DOKTER SPESIALIS'";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
 }
