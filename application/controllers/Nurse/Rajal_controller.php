@@ -47,10 +47,8 @@ class Rajal_controller extends CI_Controller
     {
 
         $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
+        $mr = $get_mr_pasien['No_MR'];
 
-        foreach ($get_mr_pasien as $get_mr) {
-            $mr = $get_mr['No_MR'];
-        }
         // var_dump($mr);
         // die;
 
@@ -91,8 +89,8 @@ class Rajal_controller extends CI_Controller
         $this->form_validation->set_rules('intervensi1', 'intervensi1', 'max_length[64]');
         $this->form_validation->set_rules('intervensi2', 'intervensi2', 'max_length[64]');
         $this->form_validation->set_rules('FS_CARA_DUDUK', 'FS_CARA_DUDUK', 'max_length[64]');
-        $this->form_validation->set_rules('FS_RIW_PENYAKIT_DAHULU', 'FS_RIW_PENYAKIT_DAHULU', 'max_length[64]');
-        $this->form_validation->set_rules('FS_RIW_PENYAKIT_DAHULU2', 'FS_RIW_PENYAKIT_DAHULU2', 'max_length[64]');
+        $this->form_validation->set_rules('penyakit_dahulu', 'FS_RIW_PENYAKIT_DAHULU', 'max_length[64]');
+        $this->form_validation->set_rules('penyakit_dahulu2', 'FS_RIW_PENYAKIT_DAHULU2', 'max_length[64]');
         $this->form_validation->set_rules('FS_ALERGI', 'FS_ALERGI', 'required|max_length[64]');
         $this->form_validation->set_rules('FS_REAK_ALERGI', 'FS_REAK_ALERGI', 'required|max_length[64]');
         $this->form_validation->set_rules('FS_STATUS_PSIK', 'FS_STATUS_PSIK', 'max_length[64]');
@@ -105,7 +103,7 @@ class Rajal_controller extends CI_Controller
         $this->form_validation->set_rules('FS_NUTRISI1', 'FS_NUTRISI1', 'max_length[64]');
         $this->form_validation->set_rules('FS_NUTRISI2', 'FS_NUTRISI2', 'max_length[64]');
         $this->form_validation->set_rules('FS_AGAMA', 'FS_AGAMA', 'max_length[64]');
-        $this->form_validation->set_rules('FS_NILAI_KHUSUS', 'FS_NILAI_KHUSUS', 'required|max_length[64]');
+        $this->form_validation->set_rules('FS_NILAI_KHUSUS', 'FS_NILAI_KHUSUS', 'max_length[64]');
         $this->form_validation->set_rules('FS_NILAI_KHUSUS2', 'FS_NILAI_KHUSUS2', 'max_length[64]');
         // $this->form_validation->set_rules('tujuan', 'tujuan', );
         // $this->form_validation->set_rules('tembusan', 'tembusan', 'max_length[64]');
@@ -253,12 +251,15 @@ class Rajal_controller extends CI_Controller
                     //throw $th;
                     $this->db->trans_rollback();
                     echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
-                    redirect('prwt/rajal/create/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));;
+                    redirect('prwt/rajal/create/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));
                 }
             }
         } else {
             // handle error
+         
+            // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
             echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
+            // $this->session->set_userdata('validation_errors', validation_errors());
             redirect('prwt/rajal/create/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));;
         }
     }
@@ -267,10 +268,7 @@ class Rajal_controller extends CI_Controller
     public function edit($no_register, $kode_dokter)
     {
         $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
-
-        foreach ($get_mr_pasien as $get_mr) {
-            $mr = $get_mr['No_MR'];
-        }
+        $mr = $get_mr_pasien['No_MR'];
 
         $data = [
             'title' => 'Form edit Rawat Jalan',

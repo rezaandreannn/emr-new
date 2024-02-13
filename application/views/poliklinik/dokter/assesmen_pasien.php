@@ -65,6 +65,16 @@
         <!-- button -->
         <!-- form -->
         <div class="card card-secondary">
+        <?php if ($this->session->flashdata('success')) : ?>
+                <div class="alert alert-success">
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('warning')) : ?>
+                <div class="alert alert-warning">
+                    <?php echo $this->session->flashdata('warning'); ?>
+                </div>
+            <?php endif; ?>
             <div class="card-header card-success">
                 <h3 class="card-title">Pemeriksaan Dokter</h3>
                 <div class="card-tools">
@@ -77,6 +87,7 @@
                 </div>
             </div>
             <!-- include form -->
+            <form action="<?php echo base_url('poliklinik/store');?>" method="post">
             <div class="card-body">
                 <div class="row">
                     <input type="hidden" name="FS_KD_LAYANAN" value="<?= $biodata['SPESIALIS'] ?>" />
@@ -86,7 +97,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Anamnesa (S) <code>*Wajib diisi</code></label>
-                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="<?= set_value('FS_ANAMNESA'); ?>" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="" placeholder="Masukan ..."><?= $asesmen_perawat['FS_ANAMNESA'] ?></textarea>
                         </div>
                     </div>
 
@@ -98,8 +109,17 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+
+                <?php if(($nutrisi['FS_NUTRISI1']+$nutrisi['FS_NUTRISI2'])<2){
+                            $value_nutrisi='Normal';
+                            
+                        }else{
+                        $value_nutrisi='Terjadi Penurunan Badan Tidak Diinginkan';
+
+                    }?>
+        
                             <label>Pemeriksaan Fisik (O)</label>
-                            <textarea class="form-control" rows="3" name="FS_CATATAN_FISIK" value="<?= set_value('FS_CATATAN_FISIK'); ?>" placeholder="Masukan ..."></textarea>
+                            <textarea class="form-control" rows="3" name="FS_CATATAN_FISIK" value="<?= set_value('FS_CATATAN_FISIK'); ?>" placeholder="Masukan ...">Suhu : <?=$vital_sign['FS_SUHU']?> C, Nadi : <?=$vital_sign['FS_NADI']?> x/menit,  Respirasi : <?=$vital_sign['FS_R']?> x/menit, TD : <?=$vital_sign['FS_TD']?> mmHg, BB : <?=$vital_sign['FS_BB']?>, TB : <?=$vital_sign['FS_TB']?>, Alergi : <?= $alergi['FS_ALERGI'] ?>,  Skala Nyeri :<?=$nyeri['FS_NYERIS']?>,  Skrining Nutrisi : <?= $value_nutrisi;?></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -162,13 +182,13 @@
                                 <textarea class="form-control" rows="3" name="HASIL_TREADMILL" value="<?= set_value('HASIL_TREADMILL'); ?>" placeholder="Masukan ..."></textarea>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <?php } ?>
+
+        
                                 <input type="hidden" name="FS_HIGH_RISK" value="<?= $biodata['FS_HIGH_RISK'] ?>" />
                                 <input type="hidden" name="FS_OBAT_PROLANIS" value="1" />
-                            </div>
-                        </div>
-                    <?php } ?>
+                          
+                      
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -183,7 +203,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-7 sm-6">
                             <div class="form-group">
                                 <label>Order Rad Kontrol Selanjutnya</label>
                                 <div class="input-group mb-3">
@@ -196,7 +216,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 sm-6">
                             <div class="form-group">
                                 <label>bagian</label>
                                 <div class="input-group mb-3">
@@ -524,7 +544,7 @@
                                 </div>
 
                                 <div class="col-md-12 mt-3">
-                                    <label for="FS_TERAPI">Resep Racikan</label>
+                                    <label for="FS_TERAPI2">Resep Racikan</label>
                                     <textarea rows="18" class="form-control resepracik plainText" cols="70" name="FS_TERAPI2"></textarea>
                                 </div>
 
@@ -601,8 +621,11 @@
                     <div class="form-group">
                         <label>Belum dapat dikembalikan ke Fasilitas Perujuk dengan alasan</label>
                         <div class="input-group mb-3">
-                            <select name="FS_SKDP_1" id="FS_SKDP_1" class="form-control">
+                            <select name="FS_SKDP_1" id="FS_SKDP_1" class="form-control" onchange="click_alasan_skdp(this)">
                                 <option value="">-- pilih --</option>
+                                <?php foreach($alasan_skdp as $skdp){?>
+                                    <option value="<?=$skdp['FS_KD_TRS']?>"><?=$skdp['FS_NM_SKDP_ALASAN'];?></option>
+                                <?php } ?>
 
                             </select>
                         </div>
@@ -611,7 +634,9 @@
                 <div class="col-md-6">
                     <label>Rencana tindak lanjut yang akan dilakukan pada kunjungan selanjutnya :</label>
                     <div class="input-group mb-3">
-                        <input type="text" name="FS_SKDP_2" id="FS_SKDP_2" class="form-control">
+                    <select name="FS_SKDP_2" id="rencana_skdp" class="form-control">
+                        <option value="1">--Pilih Rencana Tindakan--</option>
+                    </select>
                         <input type="text" name="FS_SKDP_KET" placeholder="keterangan.." />
                     </div>
                 </div>
@@ -636,7 +661,7 @@
                 <div class="col-md-6">
                     <label>Tanggal Kontrol Berikutnya : </label>
                     <div class="input-group mb-3">
-                        <input type="date" name="FS_SKDP_KONTROL" class="form-control" id="kontrol_rencana">
+                        <input type="date" name="FS_SKDP_KONTROL" class="form-control" id="tgl_kontrol_berikutnya">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -673,22 +698,22 @@
                 <!-- <div class="row"> -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="FS_TUJUAN_RUJUKAN">Kepada : <code>* Wajib Diisi</code></label>
+                        <label for="FS_TUJUAN_RUJUKAN_LUAR_RS">Kepada : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN" id="FS_TUJUAN_RUJUKAN">
+                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN_LUAR_RS" id="FS_TUJUAN_RUJUKAN_LUAR_RS">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="FS_TUJUAN_RUJUKAN2">Rumah Sakit Tujuan : <code>* Wajib Diisi</code></label>
+                    <label for="FS_TUJUAN_RUJUKAN_LUAR_RS2">Rumah Sakit Tujuan : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <input type="text" name="FS_TUJUAN_RUJUKAN2" id="FS_TUJUAN_RUJUKAN2" class="form-control">
+                        <input type="text" name="FS_TUJUAN_RUJUKAN_LUAR_RS2" id="FS_TUJUAN_RUJUKAN_LUAR_RS2" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="FS_ALASAN_RUJUK">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
+                    <label for="FS_ALASAN_RUJUK_LUAR_RS">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK" id="FS_ALASAN_RUJUK" value="" placeholder="Masukan ..."></textarea>
+                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK_LUAR_RS" id="FS_ALASAN_RUJUK_LUAR_RS" value="" placeholder="Masukan ..."></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -757,8 +782,9 @@
                     <div class="form-group">
                         <label for="FS_TGL_PRB">Kontrol setelah dari FKTP ke RS tanggal : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
+                        <input type="hidden" name="FS_KD_TRS" value="<?=$biodata['FS_KD_TRS']?>" />
                             <input type="date" name="FS_TGL_PRB" class="form-control" id="FS_TGL_PRB">
-                            <input type="hidden" name="FS_TUJUAN_" value="-" />
+                            <input type="hidden" name="FS_TUJUAN" value="-" />
                         </div>
                     </div>
                 </div>
@@ -779,6 +805,7 @@
             </div>
         </div>
         <!-- button -->
+        </form>
 
     </div>
 </section>
@@ -1491,11 +1518,34 @@
 
 
         if (rencana_kontrol == "1 Minggu") {
-            alert(rencana_kontrol)
-            $("#kontrol_rencana").val(current_date);
+           
+            // document.getElementById("#tgl_kontrol_berikutnya").value = current_date;
+            // $("#tgl_kontrol_berikutnya").value(current_date);
             // $("#FS_RENCANA_KONTROL").select2("data", null);
         } else if (rencana_kontrol == "4") {
-            $("#form3").show();
+            // $("#form3").show();
         }
     }
+</script>
+
+<script type="text/javascript">
+    function click_alasan_skdp(selected){
+       
+            var skdp_alasan = $("#FS_SKDP_1").val();
+            // alert(skdp_alasan);
+            // die;
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('Poliklinik/Dokter/Assesmen_controller/skdp_rencana_kontrol');?>",
+                data: "FS_SKDP_1=" + skdp_alasan,
+                cache: false,
+
+                success: function (msg) {
+//jika data sukses diambil dari server kita tampilkan
+//di <select id=kota
+                    $("#rencana_skdp").html(msg);
+                }
+            });
+    }
+   
 </script>

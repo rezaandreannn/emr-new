@@ -80,7 +80,7 @@ class Pasien_model extends CI_Model
         ";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
-            $result = $query->result_array();
+            $result = $query->row_array();
             $query->free_result();
             return $result;
         } else {
@@ -91,7 +91,7 @@ class Pasien_model extends CI_Model
     function get_biodata_pasien_by_mr($params) {
      
         $sql = "SELECT top 1 a.NAMA_PASIEN,a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
-        a.TGL_LAHIR,FS_ALERGI, b.No_MR, b.No_Reg
+        a.TGL_LAHIR,FS_ALERGI,a.FS_REAK_ALERGI,a.FS_RIW_PENYAKIT_DAHULU,a.FS_RIW_PENYAKIT_DAHULU2, b.No_MR, b.No_Reg
         FROM DB_RSMM.dbo.REGISTER_PASIEN a
         LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR = b.No_MR 
         WHERE a.NO_MR = ?";
@@ -142,4 +142,62 @@ class Pasien_model extends CI_Model
             return 0;
         }
      }
+
+     function get_vital_sign_by_noreg($params) {
+        $sql = "SELECT a.*,c.NAMALENGKAP,b.user_name
+        FROM PKU.dbo.TAC_RJ_VITAL_SIGN a
+        LEFT JOIN PKU.dbo.TAC_COM_USER b ON a.mdb=b.user_id
+        LEFT JOIN DB_RSMM.dbo.TUSER c ON b.user_name=c.NAMAUSER
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_nyeri_by_noreg($params) {
+        $sql = "SELECT *
+        FROM PKU.dbo.TAC_RJ_NYERI
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_nutrisi_by_noreg($params) {
+        $sql = "SELECT *
+        FROM PKU.dbo.TAC_RJ_NUTRISI
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_data_alergi_by_rg($params) {
+        $sql = "SELECT *
+        FROM DB_RSMM.dbo.REGISTER_PASIEN
+        WHERE No_MR = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
 }

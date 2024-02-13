@@ -389,25 +389,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit Dahulu</label>
-                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= set_value('FIS_RIW_PENYAKIT_DAHULU'); ?>">
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU']!=null ? $biodata['FS_RIW_PENYAKIT_DAHULU'] : '-'); ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit keluarga</label>
-                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= set_value('FS_RIW_PENYAKIT_DAHULU2'); ?>">
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU2']!=null ? $biodata['FS_RIW_PENYAKIT_DAHULU2'] : '-'); ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Alergi<code>*</code></label>
-                            <input type="text" class="form-control" name="FS_ALERGI" value="<?= set_value('FS_ALERGI'); ?>">
+                            <input type="text" class="form-control" name="FS_ALERGI" value="<?= $biodata['FS_ALERGI']!=null ? $biodata['FS_ALERGI'] : '-' ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Reaksi Alergi<code>*</code></label>
-                            <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= set_value('FS_REAK_ALERGI'); ?>">
+                            <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= $biodata ['FS_REAK_ALERGI']!=null ? $biodata ['FS_REAK_ALERGI'] :  '-'?>">
                         </div>
                     </div>
                     <!-- include form -->
@@ -599,7 +599,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios2" value="1"  onclick='document.getElementById("civstaton4").disabled = true'>
+                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios2" value="1" checked onclick='document.getElementById("civstaton4").disabled = true'>
                                 <label class="form-check-label" for="exampleRadios2">
                                     Tidak
                                 </label>

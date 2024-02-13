@@ -273,7 +273,7 @@ class Rawat_jalan_model extends CI_Model
 
     function update_resiko_tinggi($params = "")
     {
-        $sql = "UPDATE REGISTER_PASIEN SET FS_HIGH_RISK = ?
+        $sql = "UPDATE DB_RSMM.dbo.REGISTER_PASIEN SET FS_HIGH_RISK = ?
         WHERE NO_MR = ?";
         return $this->db->query($sql, $params);
     }
@@ -314,6 +314,75 @@ class Rawat_jalan_model extends CI_Model
     function insert_pemeriksaan_rad($params)
     {
         $sql = "INSERT INTO PKU.dbo.ta_trs_kartu_periksa5 (fn_no_urut, fs_kd_tarif,fs_kd_reg2,fs_bagian) VALUES (?, ?, ?, ?)";
+        return $this->db->query($sql, $params);
+    }
+
+    //insert surat skdp atau surat kontrol
+    function insert_surat_skdp($params) {
+        $sql = "INSERT INTO PKU.dbo.TAC_RJ_SKDP(FS_KD_REG, FS_SKDP_1, FS_SKDP_2,FS_SKDP_KET,FS_SKDP_KONTROL,FS_NO_SKDP, mdb, mdd, mdd_time, FS_SKDP_FASKES, FS_PESAN, FS_RENCANA_KONTROL)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return $this->db->query($sql, $params);
+    }
+
+    function get_no_skdp($params="") {
+        $sql = "SELECT MAX(FS_NO_SKDP) 'NOSKDP' FROM PKU.dbo.TAC_RJ_SKDP WHERE MONTH(mdd) = ? AND YEAR(mdd) = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_alasan_skdp($params="") {
+        $sql = "SELECT *  FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_ALASAN";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_rencana_skdp($params) {
+        $sql = "SELECT * FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_RENCANA WHERE FS_KD_TRS_SKDP_ALASAN = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_asesmen_perawat($params) {
+        $sql = "SELECT *
+        FROM PKU.dbo.TAC_ASES_PER2
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function insert_rujuk_rs($params) {
+        $sql = "INSERT INTO PKU.dbo.TAC_RJ_RUJUKAN(FS_KD_REG,FS_TUJUAN_RUJUKAN,FS_TUJUAN_RUJUKAN2,FS_ALASAN_RUJUK, mdb, mdd_date, mdd_time)
+        VALUES (?,?,?,?,?,?,?)";
+        return $this->db->query($sql, $params);
+    }
+
+    function insert_rujuk_ke_faskes_primer($params) {
+        $sql = "INSERT INTO PKU.dbo.TAC_RJ_PRB(FS_KD_TRS,FS_KD_REG,FS_TGL_PRB,FS_TUJUAN, mdb, mdd_date, mdd_time)
+        VALUES (?,?,?,?,?,?,?)";
         return $this->db->query($sql, $params);
     }
 }
