@@ -70,6 +70,7 @@ $route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
 // dokter routes
 $route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/index';
 $route['poliklinik/periksa/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/create/$1/$2';
+$route['poliklinik/store'] = 'Poliklinik/Dokter/Assesmen_controller/store';
 // -- POLIKLINIK -- //
 
 // Nurse Rencana OP Routes
