@@ -72,6 +72,39 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item <?= ($this->uri->segment(1) == 'igd'  ? 'menu-open' : '') ?>">
+                    <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'igd'  ? 'active' : '') ?>">
+                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <p>
+                            Layanan IGD
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('igd/medis') ?>" class="nav-link <?= ($this->uri->segment(2) == 'medis'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Assesmen Medis</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('igd/cppt-igd') ?>" class="nav-link <?= ($this->uri->segment(2) == 'cppt-igd'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>CPPT IGD</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('igd/skrining-tb') ?>" class="nav-link  <?= ($this->uri->segment(2) == 'skrining-tb'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Skrining TB</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item <?= ($this->uri->segment(1) == 'poliklinik'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'poliklinik'  ? 'active' : '') ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>

@@ -17,15 +17,24 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <div class="form-group row" style="width: 60%;">
-                    <label for="select-dokter" class="col-6 col-sm-2 col-form-label">Pilih Dokter</label>
-                    <div class="col-10 col-sm-8 col-md-6">
-                        <select name="dokter" id="select-dokter" class="form-control">
-                            <option value="">1</option>
-                            <option value="">2</option>
-                        </select>
-                    </div>
-                </div>
+                <form method="GET" name="myForm" id="myForm" action="<?= base_url('prwt/bidan'); ?>" class="filter">
+                    <div class="card-header">
+                        <div class="form-group row">
+                            <label for="select-dokter" class="col-12 col-sm-2 col-form-label">Pilih Dokter</label>
+                            <div class="col-12 col-sm-10 col-md-6">
+                                <select name="dokter" id="dokter" class="form-control select2bs4" onchange="getKodeDokter(this)">
+                                    <option value="">-- pilih dokter --</option>
+                                    <?php
+                                    foreach ($dokters as $dokter) { ?>
+                                        <option value="<?= $dokter['KODE_DOKTER'] ?>" <?php if ($this->input->get('dokter') == $dokter['KODE_DOKTER']) {
+                                                                                            echo 'selected';
+                                                                                        } ?>><?= $dokter['NAMA_DOKTER'] ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </div>
+                        </div>
+                </form>
             </div>
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -40,14 +49,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td width="5%">1</td>
-                            <td width="10%">000000</td>
-                            <td width="20%">Alexander</td>
-                            <td width="40%">Jl. imam bonjol</td>
-                            <td width="10%">Perawat</td>
-                            <td><a href="http://" class="badge badge-info">Entry</a></td>
-                        </tr>
+                        <?php
+                        foreach ($pasiens as $pasien) { ?>
+                            <tr>
+                                <td width="5%"><?= $pasien['NOMOR'] ?></td>
+                                <td width="10%"><?= $pasien['NO_MR'] ?></td>
+                                <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>
+                                <td width="30%"><?= $pasien['ALAMAT'] ?></td>
+                                <td width="10%">
+                                    <?php if ($pasien['FS_STATUS'] == '') { ?>
+                                        <div class="badge badge-warning text-white">Perawat</div>
+                                    <?php } elseif ($pasien['FS_STATUS'] == '1') { ?>
+                                        <div class="badge badge-danger">Dokter</div>
+                                        <?php } elseif ($pasien['FS_STATUS'] == '2') {
+                                        if ($pasien['FS_TERAPI'] == '' or $pasien['FS_TERAPI'] == '<p>-</p>') { ?>
+                                            <div class="badge badge-success">Selesai</div>
+                                        <?php } else { ?>
+                                            <div class="badge badge-info">Farmasi</div>
+                                    <?php }
+                                    } ?>
+                                </td>
+                                <?php
+                                $button_title = 'Masuk';
+                                $button_url = 'prwt/bidan/create/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
+                                if ($pasien['FS_STATUS'] != '') {
+                                    $button_title = 'Edit';
+                                    $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
+                                }
+                                ?>
+                                <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -55,3 +87,11 @@
     </div>
     </div><!-- /.container-fluid -->
 </section>
+
+<script type="text/javascript">
+    function getKodeDokter(selected) {
+        var kodeDokter = selected.value
+        document.myForm.submit();
+
+    };
+</script>

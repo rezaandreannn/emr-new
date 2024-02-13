@@ -36,7 +36,7 @@
             </form>
         </div>
         <div class="card-body">
-        <?php if ($this->session->flashdata('success')) : ?>
+            <?php if ($this->session->flashdata('success')) : ?>
                 <div class="alert alert-success">
                     <?php echo $this->session->flashdata('success'); ?>
                 </div>
@@ -78,7 +78,7 @@
                             $button_url = 'prwt/rajal/create/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
                             if ($pasien['FS_STATUS'] != '') {
                                 $button_title = 'Edit';
-                                $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG']. '/' . $this->input->get('dokter');
+                                $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
                             }
                             ?>
                             <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>

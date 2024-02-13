@@ -166,16 +166,15 @@ class Assesmen_controller extends CI_Controller
                     }
                     echo $this->session->set_flashdata('success', 'Detail data pemeriksaan berhasil disimpan');
 
-                    // if cara pulang belum fix
-                    if(){
+                    // // if cara pulang belum fix
+                    // if(){
 
-                    }
-                    elseif(){
+                    // }
+                    // elseif(){
 
-                    }
+                    // }
                     // batas if input cara pulang
-                }
-                 else {
+                } else {
 
                     //redirect back belum fix jika gagal input
 
@@ -196,8 +195,8 @@ class Assesmen_controller extends CI_Controller
             // redirect belum fix
             // redirect('prwt/rajal/create/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));;
         }
-    } 
+    }
     //end pemeriksaan dokter
 
-    
+
 }
