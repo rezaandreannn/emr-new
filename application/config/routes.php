@@ -78,7 +78,9 @@ $route['igd/skrining-tb'] = 'Poliklinik/Dokter/Skrining_controller';
 
 $route['poliklinik/daftar-pasien'] = 'Poliklinik/Dokter/Assesmen_controller/index';
 $route['poliklinik/periksa/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/create/$1/$2';
+$route['poliklinik/periksa/edit/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/edit/$1/$2';
 $route['poliklinik/store'] = 'Poliklinik/Dokter/Assesmen_controller/store';
+$route['poliklinik/update'] = 'Poliklinik/Dokter/Assesmen_controller/update';
 // -- POLIKLINIK -- //
 
 // Nurse Rencana OP Routes

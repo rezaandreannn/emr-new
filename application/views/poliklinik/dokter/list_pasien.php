@@ -20,6 +20,16 @@
 
         </div>
         <div class="card-body">
+        <?php if ($this->session->flashdata('danger')) : ?>
+                <div class="alert alert-danger">
+                    <?php echo $this->session->flashdata('danger'); ?>
+                </div>
+            <?php endif; ?>
+        <?php if ($this->session->flashdata('success')) : ?>
+                <div class="alert alert-success">
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -57,7 +67,7 @@
                             $button_url = 'poliklinik/periksa/' . $pasien['NO_REG'] . '/' . $pasien['KODE_DOKTER'];
                             if ($pasien['FS_STATUS'] == '2') {
                                 $button_title = 'Edit';
-                                $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG']. '/' . $pasien['KODE_DOKTER'];
+                                $button_url = 'poliklinik/periksa/edit/' . $pasien['NO_REG']. '/' . $pasien['KODE_DOKTER'];
                             }
                             ?>
                             <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
