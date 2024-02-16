@@ -672,10 +672,17 @@
                             -->
                             <select multiple="" name="tujuan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
+<<<<<<< HEAD
                                 <?php foreach ($list_masalah_keperawatan as $masalah_perawat) { ?>
                                     <?php foreach ($masalah_keperawatan as $mk) { ?>
                                         <option value="<?= $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ?>" <?= $mk['FS_KD_MASALAH_KEP'] ==  $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ? 'selected' : '' ?>><?= $masalah_perawat['FS_NM_DIAGNOSA'] ?></option>
                                     <?php } ?>
+=======
+                                <?php foreach ($masalah_keperawatan as $mk) { ?>
+                                <?php foreach ($list_masalah_keperawatan as $masalah_perawat) { ?>
+                                    <option value="<?= $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ?>" <?= $mk['FS_KD_MASALAH_KEP'] ==  $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ? 'selected' : '' ?>><?= $masalah_perawat['FS_NM_DIAGNOSA'] ?></option>
+                                <?php } ?>
+>>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
                                 <?php } ?>
                             </select>
                         </div>
@@ -685,10 +692,17 @@
                             <label>Rencana Keperawatan</label>
                             <select multiple name="tembusan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
+<<<<<<< HEAD
                                 <?php foreach ($list_rencana_keperawatan as $rencana_perawat) { ?>
                                     <?php foreach ($rencana_keperawatan as $rk) { ?>
                                         <option value="<?= $rencana_perawat['FS_KD_TRS'] ?>" <?= $rk['FS_KD_REN_KEP'] ==  $rencana_perawat['FS_KD_TRS'] ? 'selected' : '' ?>><?= $rencana_perawat['FS_NM_REN_KEP'] ?></option>
                                     <?php } ?>
+=======
+                                <?php foreach ($rencana_keperawatan as $rk) { ?>
+                                <?php foreach ($list_rencana_keperawatan as $rencana_perawat) { ?>
+                                    <option value="<?= $rencana_perawat['FS_KD_TRS'] ?>"<?= $rk['FS_KD_REN_KEP'] ==  $rencana_perawat['FS_KD_TRS'] ? 'selected' : '' ?> ><?= $rencana_perawat['FS_NM_REN_KEP'] ?></option>
+                                <?php } ?>
+>>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
                                 <?php } ?>
                             </select>
                         </div>
@@ -736,41 +750,46 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped" id="example1">
-                    <thead>
-                        <tr>
-                            <th style="width: 10px">Tgl Kunjungan</th>
-                            <th style="width: 30px">Dokter</th>
-                            <th style="width: 20px">Layanan</th>
-                            <th style="width: 20px">Catatan</th>
-                            <th style="width: 10px">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($histories as $history) { ?>
+                <div class="card-body">
+                
+                <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped" >
+                        <thead>
                             <tr>
-                                <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
-                                <td><?= $history['NAMA_DOKTER'] ?></td>
-                                <td>
-                                    <?= $history['SPESIALIS'] ?>
-                                </td>
-                                <td> -</td>
-                                <td>
-                                    <?php if ($history['KODE_RUANG'] == '') { ?>
-                                        <div class="badge badge-primary">
-                                            Rawat Jalan
-                                        </div>
-                                    <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
-                                        <div class="badge badge-success">
-                                            Rawat Inap
-                                        </div>
-                                    <?php } ?>
-                                </td>
+                                <th>Tgl Kunjungan</th>
+                                <th>Dokter</th>
+                                <th>Layanan</th>
+                                <th>Catatan</th>
+                                <th>Status</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($histories as $history) { ?>
+                                <tr>
+                                    <td width="10%"><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
+                                    <td width="30%"><?= $history['NAMA_DOKTER'] ?></td>
+                                    <td width="20%">
+                                        <?= $history['SPESIALIS'] ?>
+                                    </td>
+                                    <td width="20%"> -</td>
+                                    <td width="15%">
+                                        <?php if ($history['KODE_RUANG'] == '') { ?>
+                                            <div class="badge badge-primary">
+                                                Rawat Jalan
+                                            </div>
+                                        <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
+                                            <div class="badge badge-success">
+                                                Rawat Inap
+                                            </div>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>

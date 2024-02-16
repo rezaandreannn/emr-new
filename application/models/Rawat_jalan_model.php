@@ -393,11 +393,29 @@ class Rawat_jalan_model extends CI_Model
         return $this->db->query($sql, $params);
     }
 
+<<<<<<< HEAD
 
 
     function get_px_by_dokter_by_rm($params)
     {
         $sql = "SELECT a.NAMA_PASIEN, a.NO_MR, a.ALAMAT, a.KOTA, a.PROVINSI, JENIS_KELAMIN, a.TGL_LAHIR, FS_ALERGI FROM DB_RSMM.dbo.REGISTER_PASIEN a WHERE a.NO_MR = ?";
+=======
+    function update_rujuk_ke_faskes_primer($params) {
+        $sql = "UPDATE PKU.dbo.TAC_RJ_PRB SET FS_TGL_PRB = ?, FS_TUJUAN = ?
+        WHERE FS_KD_REG = ?";
+        return $this->db->query($sql, $params);
+    }
+
+
+    //asessmen dokter query
+    function get_data_asesmen_dokter_by_noreg($params) { 
+        $sql = "SELECT a.*,c.NAMA_DOKTER,b.user_name,KODE_DOKTER, d.NAMALENGKAP 
+        FROM PKU.dbo.TAC_RJ_MEDIS a
+        LEFT JOIN PKU.dbo.TAC_COM_USER b ON a.mdb=b.user_id
+        LEFT JOIN DB_RSMM.dbo.DOKTER c ON b.user_name=c.KODE_DOKTER
+        LEFT JOIN DB_RSMM.dbo.TUSER d ON b.user_name=d.NAMAUSER
+        WHERE a.FS_KD_REG = ?";
+>>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -407,6 +425,7 @@ class Rawat_jalan_model extends CI_Model
             return 0;
         }
     }
+<<<<<<< HEAD
     //CETAK PROFIL SINGKAT
     function get_px_resume($params)
     {
@@ -419,6 +438,132 @@ class Rawat_jalan_model extends CI_Model
         LEFT JOIN PKU.dbo.TAC_RJ_VITAL_SIGN N ON A.NO_REG = N.FS_KD_REG 
         WHERE A.NO_MR = ?
         ORDER BY TANGGAL DESC";
+=======
+
+    function cek_status_asasmen_dokter($params)
+    {
+        return $this->db->query("SELECT * FROM TAC_RJ_MEDIS WHERE FS_KD_REG='$params'");
+    }
+
+    function update_pemeriksaan_rj_dokter($params="") {
+        $sql = "UPDATE PKU.dbo.TAC_RJ_MEDIS SET FS_DIAGNOSA = ?, FS_ANAMNESA = ?, FS_TINDAKAN =?, FS_TERAPI=?, FS_CATATAN_FISIK=?, 
+        FS_CARA_PULANG=?,FS_DAFTAR_MASALAH=?,FS_PLANNING=?,FS_OBAT_PROLANIS=?,mdb=?, mdd=?, FS_EKG=?, FS_USG=?, HASIL_ECHO=?, HASIL_EKG=?, HASIL_TREADMILL=?, FS_DIAGNOSA_SEKUNDER=?
+        WHERE FS_KD_TRS = ?";
+        return $this->db->query($sql, $params);
+    }
+
+    function insert_riwayat_pemeriksaan_dokter($params) {
+        $sql = "INSERT INTO PKU.dbo.RIWAYAT_PERBAIKAN_DOKTER_RAJAL(FS_KD_REG, FS_DIAGNOSA, FS_ANAMNESA, FS_TINDAKAN,  FS_TERAPI, FS_CATATAN_FISIK, FS_CARA_PULANG, FS_DAFTAR_MASALAH,  FS_EKG,   FS_USG, MDB,   MDD) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return $this->db->query($sql, $params);
+    }
+
+    function cek_skdp_pemeriksaan($params="") {
+        $sql = "SELECT * FROM
+        PKU.dbo.TAC_RJ_SKDP
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_skdp_pemeriksaan($params="") {
+        $sql = "SELECT * FROM
+        PKU.dbo.TAC_RJ_SKDP
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function delete_pemeriksaan_rad($params) {
+        $sql = "DELETE FROM PKU.dbo.ta_trs_kartu_periksa5 WHERE FS_KD_REG2 = ?";
+        return $this->db->query($sql, $params);
+    }
+
+    function delete_pemeriksaan_lab($params) {
+        $sql = "DELETE FROM PKU.dbo.ta_trs_kartu_periksa4 WHERE FS_KD_REG2 = ?";
+        return $this->db->query($sql, $params);
+    }
+
+    function update_surat_skdp($params) {
+        $sql = "UPDATE PKU.dbo.TAC_RJ_SKDP SET FS_SKDP_1 = ?, FS_SKDP_2 = ?,FS_SKDP_KET=?,FS_SKDP_KONTROL=?,FS_KD_REG=?,FS_SKDP_FASKES=?, FS_PESAN=?, FS_RENCANA_KONTROL=?
+        WHERE FS_KD_REG = ?";
+        return $this->db->query($sql, $params);
+    }
+
+    function cek_rujukan_rs($params) {
+        $sql = "SELECT * FROM
+       PKU.dbo.TAC_RJ_RUJUKAN
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function cek_prb($params) {
+        $sql = "SELECT * FROM
+        PKU.dbo.TAC_RJ_PRB
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function update_rujuk_rs($params) {
+        $sql = "UPDATE PKU.dbo.TAC_RJ_RUJUKAN SET FS_TUJUAN_RUJUKAN = ?, FS_TUJUAN_RUJUKAN2 = ?,FS_ALASAN_RUJUK=?
+         WHERE FS_KD_REG = ?";
+         return $this->db->query($sql, $params);
+     }
+
+    function delete_rujuk_rs($params="") {
+        $sql = "DELETE from PKU.dbo.TAC_RJ_RUJUKAN WHERE FS_KD_REG = ?";
+         return $this->db->query($sql, $params);
+     }
+
+     function delete_rujuk_ke_faskes_primer($params="") {
+        $sql = "DELETE FROM PKU.dbo.TAC_RJ_PRB WHERE FS_KD_REG = ?";
+        return $this->db->query($sql, $params);
+    }
+
+     function delete_skdp($params="") {
+        $sql = "DELETE FROM PKU.dbo.TAC_RJ_SKDP WHERE FS_KD_REG = ?";
+        return $this->db->query($sql, $params);
+    }
+
+    function get_history_pasien_by_noreg($params="") {
+        $sql = "SELECT TOP 15 A.TANGGAL, A.KODE_RUANG,A.STATUS,A.NO_REG,B.NAMA_PASIEN, B.ALAMAT,
+         B.TGL_LAHIR,B.JENIS_KELAMIN, I.NAMA_DOKTER,K.SPESIALIS,L.MAX_RG,M.FS_KD_MEDIS,M.FS_KD_TRS, M.HASIL_ECHO
+        FROM DB_RSMM.dbo.PENDAFTARAN A
+        LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN B ON  A.NO_MR=B.NO_MR
+        LEFT JOIN DB_RSMM.dbo.DOKTER I ON A.KODE_DOKTER=I.KODE_DOKTER
+         LEFT JOIN DB_RSMM.dbo.M_SPESIALIS K ON I.SPESIALIS=K.SPESIALIS
+        LEFT JOIN (SELECT NO_REG 'MAX_RG',NO_MR FROM DB_RSMM.dbo.PENDAFTARAN WHERE TANGGAL = ? AND (KODE_DOKTER = ?)  )L ON A.NO_MR = L.NO_MR
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS M ON a.NO_REG=M.FS_KD_REG
+
+        WHERE A.NO_MR = ? ORDER BY TANGGAL DESC 
+        ";
+>>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -428,4 +573,84 @@ class Rawat_jalan_model extends CI_Model
             return array();
         }
     }
+<<<<<<< HEAD
+=======
+
+    // get data hasil  lab pasien
+    function get_data_laboratorium($params="") {
+        $sql = "SELECT A.*
+        FROM DB_RSMM.dbo.TR_MASTER_LAB A
+        WHERE  A.No_Reg = ?  
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    //get data berkas by no register
+    function get_berkas_by_noreg($params="") {
+        $sql = "SELECT * FROM PKU.dbo.TAC_RM_BERKAS WHERE FS_KD_REG = ?  ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    //get data resep yang diambil pasien
+    function get_data_resep_pasien($params="") {
+        $sql = "SELECT *
+        FROM DB_RSMM.dbo.TR_MASTER_RESEP 
+        WHERE NO_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    //get data konsulan dokter
+    function get_data_konsulan_dokter($params="") {
+        $sql = "SELECT a.FS_TUJUAN_RUJUKAN, c.NAMA_DOKTER FROM
+         PKU.dbo.TAC_RJ_RUJUKAN a 
+         LEFT JOIN DB_RSMM.dbo.DOKTER c ON a.FS_TUJUAN_RUJUKAN=c.KODE_DOKTER 
+       WHERE a.FS_KD_REG = ?";
+       $query = $this->db->query($sql, $params);
+       if ($query->num_rows() > 0) {
+           $result = $query->result_array();
+           $query->free_result();
+           return $result;
+       } else {
+           return array();
+       }
+   }
+
+   //cek visite dokter
+   function get_data_visite_dokter($params="") {
+    $sql = "SELECT distinct I.NAMA_DOKTER,A.NO_REG
+   FROM DB_RSMM.dbo.TR_BIAYARINCI A
+   LEFT JOIN DB_RSMM.dbo.DOKTER I ON A.KODE_DOKTER=I.KODE_DOKTER
+   WHERE A.NO_REG = ? AND I.JENIS_PROFESI='DOKTER SPESIALIS'
+   ";
+   $query = $this->db->query($sql, $params);
+   if ($query->num_rows() > 0) {
+       $result = $query->result_array();
+       $query->free_result();
+       return $result;
+   } else {
+       return array();
+   }
+}
+>>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
 }
