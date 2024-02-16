@@ -92,3 +92,7 @@ $route['rm/berkas_harian'] = 'Rm/Harian_controller';
 $route['rm/berkas'] = 'Rm/Berkas_controller';
 
 $route['dashboard'] = 'Dashboard_controller';
+
+
+// -- SATU SEHAT -- //
+$route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
