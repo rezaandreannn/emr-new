@@ -435,7 +435,7 @@
                             <label>Status Psikologis</label>
                             <select name="FS_STATUS_PSIK" id="" class="form-control">
                                 <option value="">-- pilih --</option>
-                                <option value="1" onclick='document.getElementById("civstaton3").disabled = true'>Tenang</option>
+                                <option value="1" onclick='document.getElementById("civstaton3").disabled = true' selected>Tenang</option>
                                 <option value="2" onclick='document.getElementById("civstaton3").disabled = true'>Cemas</option>
                                 <option value="3" onclick='document.getElementById("civstaton3").disabled = true'>Takut</option>
                                 <option value="4" onclick='document.getElementById("civstaton3").disabled = true'>Marah</option>
@@ -692,41 +692,46 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped" id="example1">
-                    <thead>
-                        <tr>
-                            <th style="width: 10px">Tgl Kunjungan</th>
-                            <th style="width: 30px">Dokter</th>
-                            <th style="width: 20px">Layanan</th>
-                            <th style="width: 20px">Catatan</th>
-                            <th style="width: 10px">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($histories as $history) { ?>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="example1">
+                        <thead>
                             <tr>
-                                <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
-                                <td><?= $history['NAMA_DOKTER'] ?></td>
-                                <td>
-                                    <?= $history['SPESIALIS'] ?>
-                                </td>
-                                <td> -</td>
-                                <td>
-                                    <?php if ($history['KODE_RUANG'] == '') { ?>
-                                        <div class="badge badge-primary">
-                                            Rawat Jalan
-                                        </div>
-                                    <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
-                                        <div class="badge badge-success">
-                                            Rawat Inap
-                                        </div>
-                                    <?php } ?>
-                                </td>
+                                <th style="width: 10px">Tgl Kunjungan</th>
+                                <th style="width: 30px">Dokter</th>
+                                <th style="width: 20px">Layanan</th>
+                                <th style="width: 20px">Catatan</th>
+                                <th style="width: 10px">Status</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($histories as $history) { ?>
+                                <tr>
+                                    <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
+                                    <td><?= $history['NAMA_DOKTER'] ?></td>
+                                    <td>
+                                        <?= $history['SPESIALIS'] ?>
+                                    </td>
+                                    <td> -</td>
+                                    <td>
+                                        <?php if ($history['KODE_RUANG'] == '') { ?>
+                                            <div class="badge badge-primary">
+                                                Rawat Jalan
+                                            </div>
+                                        <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
+                                            <div class="badge badge-success">
+                                                Rawat Inap
+                                            </div>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
