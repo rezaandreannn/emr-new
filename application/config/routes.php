@@ -62,10 +62,14 @@ $route['login'] = 'Login_controller/Login_proses';
 // -- POLIKLINIK -- //
 // Nurse Rajal Routes
 $route['prwt/rajal'] = 'Nurse/Rajal_controller';
+$route['prwt/rajal/add'] = 'Nurse/Rajal_controller/add';
+$route['prwt/rajal/cetak-profil'] = 'Nurse/Rajal_controller/resume';
 $route['prwt/rajal/create/(:any)/(:any)'] = 'Nurse/Rajal_controller/create/$1/$2';
 $route['prwt/rajal/store'] = 'Nurse/Rajal_controller/store';
 $route['prwt/rajal/update'] = 'Nurse/Rajal_controller/update';
 $route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
+
+
 // Nurse Bidan Routes
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['prwt/bidan/create/(:any)/(:any)'] = 'Nurse/Bidan_controller/create/$1/$2';

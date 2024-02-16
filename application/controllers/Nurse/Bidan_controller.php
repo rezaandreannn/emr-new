@@ -41,11 +41,9 @@ class Bidan_controller extends CI_Controller
 
     {
 
-        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
 
-        foreach ($get_mr_pasien as $get_mr) {
-            $mr = $get_mr['No_MR'];
-        }
+        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
+        $mr = $get_mr_pasien['No_MR'];
         // var_dump($mr);
         // die;
 

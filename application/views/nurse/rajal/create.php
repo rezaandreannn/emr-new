@@ -56,7 +56,7 @@
             <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-histori">
                 <i class="fas fa-history"></i> Histori
             </button>
-            <a href="#" class="btn btn-sm btn-info">
+            <a href="<?= base_url('prwt/rajal/cetak-profil') ?>" class="btn btn-sm btn-info">
                 <i class="fas fa-download"></i> Profil Ringkas Medis Rawat Jalan
             </a>
         </div>
@@ -75,33 +75,33 @@
                 </div>
             </div>
             <!-- include form -->
-            <form action="<?php echo base_url('prwt/rajal/store');?>" method="post">
-            <input type="hidden" name="FS_KD_REG" value="<?= $no_reg ?>" />
-            <input type="hidden" name="FS_MR" value="<?= $biodata['NO_MR'] ?>" />
-            <input type="hidden" name="FS_KD_MEDIS" value="<?= $kode_dokter ?>" />
-            <div class="card-body">
-            <?php if ($this->session->flashdata('warning')) : ?>
-                <div class="alert alert-warning">
-                    <?php echo $this->session->flashdata('warning'); ?>
-                </div>
-            <?php endif; ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Anamnesa / Allow Anamnesa <code>*</code></label>
-                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="<?= set_value('FS_ANAMNESA'); ?>" placeholder="Masukan ..."></textarea>
+            <form action="<?php echo base_url('prwt/rajal/store'); ?>" method="post">
+                <input type="hidden" name="FS_KD_REG" value="<?= $no_reg ?>" />
+                <input type="hidden" name="FS_MR" value="<?= $biodata['NO_MR'] ?>" />
+                <input type="hidden" name="FS_KD_MEDIS" value="<?= $kode_dokter ?>" />
+                <div class="card-body">
+                    <?php if ($this->session->flashdata('warning')) : ?>
+                        <div class="alert alert-warning">
+                            <?php echo $this->session->flashdata('warning'); ?>
                         </div>
-                    </div>
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Anamnesa / Allow Anamnesa <code>*</code></label>
+                                <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="<?= set_value('FS_ANAMNESA'); ?>" placeholder="Masukan ..."></textarea>
+                            </div>
+                        </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Pemeriksaan Fisik</label>
-                            <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pemeriksaan Fisik</label>
+                                <textarea class="form-control" rows="3" name="FS_EDUKASI" value="<?= set_value('FS_EDUKASI'); ?>" placeholder="Masukan ..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- include form -->
+                <!-- include form -->
         </div>
         <div class="card card-secondary">
             <div class="card-header card-success">
@@ -222,7 +222,7 @@
                             <label>Quality</label>
                             <div class="input-group mb-3">
                                 <select name="FS_NYERIQ" id="" class="form-control">
-                                   
+
                                     <option value="0">Tidak Ada</option>
                                     <option value="1">Seperti Di Tusuk-Tusuk</option>
                                     <option value="2">Seperti Terbakar</option>
@@ -237,7 +237,7 @@
                             <label>Provokatif</label>
                             <div class="input-group mb-3">
                                 <select name="FS_NYERIP" id="" class="form-control">
-                                   
+
                                     <option value="0">Tidak Ada Nyeri</option>
                                     <option value="2">Biologik</option>
                                     <option value="3">Kimiawi</option>
@@ -251,7 +251,7 @@
                             <label>Severity</label>
                             <div class="input-group mb-3">
                                 <select name="FS_NYERIS" id="" class="form-control">
-                               
+
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -280,7 +280,7 @@
                             <label>Time</label>
                             <div class="input-group mb-3">
                                 <select name="FS_NYERIT" id="" class="form-control">
-                    
+
                                     <option value="0">Tidak Ada</option>
                                     <option value="1">Kadang-Kadang</option>
                                     <option value="2">Sering</option>
@@ -310,7 +310,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group clearfix">
-                        <label>Pasien berjalan tidak seimbang / sempoyongan</label>
+                            <label>Pasien berjalan tidak seimbang / sempoyongan</label>
                             <select name="FS_CARA_BERJALAN1" class="form-control" onchange="click1(this)">
                                 <option value="">--Pilih Data--</option>
                                 <option value="0">TIDAK</option>
@@ -326,7 +326,7 @@
                                 <option value="0">TIDAK</option>
                                 <option value="1">YA</option>
                             </select>
-                       
+
                         </div>
                         <div class="form-group clearfix">
                             <label for="check3">
@@ -389,25 +389,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit Dahulu</label>
-                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU']!=null ? $biodata['FS_RIW_PENYAKIT_DAHULU'] : '-'); ?>">
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU'] != null ? $biodata['FS_RIW_PENYAKIT_DAHULU'] : '-'); ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Penyakit keluarga</label>
-                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU2']!=null ? $biodata['FS_RIW_PENYAKIT_DAHULU2'] : '-'); ?>">
+                            <input type="text" class="form-control" name="FS_RIW_PENYAKIT_DAHULU2" value="<?= set_value('penyakit_dahulu', $biodata['FS_RIW_PENYAKIT_DAHULU2'] != null ? $biodata['FS_RIW_PENYAKIT_DAHULU2'] : '-'); ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Riwayat Alergi<code>*</code></label>
-                            <input type="text" class="form-control" name="FS_ALERGI" value="<?= $biodata['FS_ALERGI']!=null ? $biodata['FS_ALERGI'] : '-' ?>">
+                            <input type="text" class="form-control" name="FS_ALERGI" value="<?= $biodata['FS_ALERGI'] != null ? $biodata['FS_ALERGI'] : '-' ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Reaksi Alergi<code>*</code></label>
-                            <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= $biodata ['FS_REAK_ALERGI']!=null ? $biodata ['FS_REAK_ALERGI'] :  '-'?>">
+                            <input type="text" class="form-control" name="FS_REAK_ALERGI" value="<?= $biodata['FS_REAK_ALERGI'] != null ? $biodata['FS_REAK_ALERGI'] :  '-' ?>">
                         </div>
                     </div>
                     <!-- include form -->
@@ -576,7 +576,7 @@
                         <div class="form-group">
                             <label>Agama</label>
                             <select name="FS_AGAMA" id="" class="form-control">
-                        
+
                                 <option value="1">Islam</option>
                                 <option value="2">Kristen</option>
                                 <option value="3">Katholik</option>
@@ -591,8 +591,8 @@
                             <label>Nilai/Kepercayaan khusus</label>
                             <!-- <input type="text" class="form-control" name="FS_NILAI_KHUSUS" value="<?= set_value('FS_NILAI_KHUSUS'); ?>"> -->
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios1" value="2"  onclick='document.getElementById("civstaton4").disabled = true'>
-                                
+                                <input class="form-check-input" type="radio" name="FS_NILAI_KHUSUS" id="exampleRadios1" value="2" onclick='document.getElementById("civstaton4").disabled = true'>
+
 
                                 <label class="form-check-label" for="exampleRadios1">
                                     Ya
@@ -630,7 +630,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Masalah Keperawatan</label>
-                            <select multiple=""  name="tujuan[]" id="" class="form-control select2bs4">
+                            <select multiple="" name="tujuan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
                                 <?php foreach ($list_masalah_keperawatan as $masalah_perawat) { ?>
                                     <option value="<?= $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ?>"><?= $masalah_perawat['FS_NM_DIAGNOSA'] ?></option>
@@ -736,25 +736,26 @@
 </div>
 
 <script type="text/javascript">
+    function click1(selected) {
+        var checkbox1 = selected.value
+        $("#hasil_check1").html(checkbox1);
+        score_skrining_asasmen_jatuh();
 
-        function click1(selected){
-            var checkbox1 = selected.value
-            $("#hasil_check1").html(checkbox1);
-            score_skrining_asasmen_jatuh();
-        
-        }
-        function click2(selected){
-            var checkbox2 = selected.value
-            $("#hasil_check2").html(checkbox2);
-            score_skrining_asasmen_jatuh();
-        
-        }
-        function click3(selected){
-            var checkbox3 = selected.value
-            $("#hasil_check3").html(checkbox3);
-            score_skrining_asasmen_jatuh();
-        
-        }
+    }
+
+    function click2(selected) {
+        var checkbox2 = selected.value
+        $("#hasil_check2").html(checkbox2);
+        score_skrining_asasmen_jatuh();
+
+    }
+
+    function click3(selected) {
+        var checkbox3 = selected.value
+        $("#hasil_check3").html(checkbox3);
+        score_skrining_asasmen_jatuh();
+
+    }
 
     function sn1(selected) {
         var value1 = selected.value
@@ -770,7 +771,6 @@
 </script>
 
 <script type="text/javascript">
-
     // score skrining nutrisi
     function score_skrining_nutrisi() {
         var sn = parseInt($("#hasil_sn1").text()) + parseInt($("#hasil_sn2").text());
@@ -787,12 +787,12 @@
         var score_jatuh = parseInt($("#hasil_check1").text()) + parseInt($("#hasil_check2").text()) + parseInt($("#hasil_check3").text());
         $("#totalscore_jatuh").html(score_jatuh);
 
-            if (score_jatuh >= 3) {
+        if (score_jatuh >= 3) {
             $("#kesimpulan_asesmen_jatuh").val("RISIKO TINGGI");
-            } else if (score_jatuh == 2) {
+        } else if (score_jatuh == 2) {
             $("#kesimpulan_asesmen_jatuh").val("RISIKO SEDANG");
-            } else if (score_jatuh <= 1) {
+        } else if (score_jatuh <= 1) {
             $("#kesimpulan_asesmen_jatuh").val("RISIKO RENDAH");
-            }
+        }
     }
 </script>

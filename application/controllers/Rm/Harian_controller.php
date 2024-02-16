@@ -11,8 +11,8 @@ class Harian_controller extends CI_Controller
             $url = base_url();
             redirect($url);
         }
-        $this->load->model('Rawat_jalan_Model');
-        $this->load->model('Pasien_model');
+        $this->load->model('Berkas_model');
+        $this->load->model('Dokter_model');
     }
 
     public function index()
@@ -23,7 +23,7 @@ class Harian_controller extends CI_Controller
             $kodeDokter = $this->input->get('dokter');
         }
 
-        $datenow = date('Y-m-d');
+        $date = date('Y-m-d');
 
         $data = [
             'title' => 'Berkas Rekam Medis Harian',
@@ -33,7 +33,7 @@ class Harian_controller extends CI_Controller
             'select2Header' => select2_header(),
             'select2Footers' => select2_footer(),
             'dokters' => $this->Dokter_model->get_dokter(),
-            'pasiens' => $this->Pasien_model->get_pasien_rajal_by_kode_dokter(array($datenow, $kodeDokter, $datenow, $kodeDokter))
+            'pasiens' => $this->Berkas_model->get_px_by_dokter_wait(array($date, $kodeDokter, $date, $kodeDokter))
         ];
         $this->load->view('layouts/dashboard', $data);
     }

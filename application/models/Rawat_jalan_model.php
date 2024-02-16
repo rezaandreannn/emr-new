@@ -318,13 +318,15 @@ class Rawat_jalan_model extends CI_Model
     }
 
     //insert surat skdp atau surat kontrol
-    function insert_surat_skdp($params) {
+    function insert_surat_skdp($params)
+    {
         $sql = "INSERT INTO PKU.dbo.TAC_RJ_SKDP(FS_KD_REG, FS_SKDP_1, FS_SKDP_2,FS_SKDP_KET,FS_SKDP_KONTROL,FS_NO_SKDP, mdb, mdd, mdd_time, FS_SKDP_FASKES, FS_PESAN, FS_RENCANA_KONTROL)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         return $this->db->query($sql, $params);
     }
 
-    function get_no_skdp($params="") {
+    function get_no_skdp($params = "")
+    {
         $sql = "SELECT MAX(FS_NO_SKDP) 'NOSKDP' FROM PKU.dbo.TAC_RJ_SKDP WHERE MONTH(mdd) = ? AND YEAR(mdd) = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
@@ -336,7 +338,8 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
-    function get_alasan_skdp($params="") {
+    function get_alasan_skdp($params = "")
+    {
         $sql = "SELECT *  FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_ALASAN";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
@@ -348,7 +351,8 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
-    function get_rencana_skdp($params) {
+    function get_rencana_skdp($params)
+    {
         $sql = "SELECT * FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_RENCANA WHERE FS_KD_TRS_SKDP_ALASAN = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
@@ -360,7 +364,8 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
-    function get_asesmen_perawat($params) {
+    function get_asesmen_perawat($params)
+    {
         $sql = "SELECT *
         FROM PKU.dbo.TAC_ASES_PER2
         WHERE FS_KD_REG = ?";
@@ -374,15 +379,53 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
-    function insert_rujuk_rs($params) {
+    function insert_rujuk_rs($params)
+    {
         $sql = "INSERT INTO PKU.dbo.TAC_RJ_RUJUKAN(FS_KD_REG,FS_TUJUAN_RUJUKAN,FS_TUJUAN_RUJUKAN2,FS_ALASAN_RUJUK, mdb, mdd_date, mdd_time)
         VALUES (?,?,?,?,?,?,?)";
         return $this->db->query($sql, $params);
     }
 
-    function insert_rujuk_ke_faskes_primer($params) {
+    function insert_rujuk_ke_faskes_primer($params)
+    {
         $sql = "INSERT INTO PKU.dbo.TAC_RJ_PRB(FS_KD_TRS,FS_KD_REG,FS_TGL_PRB,FS_TUJUAN, mdb, mdd_date, mdd_time)
         VALUES (?,?,?,?,?,?,?)";
         return $this->db->query($sql, $params);
+    }
+
+
+
+    function get_px_by_dokter_by_rm($params)
+    {
+        $sql = "SELECT a.NAMA_PASIEN, a.NO_MR, a.ALAMAT, a.KOTA, a.PROVINSI, JENIS_KELAMIN, a.TGL_LAHIR, FS_ALERGI FROM DB_RSMM.dbo.REGISTER_PASIEN a WHERE a.NO_MR = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+    //CETAK PROFIL SINGKAT
+    function get_px_resume($params)
+    {
+        $sql = "SELECT TOP 10 A.TANGGAL,A.STATUS,A.NO_REG,B.NAMA_PASIEN,B.ALAMAT, B.KOTA, B.PROVINSI, B.GOL_DARAH,B.STATUS_NIKAH,B.NAMA_PASANGAN,B.KOTA,B.PROVINSI,B.TGL_LAHIR,B.JENIS_KELAMIN,B.WARGA_NEGARA,B.PEKERJAAN,B.AGAMA,B.NO_TELP, B.HP1,B.HP2,B.KODE_POS,B.EMAIL,B.NAMA_HUB,B.NO_IDENTITAS,B.HUB_PASIEN,B.TELP_RUMAH, B.FS_ALERGI,L.*, N.*,
+        C.NAMA_DOKTER,C.SPESIALIS 
+        FROM DB_RSMM.dbo.PENDAFTARAN A
+        LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN B ON A.NO_MR=B.NO_MR
+        LEFT JOIN DB_RSMM.dbo.DOKTER C ON A.KODE_DOKTER=C.KODE_DOKTER
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS L ON A.NO_REG=L.FS_KD_REG
+        LEFT JOIN PKU.dbo.TAC_RJ_VITAL_SIGN N ON A.NO_REG = N.FS_KD_REG 
+        WHERE A.NO_MR = ?
+        ORDER BY TANGGAL DESC";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
     }
 }

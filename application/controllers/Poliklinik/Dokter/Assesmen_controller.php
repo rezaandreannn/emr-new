@@ -41,12 +41,13 @@ class Assesmen_controller extends CI_Controller
         $this->load->view('layouts/dashboard', $data);
     }
 
-    public function skdp_rencana_kontrol() {
+    public function skdp_rencana_kontrol()
+    {
         $id = $this->input->post('FS_SKDP_1');
         $rs_skdp_rencana = $this->Rawat_jalan_model->get_rencana_skdp($id);
         //$data .= "<option>--Pilih Alasan--</option>";
         foreach ($rs_skdp_rencana as $skdp_rencana) {
-            $data= '<option value="' . $skdp_rencana['FS_KD_TRS'] . '">' . $skdp_rencana['FS_NM_SKDP_RENCANA'] . '</option>';
+            $data = '<option value="' . $skdp_rencana['FS_KD_TRS'] . '">' . $skdp_rencana['FS_NM_SKDP_RENCANA'] . '</option>';
         }
         echo $data;
     }
@@ -56,7 +57,7 @@ class Assesmen_controller extends CI_Controller
 
         $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
         $mr = $get_mr_pasien['No_MR'];
-        
+
         $data = [
             'title' => 'Tambah Data',
             'content' => 'poliklinik/dokter/assesmen_pasien',
@@ -186,7 +187,6 @@ class Assesmen_controller extends CI_Controller
                     }
 
 
-<<<<<<< HEAD
                     // // if cara pulang belum fix
                     // if(){
 
@@ -194,10 +194,9 @@ class Assesmen_controller extends CI_Controller
                     // elseif(){
 
                     // }
-=======
                     // if cara pulang belum fix
-                    if($this->input->post('FS_CARA_PULANG')=='2'){
-                        $no_skdp = $this->Rawat_jalan_model->get_no_skdp(array(date('m'),date('Y')));
+                    if ($this->input->post('FS_CARA_PULANG') == '2') {
+                        $no_skdp = $this->Rawat_jalan_model->get_no_skdp(array(date('m'), date('Y')));
                         if (is_null($no_skdp['NOSKDP'])) {
                             $no_skdp['NOSKDP'] = '0';
                         }
@@ -212,14 +211,14 @@ class Assesmen_controller extends CI_Controller
                             $this->session->userdata('user_name'),
                             date('Y-m-d'),
                             date('H:i:s'),
-                            $this->input->post('FS_SKDP_FASKES'),                
-                            $this->input->post('FS_PESAN'),             
-                            $this->input->post('FS_RENCANA_KONTROL')                
-                        ); 
+                            $this->input->post('FS_SKDP_FASKES'),
+                            $this->input->post('FS_PESAN'),
+                            $this->input->post('FS_RENCANA_KONTROL')
+                        );
                         // insert
                         // if ($this->Rawat_jalan_model->insert_medis($params)) {
                         $this->Rawat_jalan_model->insert_surat_skdp($SKDP_PROCESS);
-                    }else if($this->input->post('FS_CARA_PULANG')=='4'){
+                    } else if ($this->input->post('FS_CARA_PULANG') == '4') {
                         //rujuk eksternal
                         $rujuk_rs = array(
                             $this->input->post('FS_KD_REG'),
@@ -231,8 +230,7 @@ class Assesmen_controller extends CI_Controller
                             date('H:i:s')
                         );
                         $this->Rawat_jalan_model->insert_rujuk_rs($rujuk_rs);
-                    }
-                    else if($this->input->post('FS_CARA_PULANG')=='6'){
+                    } else if ($this->input->post('FS_CARA_PULANG') == '6') {
                         //rujuk internal
                         $rujuk_internal = array(
                             $this->input->post('FS_KD_REG'),
@@ -244,27 +242,24 @@ class Assesmen_controller extends CI_Controller
                             date('H:i:s')
                         );
                         $this->Rawat_jalan_model->insert_rujuk_rs($rujuk_internal);
-                    }
-                    else if($this->input->post('FS_CARA_PULANG')=='7'){
+                    } else if ($this->input->post('FS_CARA_PULANG') == '7') {
                         $kembali_ke_faskes = array(
                             $this->input->post('FS_KD_TRS'),
                             $this->input->post('FS_KD_REG'),
                             $this->input->post('FS_TGL_PRB'),
                             $this->input->post('FS_TUJUAN'),
                             $this->session->userdata('user_name'),
-                            date('Y-m-d'), 
+                            date('Y-m-d'),
                             date('H:i:s')
                         );
                         $this->Rawat_jalan_model->insert_rujuk_ke_faskes_primer($kembali_ke_faskes);
                     }
->>>>>>> 224507ea055888faf4c63c0fa3b5b0bc4031cc3f
                     // batas if input cara pulang
                 } else {
 
-                    
-                    echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
-                    redirect('poliklinik/periksa/'. $this->input->post('FS_KD_REG') .'/'. $this->session->userdata('user_name'));
 
+                    echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
+                    redirect('poliklinik/periksa/' . $this->input->post('FS_KD_REG') . '/' . $this->session->userdata('user_name'));
                 }
 
                 $this->db->trans_commit();
@@ -274,16 +269,16 @@ class Assesmen_controller extends CI_Controller
                 //throw $th;
                 $this->db->trans_rollback();
                 echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
-                redirect('poliklinik/periksa/'. $this->input->post('FS_KD_REG') .'/'. $this->session->userdata('user_name'));
+                redirect('poliklinik/periksa/' . $this->input->post('FS_KD_REG') . '/' . $this->session->userdata('user_name'));
 
                 // redirect belum fix
                 // redirect('prwt/rajal/edit/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));
             }
         } else {
             // handle error
-           
+
             echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
-            redirect('poliklinik/periksa/'. $this->input->post('FS_KD_REG') .'/'. $this->session->userdata('user_name'));
+            redirect('poliklinik/periksa/' . $this->input->post('FS_KD_REG') . '/' . $this->session->userdata('user_name'));
         }
     }
     //end pemeriksaan dokter

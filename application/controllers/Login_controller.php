@@ -28,7 +28,7 @@ class Login_controller extends CI_Controller
 
 
             if (!empty($User)) {
-                
+
                 $this->session->set_userdata('masuk', TRUE);
                 $sess = array(
                     'user_id' => $User['user_id'],
@@ -42,16 +42,14 @@ class Login_controller extends CI_Controller
                     $this->session->set_userdata($sess);
                     redirect('dashboard');
                 } else {
-                    echo $this->session->set_flashdata('danger', 'Username anda sudah tidak aktif');      
+                    echo $this->session->set_flashdata('danger', 'Username anda sudah tidak aktif');
                     $this->load->view('auth/login');
                 }
-            }
-            else {
-                echo $this->session->set_flashdata('warning', 'Username anda password salah');      
+            } else {
+                echo $this->session->set_flashdata('warning', 'Username anda password salah');
                 $this->load->view('auth/login');
-            } 
-        }
-        else {
+            }
+        } else {
             $url = base_url();
             echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
             redirect($url);
@@ -65,4 +63,3 @@ class Login_controller extends CI_Controller
         redirect($url);
     }
 }
-

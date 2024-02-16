@@ -14,6 +14,18 @@ class Rajal_controller extends CI_Controller
         $this->load->model('Rawat_jalan_model');
         $this->load->model('Pasien_model');
         $this->load->model('Perawat_model');
+        $this->load->model('Dokter_model');
+    }
+
+    public function add()
+    {
+        $data = [
+            'title' => 'Add Assesmen Awal Rawat Inap',
+            'content' => 'nurse/rajal/add',
+            'header' => datatable_header(),
+            'footer' => datatable_footer()
+        ];
+        $this->load->view('layouts/dashboard', $data);
     }
 
     public function index()
@@ -256,7 +268,7 @@ class Rajal_controller extends CI_Controller
             }
         } else {
             // handle error
-         
+
             // echo $this->session->set_flashdata('warning', 'Username atau Password tidak boleh kosong');
             echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
             // $this->session->set_userdata('validation_errors', validation_errors());
@@ -523,5 +535,25 @@ class Rajal_controller extends CI_Controller
             echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');
             redirect('prwt/rajal/edit/' . $this->input->post('FS_KD_REG') . '/' . $this->input->post('FS_KD_MEDIS'));;
         }
+    }
+
+    //Cetak Profil Singkat
+    public function resume($FS_MR = "")
+    {
+        $this->load->library('pdfgenerator');
+        $now = date('Y-m-d');
+
+        $data = [
+            'title' => 'Cetak',
+            'header' => datatable_header(),
+            'footer' => datatable_footer(),
+            'rs_pasien' => $this->Rawat_jalan_model->get_px_by_dokter_by_rm(array($FS_MR)),
+            'rs_resume' => $this->Rawat_jalan_model->get_px_resume(array($FS_MR)),
+        ];
+
+        $paper = 'A4';
+        $orientation = "potrait";
+        $html = $this->load->view('nurse/rajal/profil', $data, true);
+        $this->pdfgenerator->generate($html, $paper, $orientation);
     }
 }
