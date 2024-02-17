@@ -23,25 +23,27 @@
                             <div class="col-md-12">
                                 <form method="GET" name="myForm" id="myForm" action="<?= base_url('rm/berkas_harian'); ?>" class="filter">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 col-sm-6">
                                             <label for="select-dokter" class="col-form-label">Pilih Dokter</label>
                                             <select name="dokter" id="dokter" class="form-control select2bs4" onchange="getKodeDokter(this)">
                                                 <option value="">-- pilih dokter --</option>
                                                 <?php
                                                 foreach ($dokters as $dokter) { ?>
-                                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?php if ($this->input->get('dokter') == $dokter['KODE_DOKTER']) {
-                                                                                                        echo 'selected';
-                                                                                                    } ?>><?= $dokter['NAMA_DOKTER'] ?></option>
+                                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?= $this->input->get('dokter') == $dokter['KODE_DOKTER'] ? 'selected' : '' ?>><?= $dokter['NAMA_DOKTER'] ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 col-sm-6">
                                             <label for="select-dokter" class="col-form-label">Periode</label>
-                                            <input type="date" class="form-control" name="pasiens">
+                                            <input type="date" class="form-control" name="tanggal">
                                         </div>
+                                        <!-- <label for="select-dokter" class="col-form-label">aksi</label> -->
                                         <div class="col-md-4">
-                                            <button type="submit" class="btn btn-primary mt-4"> Tampilkan</button>
-                                            <a href="" class="btn btn-danger mt-4"> Reset</a>
+                                            <div class="card-body">
+
+                                                <button type="submit" class="btn btn-primary mt-3"> Tampilkan</button>
+                                                <a href="" class="btn btn-danger mt-3"> Reset</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -64,7 +66,6 @@
                                 <?php
                                 foreach ($pasiens as $pasien) { ?>
                                     <tr>
-                                        >
                                         <td width="5%"><?= $pasien['NOMOR'] ?></td>
                                         <td width="10%"><?= $pasien['NO_MR'] ?></td>
                                         <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>

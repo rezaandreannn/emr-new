@@ -23,7 +23,7 @@ class Harian_controller extends CI_Controller
             $kodeDokter = $this->input->get('dokter');
         }
 
-        $date = date('Y-m-d');
+        $tgl = $this->input->get('tanggal');
 
         $data = [
             'title' => 'Berkas Rekam Medis Harian',
@@ -33,7 +33,7 @@ class Harian_controller extends CI_Controller
             'select2Header' => select2_header(),
             'select2Footers' => select2_footer(),
             'dokters' => $this->Dokter_model->get_dokter(),
-            'pasiens' => $this->Berkas_model->get_px_by_dokter_wait(array($date, $kodeDokter, $date, $kodeDokter))
+            'pasiens' => $this->Berkas_model->get_px_by_dokter_wait(array($tgl, $kodeDokter, $tgl, $kodeDokter))
         ];
         $this->load->view('layouts/dashboard', $data);
     }
