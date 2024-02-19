@@ -40,9 +40,8 @@
                                         <!-- <label for="select-dokter" class="col-form-label">aksi</label> -->
                                         <div class="col-md-4">
                                             <div class="card-body">
-
                                                 <button type="submit" class="btn btn-primary mt-3"> Tampilkan</button>
-                                                <a href="" class="btn btn-danger mt-3"> Reset</a>
+                                                <button type="button" class="btn btn-danger mt-3" onclick="resetForm()">Reset</button>
                                             </div>
                                         </div>
                                     </div>
@@ -102,4 +101,13 @@
         </div>
     </div>
     </div><!-- /.container-fluid -->
+</section>
+
+<section>
+    <script>
+        function resetForm() {
+            // Menghapus nilai-nilai dalam input
+            document.getElementById("myForm").reset();
+        }
+    </script>
 </section>
