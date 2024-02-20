@@ -364,6 +364,19 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
+    function get_rencana_skdp2($params="")
+    {
+        $sql = "SELECT * FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_RENCANA";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
     function get_asesmen_perawat($params)
     {
         $sql = "SELECT *
@@ -516,6 +529,36 @@ class Rawat_jalan_model extends CI_Model
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_surat_rujukan_rs($params)
+    {
+        $sql = "SELECT * FROM
+       PKU.dbo.TAC_RJ_RUJUKAN
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_surat_prb($params)
+    {
+        $sql = "SELECT * FROM
+       PKU.dbo.TAC_RJ_PRB
+        WHERE FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
             $query->free_result();
             return $result;
         } else {

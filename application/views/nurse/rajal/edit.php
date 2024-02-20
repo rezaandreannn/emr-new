@@ -672,18 +672,11 @@
                             -->
                             <select multiple="" name="tujuan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
-<<<<<<< HEAD
-                                <?php foreach ($list_masalah_keperawatan as $masalah_perawat) { ?>
-                                    <?php foreach ($masalah_keperawatan as $mk) { ?>
-                                        <option value="<?= $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ?>" <?= $mk['FS_KD_MASALAH_KEP'] ==  $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ? 'selected' : '' ?>><?= $masalah_perawat['FS_NM_DIAGNOSA'] ?></option>
-                                    <?php } ?>
-=======
                                 <?php foreach ($masalah_keperawatan as $mk) { ?>
                                 <?php foreach ($list_masalah_keperawatan as $masalah_perawat) { ?>
                                     <option value="<?= $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ?>" <?= $mk['FS_KD_MASALAH_KEP'] ==  $masalah_perawat['FS_KD_DAFTAR_DIAGNOSA'] ? 'selected' : '' ?>><?= $masalah_perawat['FS_NM_DIAGNOSA'] ?></option>
-                                <?php } ?>
->>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
-                                <?php } ?>
+                                <?php } }?>
+                
                             </select>
                         </div>
                     </div>
@@ -692,18 +685,12 @@
                             <label>Rencana Keperawatan</label>
                             <select multiple name="tembusan[]" id="" class="form-control select2bs4">
                                 <option value="">-- pilih --</option>
-<<<<<<< HEAD
-                                <?php foreach ($list_rencana_keperawatan as $rencana_perawat) { ?>
-                                    <?php foreach ($rencana_keperawatan as $rk) { ?>
-                                        <option value="<?= $rencana_perawat['FS_KD_TRS'] ?>" <?= $rk['FS_KD_REN_KEP'] ==  $rencana_perawat['FS_KD_TRS'] ? 'selected' : '' ?>><?= $rencana_perawat['FS_NM_REN_KEP'] ?></option>
-                                    <?php } ?>
-=======
+
                                 <?php foreach ($rencana_keperawatan as $rk) { ?>
                                 <?php foreach ($list_rencana_keperawatan as $rencana_perawat) { ?>
                                     <option value="<?= $rencana_perawat['FS_KD_TRS'] ?>"<?= $rk['FS_KD_REN_KEP'] ==  $rencana_perawat['FS_KD_TRS'] ? 'selected' : '' ?> ><?= $rencana_perawat['FS_NM_REN_KEP'] ?></option>
-                                <?php } ?>
->>>>>>> 227cc17ce1056cf0a24ac56c53bcdc695245e946
-                                <?php } ?>
+                                <?php }} ?>
+                      
                             </select>
                         </div>
                     </div>

@@ -110,6 +110,9 @@ class Assesmen_controller extends CI_Controller
             'asesmen_perawat' => $this->Rawat_jalan_model->get_asesmen_perawat(array($no_register)),
             'asesmen_dokter' => $this->Rawat_jalan_model->get_data_asesmen_dokter_by_noreg(array($no_register)),
             'skdp_select' => $this->Rawat_jalan_model->get_skdp_pemeriksaan(array($no_register)),
+            'rujukan_rs' => $this->Rawat_jalan_model->get_surat_rujukan_rs(array($no_register)),
+            'prb' => $this->Rawat_jalan_model->get_surat_prb(array($no_register)),
+            'rencana_skdp' => $this->Rawat_jalan_model->get_rencana_skdp2(),
         ];
         // var_dump($data['dokters']);
         // die;
@@ -535,8 +538,9 @@ class Assesmen_controller extends CI_Controller
                                 $this->input->post('FS_TUJUAN'),
                                 $this->input->post('FS_KD_REG'),
                             );
-                            if ($this->Rawat_jalan_model->update_rujuk_ke_faskes_primer($prb)) {
-                            } else {
+                            $this->Rawat_jalan_model->update_rujuk_ke_faskes_primer($prb); 
+                        } 
+                            else {
                                 $prb = array(
                                     $this->input->post('FS_KD_TRS'),
                                     $this->input->post('FS_KD_REG'),
@@ -546,13 +550,15 @@ class Assesmen_controller extends CI_Controller
                                     date('Y-m-d'),
                                     date('H:i:s')
                                 );
+                 
                                 $this->Rawat_jalan_model->insert_rujuk_ke_faskes_primer($prb);
+
                             }
-                        } else if ($this->input->post('FS_CARA_PULANG') == '8') {
-                            //proses prb
-                        }
                         // batas if input cara pulang
-                    } else {
+                    } 
+                    else if ($this->input->post('FS_CARA_PULANG') == '8') {
+                        //proses prb
+                    }else {
 
 
                         echo $this->session->set_flashdata('warning', 'Pastikan Isian Sudah benar');

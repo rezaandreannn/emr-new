@@ -642,6 +642,10 @@
                     <div class="input-group mb-3">
                     <select name="FS_SKDP_2" id="rencana_skdp" class="form-control">
                         <option value="1">--Pilih Rencana Tindakan--</option>
+                        <?php if ($skdp_select['FS_SKDP_2']!=''){?>
+                            <?php foreach ($rencana_skdp as $ren_skdp){?>
+                                <option value="<?=$ren_skdp['FS_KD_TRS']?>" <?=$skdp_select['FS_SKDP_2']== $ren_skdp['FS_KD_TRS'] ? 'selected' : ''?>><?=$ren_skdp['FS_NM_SKDP_RENCANA']?></option>
+                        <?php }}?>
                     </select>
                         <input type="text" name="FS_SKDP_KET" value="<?=$skdp_select['FS_SKDP_KET']?>" placeholder="keterangan.." />
                     </div>
@@ -706,20 +710,20 @@
                     <div class="form-group">
                         <label for="FS_TUJUAN_RUJUKAN_LUAR_RS">Kepada : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN_LUAR_RS" id="FS_TUJUAN_RUJUKAN_LUAR_RS">
+                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN_LUAR_RS" id="FS_TUJUAN_RUJUKAN_LUAR_RS" value="<?=$rujukan_rs['FS_TUJUAN_RUJUKAN']?>">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="FS_TUJUAN_RUJUKAN_LUAR_RS2">Rumah Sakit Tujuan : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <input type="text" name="FS_TUJUAN_RUJUKAN_LUAR_RS2" id="FS_TUJUAN_RUJUKAN_LUAR_RS2" class="form-control">
+                        <input type="text" name="FS_TUJUAN_RUJUKAN_LUAR_RS2" id="FS_TUJUAN_RUJUKAN_LUAR_RS2" value="<?=$rujukan_rs['FS_TUJUAN_RUJUKAN2']?>" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="FS_ALASAN_RUJUK_LUAR_RS">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK_LUAR_RS" id="FS_ALASAN_RUJUK_LUAR_RS" value="" placeholder="Masukan ..."></textarea>
+                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK_LUAR_RS" id="FS_ALASAN_RUJUK_LUAR_RS" placeholder="Masukan ..."><?=$rujukan_rs['FS_ALASAN_RUJUK']?></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -750,7 +754,7 @@
                                 <option value="">-- pilih dokter --</option>
                                 <?php
                                 foreach ($dokters as $dokter) { ?>
-                                    <option value="<?= $dokter['KODE_DOKTER'] ?>"><?= $dokter['NAMA_DOKTER'] ?></option>
+                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?=$rujukan_rs['FS_TUJUAN_RUJUKAN']==$dokter['KODE_DOKTER'] ? 'selected' : ''?>><?= $dokter['NAMA_DOKTER'] ?></option>
                                 <?php } ?>
                             </select>
                             <input type="hidden" name="FS_TUJUAN_RUJUKAN2" size="55" value="RSU Muhammadiyah Metro" />
@@ -761,7 +765,7 @@
                 <div class="col-md-6">
                     <label for="FS_ALASAN_RUJUK">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK" id="FS_ALASAN_RUJUK" value="" placeholder="Masukan ..."></textarea>
+                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK" id="FS_ALASAN_RUJUK" value="" placeholder="Masukan ..."><?=$rujukan_rs['FS_ALASAN_RUJUK']?></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -789,7 +793,7 @@
                         <label for="FS_TGL_PRB">Kontrol setelah dari FKTP ke RS tanggal : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
                         <input type="hidden" name="FS_KD_TRS" value="<?=$biodata['FS_KD_TRS']?>" />
-                            <input type="date" name="FS_TGL_PRB" class="form-control" id="FS_TGL_PRB">
+                            <input type="date" name="FS_TGL_PRB" class="form-control" id="FS_TGL_PRB" value="<?=$prb['FS_TGL_PRB']?>">
                             <input type="hidden" name="FS_TUJUAN" value="-" />
                         </div>
                     </div>
