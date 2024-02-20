@@ -20,12 +20,12 @@
 
         </div>
         <div class="card-body">
-        <?php if ($this->session->flashdata('danger')) : ?>
+            <?php if ($this->session->flashdata('danger')) : ?>
                 <div class="alert alert-danger">
                     <?php echo $this->session->flashdata('danger'); ?>
                 </div>
             <?php endif; ?>
-        <?php if ($this->session->flashdata('success')) : ?>
+            <?php if ($this->session->flashdata('success')) : ?>
                 <div class="alert alert-success">
                     <?php echo $this->session->flashdata('success'); ?>
                 </div>
@@ -42,15 +42,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
                     foreach ($pasiens as $pasien) { ?>
-                    <tr>
-                        <td width="5%"><?= $pasien['NOMOR'] ?></td>
-                        <td width="10%"><?= $pasien['NO_MR'] ?></td>
-                        <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>
-                        <td width="30%"><?= $pasien['NAMA_PASIEN'] ?></td>
-                        <td width="10%">
-                        <?php if ($pasien['FS_STATUS'] == '') { ?>
+                        <tr>
+                            <td width="5%"><?= $pasien['NOMOR'] ?></td>
+                            <td width="10%"><?= $pasien['NO_MR'] ?></td>
+                            <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>
+                            <td width="30%"><?= $pasien['NAMA_PASIEN'] ?></td>
+                            <td width="10%">
+                                <?php if ($pasien['FS_STATUS'] == '') { ?>
                                     <div class="badge badge-warning text-white">Perawat</div>
                                 <?php } elseif ($pasien['FS_STATUS'] == '1') { ?>
                                     <div class="badge badge-danger">Dokter</div>
@@ -61,17 +61,17 @@
                                         <div class="badge badge-info">Farmasi</div>
                                 <?php }
                                 } ?>
-                        </td>
-                        <?php
+                            </td>
+                            <?php
                             $button_title = 'Masuk';
                             $button_url = 'poliklinik/periksa/' . $pasien['NO_REG'] . '/' . $pasien['KODE_DOKTER'];
                             if ($pasien['FS_STATUS'] == '2') {
                                 $button_title = 'Edit';
-                                $button_url = 'poliklinik/periksa/edit/' . $pasien['NO_REG']. '/' . $pasien['KODE_DOKTER'];
+                                $button_url = 'poliklinik/periksa/edit/' . $pasien['NO_REG'] . '/' . $pasien['KODE_DOKTER'];
                             }
                             ?>
                             <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
-                    </tr>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>

@@ -23,10 +23,13 @@
             <!-- include form -->
             <div class="card-body">
                 <div class="row">
-                    <label>No Rekam Medis</label>
+                    <label>Nama Pasien</label>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="" class="form-control" value="">
+                            <select name="" id="" class="form-control">
+                                <option value="">-- pilih Nama --</option>
+                                <option value="">Bunga</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -62,7 +65,9 @@
                             <td width="10%">000000</td>
                             <td width="20%">Alexander</td>
                             <td width="40%">Jl. imam bonjol</td>
-                            <td class="badge badge-danger">Dokter</td>
+                            <td width="20%">
+                                <div class="badge badge-danger">Dokter</div>
+                            </td>
                             <td><a href="http://" class="badge badge-info">Entry</a></td>
                         </tr>
                     </tbody>
