@@ -82,15 +82,30 @@
                                             <?php }
                                             } ?>
                                         </td>
-                                        <?php
-                                        $button_title = 'Masuk';
-                                        $button_url = 'prwt/rajal/create/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
-                                        if ($pasien['FS_STATUS'] != '') {
-                                            $button_title = 'Edit';
-                                            $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
-                                        }
-                                        ?>
-                                        <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
+                                        <td width="40%">
+                                            <a href="#" onclick="" class="btn btn-xs btn-success"> <i class="nav-icon fas fa-download"></i> RM</a>
+                                            <?php if ($pasien['KODEREKANAN'] == '032') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Lmbr Verif</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '1') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> RB</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '2') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> SKDP</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '3') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Rawat Inap</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '4') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Rujukan RS</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '5') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> PRB/Prolanis</a>
+                                            <?php } ?>
+                                            <?php if ($pasien['FS_CARA_PULANG'] == '6') { ?>
+                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Rujukan Internal</a>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

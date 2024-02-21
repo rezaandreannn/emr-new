@@ -65,11 +65,12 @@
 
                     </div>
                     <div class="col-md-6">
-                        <label>Jenis Kelamin :<?php if ($result['JENIS_KELAMIN'] == 'P') {
-                                                    echo 'Perempuan';
-                                                } else {
-                                                    echo 'Laki-Laki';
-                                                } ?></label>
+                        <label>Jenis Kelamin :<?php if ($result['JENIS_KELAMIN'] == 'P') { ?>
+                            Perempuan
+                        <?php } else { ?>
+                            Laki-Laki
+                        <?php    } ?>
+                        </label>
                     </div>
                     <div class="col-md-6">
                         <label>Tanggal Lahir :<?= date('d-m-Y', strtotime($result['TGL_LAHIR'])) ?></label>
@@ -111,11 +112,11 @@
 
                                 </td>
                                 <td width="30%"><?php if ($pasien['KODEREKANAN'] == '032') { ?>
-                                        <a href="" class="btn btn-sm btn-primary"> Verif</a>
+                                        <a href="" class="btn btn-xs btn-primary"><i class="nav-icon fas fa-download"></i> Verif</a>
                                     <?php } ?>
                                     <?php if ($pasien['MEDIS'] == 'RAWAT JALAN') { ?>
-                                        <a href="" class="btn btn-sm btn-success"> Scan</a>
-                                        <a href="" onclick="" class="btn btn-sm btn-success">RM</a>
+                                        <a href="" class="btn btn-xs btn-success"><i class="nav-icon fas fa-download"></i> Scan</a>
+                                        <a href="" onclick="" class="btn btn-xs btn-success"><i class="nav-icon fas fa-download"></i>RM</a>
                                     <?php } else { ?>
                                         <a href="" class="btn btn-sm btn-info">Detail</a>
                                     <?php } ?>
