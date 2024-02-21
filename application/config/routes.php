@@ -68,6 +68,7 @@ $route['prwt/rajal/create/(:any)/(:any)'] = 'Nurse/Rajal_controller/create/$1/$2
 $route['prwt/rajal/store'] = 'Nurse/Rajal_controller/store';
 $route['prwt/rajal/update'] = 'Nurse/Rajal_controller/update';
 $route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
+$route['prwt/rajal/edit_skdp/(:any)'] = 'Nurse/Rajal_controller/edit_skdp/$1';
 
 
 // Nurse Bidan Routes
