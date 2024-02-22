@@ -45,7 +45,11 @@
             </div>
         </div>
         <div class="text-right mb-2">
-            <a href="#" class="btn btn-sm btn-info">
+            <?php
+            $button_title = 'Masuk';
+            $button_url = 'rm/berkas/cetak-profil/' . $result['NO_MR'];
+            ?>
+            <a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-info">
                 <i class="fas fa-download"></i> Profil Ringkas Medis Rawat Jalan
             </a>
         </div>
@@ -112,7 +116,12 @@
 
                                 </td>
                                 <td width="30%"><?php if ($pasien['KODEREKANAN'] == '032') { ?>
-                                        <a href="" class="btn btn-xs btn-primary"><i class="nav-icon fas fa-download"></i> Verif</a>
+                                        <?php
+                                                    $button_url = 'rm/berkas/berkas-verif/' . $pasien['NO_REG'] . '/' . $this->input->get('No_MR');
+                                        ?>
+                                        <a href="<?= base_url($button_url) ?>" class="btn btn-xs btn-primary">
+                                            <i class="fas fa-download"></i> Verif
+                                        </a>
                                     <?php } ?>
                                     <?php if ($pasien['MEDIS'] == 'RAWAT JALAN') { ?>
                                         <a href="" class="btn btn-xs btn-success"><i class="nav-icon fas fa-download"></i> Scan</a>
