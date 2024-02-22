@@ -89,7 +89,7 @@
 
 
                             <?php if($pasien['FS_TERAPI']!=''){?>
-                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Resep</i></a>
+                                <a href="<?= base_url('cetak_rm/rajal/resep/'. $pasien['NO_REG']. '/' . $pasien['FS_KD_TRS']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Resep</i></a>
                                 <?php }?>
 
                             <!-- <?php if ($cek_lab_ranap['FS_PLANNING_LAB'] != ''){?>
@@ -116,7 +116,7 @@
                             <?php } ?>
                             <!-- pasien kontrol -->
                             <?php if ($pasien['FS_CARA_PULANG']=='2'){?> 
-                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_skdp/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-info"><i class="fa fa-download"> SKDP</i></a>
+                                <a href="<?= base_url('cetak_rm/rajal/skdp/'. $pasien['NO_REG']. '/' . $pasien['FS_KD_TRS']) ?>" class="btn btn-xs btn-info"><i class="fa fa-download"> SKDP</i></a>
                                 <a href="<?= base_url('prwt/rajal/edit_skdp/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-info"><i class="fa fa-edit"> Edit SKDP</i></a>
 
                                 <!-- pasien rujuk luar rs -->

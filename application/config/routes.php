@@ -108,3 +108,5 @@ $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 // cetak berkas rekam medis
 $route['cetak_rm/rajal/lab/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab/$1/$2';
 $route['cetak_rm/rajal/rad/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_radiologi/$1/$2';
+$route['cetak_rm/rajal/resep/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_resep/$1/$2';
+$route['cetak_rm/rajal/skdp/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_surat_skdp/$1/$2';
