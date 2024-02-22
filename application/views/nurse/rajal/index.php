@@ -102,11 +102,11 @@
                             <?php } ?> -->
 
                             <?php if ($cek_lab != ''){?>
-                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Lab</i></a>
+                                <a href="<?= base_url('cetak_rm/rajal/lab/'. $pasien['NO_REG']. '/' . $pasien['FS_KD_TRS']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Lab</i></a>
                             <?php } ?>
 
                             <?php if ($cek_rad!= ''){?>
-                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Radiologi</i></a>
+                                <a href="<?= base_url('cetak_rm/rajal/rad/'. $pasien['NO_REG']. '/' . $pasien['FS_KD_TRS']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Radiologi</i></a>
 
                             <?php } ?>
 
