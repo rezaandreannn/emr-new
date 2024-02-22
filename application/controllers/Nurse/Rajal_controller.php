@@ -541,19 +541,20 @@ class Rajal_controller extends CI_Controller
     public function resume($FS_MR = "")
     {
         $this->load->library('pdfgenerator');
-        $now = date('Y-m-d');
 
         $data = [
             'title' => 'Cetak',
-            'header' => datatable_header(),
-            'footer' => datatable_footer(),
-            'rs_pasien' => $this->Rawat_jalan_model->get_px_by_dokter_by_rm(array($FS_MR)),
-            'rs_resume' => $this->Rawat_jalan_model->get_px_resume(array($FS_MR)),
+            'rs_pasien' => $this->Rawat_jalan_model->get_px_by_dokter_by_rm_cetak(array($FS_MR)),
+            'rs_resume' => $this->Rawat_jalan_model->get_px_profil(array($FS_MR)),
         ];
 
+        // filename dari pdf ketika didownload
+        $file_pdf = 'Cetak';
+
         $paper = 'A4';
-        $orientation = "potrait";
-        $html = $this->load->view('nurse/rajal/profil', $data, true);
-        $this->pdfgenerator->generate($html, $paper, $orientation);
+        $orientation = "landscape";
+        $html = $this->load->view('nurse/rajal/cetak/profil', $data, true);
+
+        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }
 }

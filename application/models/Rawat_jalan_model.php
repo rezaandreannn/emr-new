@@ -364,7 +364,7 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
-    function get_rencana_skdp2($params="")
+    function get_rencana_skdp2($params = "")
     {
         $sql = "SELECT * FROM PKU.dbo.TAC_COM_PARAMETER_SKDP_RENCANA";
         $query = $this->db->query($sql, $params);
@@ -438,6 +438,7 @@ class Rawat_jalan_model extends CI_Model
             return 0;
         }
     }
+
     //CETAK PROFIL SINGKAT
     function get_px_resume($params)
     {
@@ -450,6 +451,43 @@ class Rawat_jalan_model extends CI_Model
         LEFT JOIN PKU.dbo.TAC_RJ_VITAL_SIGN N ON A.NO_REG = N.FS_KD_REG 
         WHERE A.NO_MR = ?
         ORDER BY TANGGAL DESC";
+    }
+
+    function get_px_profil($params)
+    {
+        $sql = "SELECT TOP 10 A.TANGGAL,A.STATUS,A.NO_REG,B.NAMA_PASIEN,B.ALAMAT, B.KOTA, B.PROVINSI, B.GOL_DARAH,B.STATUS_NIKAH,B.NAMA_PASANGAN,B.KOTA,B.PROVINSI,B.TGL_LAHIR,B.JENIS_KELAMIN,B.WARGA_NEGARA,B.PEKERJAAN,B.AGAMA,B.NO_TELP, B.HP1,B.HP2,B.KODE_POS,B.EMAIL,B.NAMA_HUB,B.NO_IDENTITAS,B.HUB_PASIEN,B.TELP_RUMAH, B.FS_ALERGI,L.*, N.*,
+        C.NAMA_DOKTER,C.SPESIALIS 
+        FROM DB_RSMM.dbo.PENDAFTARAN A
+        LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN B ON A.NO_MR=B.NO_MR
+        LEFT JOIN DB_RSMM.dbo.DOKTER C ON A.KODE_DOKTER=C.KODE_DOKTER
+        LEFT JOIN PKU.dbo.TAC_RJ_MEDIS L ON A.NO_REG=L.FS_KD_REG
+        LEFT JOIN PKU.dbo.TAC_RJ_VITAL_SIGN N ON A.NO_REG = N.FS_KD_REG 
+        WHERE A.NO_MR = ?
+        ORDER BY TANGGAL DESC";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_px_by_dokter_by_rm_cetak($params)
+    {
+        $sql = "SELECT a.NAMA_PASIEN,a.NO_MR, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
+        a.TGL_LAHIR,FS_ALERGI
+        FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        WHERE a.NO_MR = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
     }
 
     function cek_status_asasmen_dokter($params)

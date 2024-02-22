@@ -23,11 +23,11 @@
             <!-- include form -->
             <div class="card-body">
                 <div class="row">
-                    <label>Nama Pasien</label>
+                    <label>No MR</label>
                     <div class="col-md-6">
                         <div class="form-group">
                             <select name="" id="" class="form-control">
-                                <option value="">-- pilih Nama --</option>
+                                <option value="">-- NO MR --</option>
                                 <option value="">Bunga</option>
                             </select>
                         </div>
