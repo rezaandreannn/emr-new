@@ -105,3 +105,8 @@ $route['dashboard'] = 'Dashboard_controller';
 
 // -- SATU SEHAT -- //
 $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
+
+
+// cetak berkas rekam medis
+$route['cetak_rm/rajal/lab/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab/$1/$2';
+$route['cetak_rm/rajal/rad/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_radiologi/$1/$2';
