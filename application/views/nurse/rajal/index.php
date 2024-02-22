@@ -54,12 +54,16 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($pasiens as $pasien) { ?>
+                    foreach ($pasiens as $pasien) { 
+                     $cek_lab_ranap =$this->Rawat_jalan_model->get_radiologi_ranap(array($pasien['NO_REG']));
+                     $cek_lab=$this->Rawat_jalan_model->get_periksa_lab_by_noreg(array($pasien['NO_REG']));
+                     $cek_rad=$this->Rawat_jalan_model->get_periksa_radiologi_by_noreg(array($pasien['NO_REG']));
+                     ?>
                         <tr>
                             <td width="5%"><?= $pasien['NOMOR'] ?></td>
-                            <td width="10%"><?= $pasien['NO_MR'] ?></td>
+                            <td width="5%"><?= $pasien['NO_MR'] ?></td>
                             <td width="20%"><?= $pasien['NAMA_PASIEN'] ?></td>
-                            <td width="30%"><?= $pasien['ALAMAT'] ?></td>
+                            <td width="25%"><?= $pasien['ALAMAT'] ?></td>
                             <td width="10%">
                                 <?php if ($pasien['FS_STATUS'] == '') { ?>
                                     <div class="badge badge-warning text-white">Perawat</div>
@@ -81,7 +85,61 @@
                                 $button_url = 'prwt/rajal/edit/' . $pasien['NO_REG'] . '/' . $this->input->get('dokter');
                             }
                             ?>
-                            <td width="45%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a></td>
+                            <td width="55%"><a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-primary"><?= $button_title ?></a>
+
+
+                            <?php if($pasien['FS_TERAPI']!=''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Resep</i></a>
+                                <?php }?>
+
+                            <!-- <?php if ($cek_lab_ranap['FS_PLANNING_LAB'] != ''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Lab Ranap</i></a>
+                            <?php } ?>
+
+                            <?php if ($cek_lab_ranap['FS_PLANNING_RAD']!= ''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Radiologi Ranap</i></a>
+
+                            <?php } ?> -->
+
+                            <?php if ($cek_lab != ''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Lab</i></a>
+                            <?php } ?>
+
+                            <?php if ($cek_rad!= ''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-danger"><i class="fa fa-download"> Radiologi</i></a>
+
+                            <?php } ?>
+
+                            <?php if ($pasien['HASIL_ECHO']!= ''){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_resep/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Hasil Echo</i></a>
+
+                            <?php } ?>
+                            <!-- pasien kontrol -->
+                            <?php if ($pasien['FS_CARA_PULANG']=='2'){?> 
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_skdp/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-info"><i class="fa fa-download"> SKDP</i></a>
+                                <a href="<?= base_url('prwt/rajal/edit_skdp/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-info"><i class="fa fa-edit"> Edit SKDP</i></a>
+
+                                <!-- pasien rujuk luar rs -->
+                            <?php } else if($pasien['FS_CARA_PULANG']=='4'){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_rujuk_luar_rs/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-warning"><i class="fa fa-download"> Rujukan RS</i></a>
+                                <!-- pasien dengan rujuk internal -->
+                            <?php } else if($pasien['FS_CARA_PULANG']=='6'){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_rujuk_internal/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-warning"><i class="fa fa-download"> Rujukan Internal</i></a>
+                                <!-- pasien dikembalikan ke faskes primer -->
+                            <?php } else if($pasien['FS_CARA_PULANG']=='7'){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_rujukan_faskes/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-warning"><i class="fa fa-download"> Faskes</i></a>
+                            <?php } else if($pasien['FS_CARA_PULANG']=='8'){?>
+                                <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_rujuk_prb/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-warning"><i class="fa fa-download"> PRB</i></a>
+                                <?php } ?>
+                                
+
+                            <?php if ($pasien['FS_STATUS']=='2'){?>
+                                <?php if ($pasien['KODEREKANAN']=='032'){?>
+                                    <a href="<?= base_url('berkas_rm/rawat_jalan/cetak_rujuk_prb/'. $pasien['NO_REG']) ?>" class="btn btn-xs btn-success"><i class="fa fa-download"> Lembar Verif</i></a>
+
+                            <?php }}?>
+
+                        </td>
                         </tr>
                     <?php } ?>
                 </tbody>

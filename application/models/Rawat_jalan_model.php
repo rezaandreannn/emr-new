@@ -747,4 +747,43 @@ class Rawat_jalan_model extends CI_Model
             return array();
         }
     }
+
+    function get_radiologi_ranap($params="") {
+        $sql = "SELECT * FROM PKU.dbo.TAC_RI_MEDIS WHERE FS_KD_REG = ?  ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_periksa_lab_by_noreg($params) {
+        $sql = "SELECT FS_KD_REG2
+        FROM PKU.dbo.TA_TRS_KARTU_PERIKSA4 a
+        WHERE FS_KD_REG2 = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+    function get_periksa_radiologi_by_noreg($params) {
+        $sql = "SELECT FS_KD_REG2
+        FROM PKU.dbo.TA_TRS_KARTU_PERIKSA5 a
+        WHERE FS_KD_REG2 = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
 }
