@@ -97,6 +97,8 @@ $route['rm/berkas_harian'] = 'Rm/Harian_controller';
 
 // RM Berkas Rekam Medis
 $route['rm/berkas'] = 'Rm/Berkas_controller';
+$route['rm/berkas/cetak-profil/(:any)'] = 'Rm/Berkas_controller/resume/$1';
+$route['rm/berkas/berkas-verif/(:any)/(:any)'] = 'Rm/Berkas_controller/verif/$1/$2';
 
 $route['dashboard'] = 'Dashboard_controller';
 
