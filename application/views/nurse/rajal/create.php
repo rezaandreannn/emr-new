@@ -56,7 +56,11 @@
             <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-histori">
                 <i class="fas fa-history"></i> Histori
             </button>
-            <a href="<?= base_url('prwt/rajal/cetak-profil') ?>" class="btn btn-sm btn-info">
+            <?php
+            $button_title = 'Masuk';
+            $button_url = 'prwt/rajal/cetak-profil/' . $biodata['NO_MR'];
+            ?>
+            <a href="<?= base_url($button_url) ?>" class="btn btn-sm btn-info">
                 <i class="fas fa-download"></i> Profil Ringkas Medis Rawat Jalan
             </a>
         </div>
@@ -695,40 +699,40 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="example1">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px">Tgl Kunjungan</th>
-                                <th style="width: 30px">Dokter</th>
-                                <th style="width: 20px">Layanan</th>
-                                <th style="width: 20px">Catatan</th>
-                                <th style="width: 10px">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($histories as $history) { ?>
+                            <thead>
                                 <tr>
-                                    <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
-                                    <td><?= $history['NAMA_DOKTER'] ?></td>
-                                    <td>
-                                        <?= $history['SPESIALIS'] ?>
-                                    </td>
-                                    <td> -</td>
-                                    <td>
-                                        <?php if ($history['KODE_RUANG'] == '') { ?>
-                                            <div class="badge badge-primary">
-                                                Rawat Jalan
-                                            </div>
-                                        <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
-                                            <div class="badge badge-success">
-                                                Rawat Inap
-                                            </div>
-                                        <?php } ?>
-                                    </td>
+                                    <th style="width: 10px">Tgl Kunjungan</th>
+                                    <th style="width: 30px">Dokter</th>
+                                    <th style="width: 20px">Layanan</th>
+                                    <th style="width: 20px">Catatan</th>
+                                    <th style="width: 10px">Status</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>      
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($histories as $history) { ?>
+                                    <tr>
+                                        <td><?= date('d-m-Y', strtotime($history['TANGGAL'])) ?></td>
+                                        <td><?= $history['NAMA_DOKTER'] ?></td>
+                                        <td>
+                                            <?= $history['SPESIALIS'] ?>
+                                        </td>
+                                        <td> -</td>
+                                        <td>
+                                            <?php if ($history['KODE_RUANG'] == '') { ?>
+                                                <div class="badge badge-primary">
+                                                    Rawat Jalan
+                                                </div>
+                                            <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
+                                                <div class="badge badge-success">
+                                                    Rawat Inap
+                                                </div>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

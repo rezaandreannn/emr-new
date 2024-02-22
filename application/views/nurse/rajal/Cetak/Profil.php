@@ -44,10 +44,10 @@
                 <td class="text5"><img src="logo.png" alt="" width="90" height="90" /></td>
                 <td class="text5">
                     <center>
-                        <font size="5"><b>MAJELIS PEMBINA KESEHATAN UMUM</b></font><br />
-                        <font size="5"><b>RSU MUHAMMADIYAH METRO </b></font><br />
-                        <font size="2">JL Soekarno Hatta No. 42 Mulyojati 16B, Fax: (0725) 47760 Metro Barat - Kota Metro 34125</font><br />
-                        <font size="2">Email : info.rsumm@gmail.com , Telp: (0721) 49490-7850378 , Website : www.rsumm.co.id</font>
+                        <font size="4"><b>MAJELIS PEMBINA KESEHATAN UMUM</b></font><br />
+                        <font size="4"><b>RSU MUHAMMADIYAH METRO </b></font><br />
+                        <font size="1">JL Soekarno Hatta No. 42 Mulyojati 16B, Fax: (0725) 47760 Metro Barat - Kota Metro 34125</font><br />
+                        <font size="1">Email : info.rsumm@gmail.com , Telp: (0721) 49490-7850378 , Website : www.rsumm.co.id</font>
                     </center>
                 </td>
                 <td class="text5"><img src="logo.png" alt="" width="90" height="90" /></td>
@@ -79,22 +79,22 @@
         </table>
         <table width="100%" style="border: none">
             <tr>
-                <th class="text3" colspan="6" style="background-color: black; color: white">PROFIL RINGKAS MEDIS RAWAT JALAN</th>
+                <th class="text3" colspan="6" style="background-color: black; color: white; text-align:center">PROFIL RINGKAS MEDIS RAWAT JALAN</th>
             </tr>
-            <tr>
-                <th>Tanggal</th>
-                <th>Dokter</th>
-                <th>Urain Klinis</th>
-                <th>Diagnosa</th>
-                <th>Rencana</th>
-                <th>Terapi</th>
+            <tr style="text-align: center;">
+                <th width="50">Tanggal</th>
+                <th width="100">Dokter</th>
+                <th width="50">Urain Klinis</th>
+                <th width="50">Diagnosa</th>
+                <th width="50">Rencana</th>
+                <th width="100">Terapi</th>
             </tr>
             <?php
             foreach ($rs_resume as $data) { ?>
                 <tr>
-                    <td width="80"><?= date('d-m-Y', strtotime($data['TANGGAL'])); ?></td>
-                    <td width="120"><?= $data['NAMA_DOKTER']; ?> <br> ( <?= ucwords(strtolower($data['SPESIALIS'])); ?>) </td>
-                    <td width="100">TD : <?php echo str_replace("-", " ", $data["FS_TD"]); ?> mmHg <br>
+                    <td><?= date('d-m-Y', strtotime($data['TANGGAL'])); ?></td>
+                    <td><?= $data['NAMA_DOKTER']; ?> <br> ( <?= ucwords(strtolower($data['SPESIALIS'])); ?>) </td>
+                    <td>TD : <?php echo str_replace("-", " ", $data["FS_TD"]); ?> mmHg <br>
                         <?php
                         if ($data["KONJUNGTIVA"] != "") {
                             echo "Konjungtiva : " . $data["KONJUNGTIVA"] . "<br>";
@@ -108,9 +108,9 @@
                             echo "Abdomen : " . $data["ABDOMEN"] . "<br>";
                         } ?>
                         Keluhan : <?= strip_tags($data["FS_ANAMNESA"]); ?></td>
-                    <td width="100"> <?= strip_tags($data["FS_DIAGNOSA"]); ?></td>
-                    <td width="100"> <?= strip_tags($data["FS_PLANNING"]); ?></td>
-                    <td width="100"> <?php echo str_replace("\n", "<br>", $data["FS_TERAPI"]); ?></td>
+                    <td> <?= strip_tags($data["FS_DIAGNOSA"]); ?></td>
+                    <td> <?= strip_tags($data["FS_PLANNING"]); ?></td>
+                    <td> <?php echo str_replace("\n", "<br>", $data["FS_TERAPI"]); ?></td>
                 </tr>
             <?php } ?>
         </table>

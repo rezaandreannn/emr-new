@@ -552,7 +552,7 @@ class Rajal_controller extends CI_Controller
         $file_pdf = 'Cetak';
 
         $paper = 'A4';
-        $orientation = "landscape";
+        $orientation = "potrait";
         $html = $this->load->view('nurse/rajal/cetak/profil', $data, true);
 
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
