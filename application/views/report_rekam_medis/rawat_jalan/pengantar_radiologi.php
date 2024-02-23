@@ -29,7 +29,7 @@
   <center>
     <table width="100%">
       <tr>
-        <td><img src="" width="50" height="50" /></td>
+      <td><img src="<?php base_url() ?>assets/images/logo.png" width="50" height="50" /></td>
         <td>
           <center>
             <font size="2"><b>MAJELIS PEMBINA KESEHATAN UMUM</b></font><br />
@@ -38,7 +38,7 @@
             <font style="font-size: 8px;">Email : info.rsumm@gmail.com , Telp: (0721) 49490-7850378 , Website : www.rsumm.co.id</font>
           </center>
         </td>
-        <td><img src="" width="50" height="50" /></td>
+        <td><img src="<?php base_url() ?>assets/images/larsibaru.png" width="50" height="50" /></td>
       </tr>
       <tr>
         <td colspan="3">
@@ -146,6 +146,7 @@
       <tr>
         <td width="430"></td>
         <td>
+        
           <img src="<?php echo site_url('report_rm/rawat_jalan/berkas_rm_controller/qr_testing/' . $medis_by_noreg['NAMA_DOKTER']); ?>" alt="">
         </td>
       </tr>

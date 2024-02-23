@@ -143,6 +143,25 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item <?= ($this->uri->segment(1) == 'fisioterapi'  ? 'menu-open' : '') ?>">
+                    <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'fisioterapi'  ? 'active' : '') ?>">
+                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <p>
+                            Fisioterapi
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('fisioterapi/list-pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'list-pasien'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>CPPT Fisioterapi</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
                 <li class="nav-header">ADMINISTRATOR</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

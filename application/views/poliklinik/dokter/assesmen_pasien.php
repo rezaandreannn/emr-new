@@ -67,7 +67,6 @@
         </div>
         <!-- button -->
         <!-- form -->
-<<<<<<< HEAD
      
             <?php if ($this->session->flashdata('success')) : ?>
                     <div class="alert alert-success">
@@ -93,12 +92,6 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-=======
-        <div class="card card-secondary">
-            <?php if ($this->session->flashdata('success')) : ?>
-                <div class="alert alert-success">
-                    <?php echo $this->session->flashdata('success'); ?>
->>>>>>> bb8f3933043465d4139ddf4d81e7c8f2c34249d5
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
@@ -891,7 +884,7 @@
                                 <?php
 
                                 foreach ($histori_pasiens as $history) {
-<<<<<<< HEAD
+
                                 $cek_lab = $this->Rawat_jalan_model->get_data_laboratorium(array($history['NO_REG']));
                                  $cek_berkas = $this->Rawat_jalan_model->get_berkas_by_noreg(array($history['NO_REG']));
                                  $cek_resep = $this->Rawat_jalan_model->get_data_resep_pasien(array($history['NO_REG']));
@@ -900,15 +893,7 @@
                                  $cek_pemeriksaan_dokter = $this->Rawat_jalan_model->get_data_pemeriksaan_dokter(array($history['NO_REG'])); 
                                  
                                  ?>
-=======
-                                    $cek_lab = $this->Rawat_jalan_model->get_data_laboratorium(array($history['NO_REG']));
-                                    $cek_berkas = $this->Rawat_jalan_model->get_berkas_by_noreg(array($history['NO_REG']));
-                                    $cek_resep = $this->Rawat_jalan_model->get_data_resep_pasien(array($history['NO_REG']));
-                                    $cek_konsulan = $this->Rawat_jalan_model->get_data_konsulan_dokter(array($history['NO_REG']));
-                                    $cek_visite = $this->Rawat_jalan_model->get_data_visite_dokter(array($history['NO_REG']));
 
-                                ?>
->>>>>>> bb8f3933043465d4139ddf4d81e7c8f2c34249d5
                                     <tr>
                                         <td><?= date('Y-m-d', strtotime($history['TANGGAL'])) ?></td>
                                         <td><?= $history['NAMA_DOKTER'] ?> <br> <?php
@@ -934,7 +919,6 @@
                                             <?= $history['SPESIALIS'] ?>
                                         </td>
                                         <td>
-<<<<<<< HEAD
                                             <?php if ($cek_lab>='1'){?>
                                                 <a href="" >- Hasil Laboratorium</a>
                                                 <?php } else {
@@ -971,34 +955,6 @@
                                                 <a href="" class="btn btn-secondary btn-xs"><i class="fa fa-download"> Resume Pasien Pulang</i></a>
                                                 
                                             <?php }?>
-
-=======
-                                            <?php if ($cek_lab >= '1') { ?>
-                                                <a href="">- Hasil Laboratorium</a>
-                                            <?php } ?>
-                                            <br>
-                                            <?php if ($cek_resep >= '1') { ?>
-                                                <a href="">- Resep</a>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php if ($history['KODE_RUANG'] == '') { ?>
-                                                <div class="badge badge-primary">
-                                                    Rawat Jalan
-                                                </div>
-                                            <?php } elseif ($history['KODE_RUANG'] !== '') { ?>
-                                                <div class="badge badge-success">
-                                                    Rawat Inap
-                                                </div>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php if ($history['KODE_RUANG'] == '') { ?>
-                                                <a href="" class="btn btn-warning btn-sm">RM </a>
-                                            <?php } else { ?>
-                                                <a href="" class="btn btn-info btn-sm">Detail</a>
-                                            <?php } ?>
->>>>>>> bb8f3933043465d4139ddf4d81e7c8f2c34249d5
                                         </td>
                                     </tr>
                                 <?php } ?>

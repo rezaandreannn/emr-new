@@ -107,6 +107,9 @@ $route['dashboard'] = 'Dashboard_controller';
 $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 
 
+// Fisioterapi
+$route['fisioterapi/list-pasien'] = 'Fisioterapi/Terapis/Terapis_controller';
+
 // cetak berkas rekam medis //
 $route['cetak_rm/rajal/lab/qrcode/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/QRcode/$1';
 $route['cetak_rm/rajal/lab/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab/$1/$2';
