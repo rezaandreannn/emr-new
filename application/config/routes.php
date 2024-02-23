@@ -86,6 +86,7 @@ $route['poliklinik/periksa/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_control
 $route['poliklinik/periksa/edit/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/edit/$1/$2';
 $route['poliklinik/store'] = 'Poliklinik/Dokter/Assesmen_controller/store';
 $route['poliklinik/update'] = 'Poliklinik/Dokter/Assesmen_controller/update';
+$route['poliklinik/copy_pemeriksaan/(:any)/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/copy_pemeriksaan/$1/$2/$3';
 // -- POLIKLINIK -- //
 
 // Nurse Rencana OP Routes

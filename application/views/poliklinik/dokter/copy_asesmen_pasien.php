@@ -55,15 +55,13 @@
         <!-- identitas pasien -->
         <!-- button -->
         <div class="text-right mb-1">
-        <button type="button" class="btn btn-sm btn-warning" onclick="click_lab(this)">
-                <i class="fas fa-history"></i> Hasil Lab
-            </button>
             <a href="#" class="btn btn-sm btn-info">
                 <i class="fas fa-download"></i> Resume Rawat Jalan
             </a>
         </div>
         <!-- button -->
         <!-- form -->
+        <div class="card card-secondary">
         <?php if ($this->session->flashdata('success')) : ?>
                 <div class="alert alert-success">
                     <?php echo $this->session->flashdata('success'); ?>
@@ -74,50 +72,48 @@
                     <?php echo $this->session->flashdata('warning'); ?>
                 </div>
             <?php endif; ?>
-
-        <section id="form_lab" style="display: none">
-            <div class="card card-secondary" >
-                <div class="card-header card-success">
-                    <h3 class="card-title">Pemeriksaan Laboratorium Hari Ini</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-
-
-                            <tr>
-                                <th>NO</th>
-                                <th>Jenis Pemeriksaan</th>
-                                <th>Hasil Pemeriksaan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php 
-                        $no=1;
-                        foreach($hasil_labs as $hasil_lab){?>
-                            <tr>
-                                <td><?=$no++?></td>
-                                <td><?=$hasil_lab['Pemeriksaan']?></td>
-                                <td><?=$hasil_lab['Hasil']?></td>
-                            </tr>
-                        </tbody>
-                        <?php } ?>
-                </table>
+            <div class="card-header card-success">
+                <h3 class="card-title">Pemeriksaan Perawat Saat Ini</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-        </section>
+            <form action="<?php echo base_url('poliklinik/store');?>" method="post">
+            <div class="card-body">
+                <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Anamnesa (S) <code>*Wajib diisi</code></label>
+                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" value="" placeholder="Masukan ..."><?= $asesmen_perawat['FS_ANAMNESA'] ?></textarea>
+                        </div>
+                    </div>
 
-        <div class="card card-secondary">
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+                <?php if(($nutrisi['FS_NUTRISI1']+$nutrisi['FS_NUTRISI2'])<2){
+                            $value_nutrisi='Normal';
+                            
+                        }else{
+                        $value_nutrisi='Terjadi Penurunan Badan Tidak Diinginkan';
+
+                    }?>
+        
+                            <label>Pemeriksaan Fisik (O)</label>
+                            <textarea class="form-control" rows="3" name="FS_CATATAN_FISIK" value="<?= set_value('FS_CATATAN_FISIK'); ?>" placeholder="Masukan ...">Suhu : <?=$vital_sign['FS_SUHU']?> C, Nadi : <?=$vital_sign['FS_NADI']?> x/menit,  Respirasi : <?=$vital_sign['FS_R']?> x/menit, TD : <?=$vital_sign['FS_TD']?> mmHg, BB : <?=$vital_sign['FS_BB']?>, TB : <?=$vital_sign['FS_TB']?>, Alergi : <?= $alergi['FS_ALERGI'] ?>,  Skala Nyeri :<?=$nyeri['FS_NYERIS']?>,  Skrining Nutrisi : <?= $value_nutrisi;?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="card card-secondary">
             <div class="card-header card-success">
-                <h3 class="card-title">Pemeriksaan Dokter</h3>
+                <h3 class="card-title">Riwayat Pemeriksaan Dokter <?=$biodata_sebelumnya['NAMA_DOKTER']?> Pada Tanggal <?=$asesmen_dokter['mdd'] ?></h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
@@ -128,26 +124,22 @@
                 </div>
             </div>
             <!-- include form -->
-            <form action="<?php echo base_url('poliklinik/update');?>" method="post">
+         
             <div class="card-body">
                 <div class="row">
                     <input type="hidden" name="FS_KD_LAYANAN" value="<?= $biodata['SPESIALIS'] ?>" />
                     <input type="hidden" name="FS_KD_REG" value="<?= $no_reg ?>" />
                     <input type="hidden" name="FS_MR" value="<?= $biodata['NO_MR'] ?>" />
-                    <input type="hidden" name="FS_KD_TRS" value="<?=$asesmen_dokter['FS_KD_TRS']?>">
                     <input type="hidden" name="FS_KD_PETUGAS_MEDIS" value="<?= $biodata['KODE_DOKTER'] ?>" />
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Anamnesa (S) <code>*Wajib diisi</code></label>
-                            <input type="hidden" name="FS_ANAMNESA_0" value="<?= $asesmen_dokter['FS_ANAMNESA'] ?>">
-                            <textarea class="form-control" rows="3" name="FS_ANAMNESA" placeholder="Masukan ..."><?= $asesmen_dokter['FS_ANAMNESA'] ?></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Masukan ..." readonly><?= $asesmen_dokter['FS_ANAMNESA'] ?></textarea>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Daftar Masalah</label>
-                            <input type="hidden" name="FS_DAFTAR_MASALAH_0" value="<?= $asesmen_dokter['FS_DAFTAR_MASALAH'] ?>">
                             <textarea class="form-control" rows="3" name="FS_DAFTAR_MASALAH" placeholder="Masukan ..."><?= $asesmen_dokter['FS_DAFTAR_MASALAH'] ?></textarea>
                         </div>
                     </div>
@@ -155,35 +147,30 @@
                         <div class="form-group">
         
                             <label>Pemeriksaan Fisik (O)</label>
-                            <input type="hidden" name="FS_CATATAN_FISIK_0" value="<?= $asesmen_dokter['FS_CATATAN_FISIK'] ?>">
-                            <textarea class="form-control" rows="3" name="FS_CATATAN_FISIK" placeholder="Masukan ..."><?= $asesmen_dokter['FS_CATATAN_FISIK'] ?></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Masukan ..." readonly><?= $asesmen_dokter['FS_CATATAN_FISIK'] ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tindakan (P)</label>
-                            <input type="hidden" name="FS_TINDAKAN_0" value="<?= $asesmen_dokter['FS_TINDAKAN'] ?>">
                             <textarea class="form-control" rows="3" name="FS_TINDAKAN" placeholder="Masukan ..."><?= $asesmen_dokter['FS_TINDAKAN'] ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Diagnosa (A) <code>*Wajib diisi</code></label>
-                            <input type="hidden" name="FS_DIAGNOSA_0" value="<?= $asesmen_dokter['FS_DIAGNOSA'] ?>">
                             <textarea class="form-control" rows="3" name="FS_DIAGNOSA" placeholder="Masukan ..."><?= $asesmen_dokter['FS_DIAGNOSA'] ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Hasil USG</label>
-                            <input type="hidden" name="FS_USG_0" value="<?= $asesmen_dokter['FS_USG'] ?>">
                             <textarea class="form-control" rows="3" name="FS_USG"  placeholder="Masukan ..."><?= $asesmen_dokter['FS_USG'] ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Diagnosa Sekunder</label>
-                            <input type="hidden" name="FS_DIAGNOSA_SEKUNDER_0" value="<?= $asesmen_dokter['FS_DIAGNOSA_SEKUNDER'] ?>">
                             <textarea class="form-control" rows="3" name="FS_DIAGNOSA_SEKUNDER" placeholder="Masukan ..."><?= $asesmen_dokter['FS_DIAGNOSA_SEKUNDER'] ?></textarea>
                         </div>
                     </div>
@@ -191,7 +178,6 @@
                         <div class="form-group">
                             <label>EKG</label>
                             <div class="form-check">
-                            <input type="hidden" name="FS_EKG_0" value="<?= $asesmen_dokter['FS_EKG'] ?>">
                                 <input class="form-check-input" type="radio" name="FS_EKG" id="ekgradio1" value="1" <?= $asesmen_dokter['FS_EKG']=='1' ? 'checked' : ''?>>
                                 <label class="form-check-label" for="ekgradio1">
                                     Ya
@@ -209,28 +195,26 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Hasil Echocardiografi</label>
-                                <input type="hidden" name="HASIL_ECHO_0" value="<?= $asesmen_dokter['HASIL_ECHO'] ?>">
                                 <textarea class="form-control" rows="3" name="HASIL_ECHO" placeholder="Masukan ..."><?= $asesmen_dokter['HASIL_ECHO'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Hasil EKG</label>
-                                <input type="hidden" name="HASIL_EKG_0" value="<?= $asesmen_dokter['HASIL_EKG'] ?>">
                                 <textarea class="form-control" rows="3" name="HASIL_EKG"  placeholder="Masukan ..."><?= $asesmen_dokter['HASIL_EKG'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Hasil Treadmill</label>
-                                <input type="hidden" name="HASIL_TREADMILL_0" value="<?= $asesmen_dokter['HASIL_TREADMILL'] ?>">
                                 <textarea class="form-control" rows="3" name="HASIL_TREADMILL" placeholder="Masukan ..."><?= $asesmen_dokter['HASIL_TREADMILL'] ?></textarea>
                             </div>
                         </div>
                         <?php } ?>
 
         
-                                <input type="hidden" name="FS_HIGH_RISK" value="<?= $biodata['FS_HIGH_RISK'] ?>" />
+                        <input type="hidden" name="FS_HIGH_RISK" value="<?= $biodata['FS_HIGH_RISK'] ?>" />
+                                <input type="hidden" name="FS_OBAT_PROLANIS" value="1" />
                                 
                           
                       
@@ -625,14 +609,14 @@
                             <div class="input-group mb-3">
                                 <select name="FS_CARA_PULANG" id="kondisi_pulang" class="form-control" onchange="click_kondisi_pulang(this)">
                                     <option value="">--Pilih Cara Pulang--</option>
-                                    <option value="0" <?= $asesmen_dokter['FS_CARA_PULANG']=='0' ? 'selected' : ''?>>Tidak Kontrol</option>
-                                    <option value="2" <?= $asesmen_dokter['FS_CARA_PULANG']=='2' ? 'selected' : ''?>>Kontrol</option>
-                                    <option value="3" <?= $asesmen_dokter['FS_CARA_PULANG']=='3' ? 'selected' : ''?>>Rawat Inap</option>
-                                    <option value="4" <?= $asesmen_dokter['FS_CARA_PULANG']=='4' ? 'selected' : ''?>>Rujuk Luar RS</option>
+                                    <option value="0" >Tidak Kontrol</option>
+                                    <option value="2" >Kontrol</option>
+                                    <option value="3" >Rawat Inap</option>
+                                    <option value="4" >Rujuk Luar RS</option>
                                     <!--<option value="5">PRB / Prolanis</option>-->
-                                    <option value="6" <?= $asesmen_dokter['FS_CARA_PULANG']=='6' ? 'selected' : ''?>>Rujuk Internal</option>
-                                    <option value="7" <?= $asesmen_dokter['FS_CARA_PULANG']=='7' ? 'selected' : ''?>>Kembali Ke Faskes Primer</option>
-                                    <option value="8" <?= $asesmen_dokter['FS_CARA_PULANG']=='8' ? 'selected' : ''?>>PRB</option>
+                                    <option value="6" >Rujuk Internal</option>
+                                    <option value="7" >Kembali Ke Faskes Primer</option>
+                                    <option value="8" >PRB</option>
 
                                 </select>
                             </div>
@@ -645,11 +629,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- include form -->
         </div>
 
-        <div class="card card-secondary" id="form2"  <?= $asesmen_dokter['FS_CARA_PULANG']=='2' ? 'style="display: show;"' : 'style="display: none"'?>>
+        <div class="card card-secondary" id="form2" style="display: none">
             <div class="card-header card-success">
                 <h3 class="card-title">SURAT KETERANGAN DALAM PERAWATAN</h3>
                 <div class="card-tools">
@@ -671,7 +654,7 @@
                             <select name="FS_SKDP_1" id="FS_SKDP_1" class="form-control" onchange="click_alasan_skdp(this)">
                                 <option value="">-- pilih --</option>
                                 <?php foreach($alasan_skdp as $skdp){?>
-                                    <option value="<?=$skdp['FS_KD_TRS']?>" <?=$skdp_select['FS_SKDP_1']== $skdp['FS_KD_TRS'] ? 'selected' : ''?>><?=$skdp['FS_NM_SKDP_ALASAN'];?></option>
+                                    <option value="<?=$skdp['FS_KD_TRS']?>"><?=$skdp['FS_NM_SKDP_ALASAN'];?></option>
                                 <?php } ?>
 
                             </select>
@@ -683,12 +666,8 @@
                     <div class="input-group mb-3">
                     <select name="FS_SKDP_2" id="rencana_skdp" class="form-control">
                         <option value="1">--Pilih Rencana Tindakan--</option>
-                        <?php if ($skdp_select['FS_SKDP_2']!=''){?>
-                            <?php foreach ($rencana_skdp as $ren_skdp){?>
-                                <option value="<?=$ren_skdp['FS_KD_TRS']?>" <?=$skdp_select['FS_SKDP_2']== $ren_skdp['FS_KD_TRS'] ? 'selected' : ''?>><?=$ren_skdp['FS_NM_SKDP_RENCANA']?></option>
-                        <?php }}?>
                     </select>
-                        <input type="text" name="FS_SKDP_KET" value="<?=$skdp_select['FS_SKDP_KET']?>" placeholder="keterangan.." />
+                        <input type="text" name="FS_SKDP_KET" placeholder="keterangan.." />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -696,9 +675,9 @@
                     <div class="input-group mb-3">
                         <select name="FS_RENCANA_KONTROL" id="FS_RENCANA_KONTROL" class="form-control" onchange="click_rencana_kontrol(this)">
                             <option value="">-- pilih --</option>
-                            <option value="1 Minggu" <?=$skdp_select['FS_RENCANA_KONTROL']=='1 Minggu' ? 'selected' : ''?>>1 Minggu</option>
-                            <option value="2 Minggu" <?=$skdp_select['FS_RENCANA_KONTROL']=='2 Minggu' ? 'selected' : ''?>>2 Minggu</option>
-                            <option value="Sebulan Kedepan" <?=$skdp_select['FS_RENCANA_KONTROL']=='Sebulan Kedepan' ? 'selected' : ''?>>Sebulan Kedepan</option>
+                            <option value="1 Minggu">1 Minggu</option>
+                            <option value="2 Minggu">2 Minggu</option>
+                            <option value="Sebulan Kedepan">Sebulan Kedepan</option>
 
                         </select>
                     </div>
@@ -712,19 +691,19 @@
                 <div class="col-md-6">
                     <label>Tanggal Kontrol Berikutnya : </label>
                     <div class="input-group mb-3">
-                        <input type="date" name="FS_SKDP_KONTROL" class="form-control" value="<?= $skdp_select['FS_SKDP_KONTROL'] ?>" id="tgl_kontrol_berikutnya">
+                        <input type="date" name="FS_SKDP_KONTROL" class="form-control" id="tgl_kontrol_berikutnya">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label>Tanggal Expired Rujukan Faskes : </label>
                     <div class="input-group mb-3">
-                        <input type="date" name="FS_SKDP_FASKES" id="FS_SKDP_FASKES" class="form-control" value="<?= $skdp_select['FS_SKDP_FASKES'] ?>">
+                        <input type="date" name="FS_SKDP_FASKES" id="FS_SKDP_FASKES" class="form-control" value="<?= $asesmen_perawat['FS_SKDP_FASKES'] ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label>Keterangan Atau Pesan : </label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_PESAN" value="<?= set_value('FS_PESAN'); ?>" placeholder="Masukan ..."><?= $skdp_select['FS_PESAN'] ?></textarea>
+                        <textarea class="form-control" rows="3" name="FS_PESAN" value="<?= set_value('FS_PESAN'); ?>" placeholder="Masukan ..."></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -732,7 +711,7 @@
             <!-- include form -->
         </div>
 
-        <div class="card card-secondary" id="form3" <?= $asesmen_dokter['FS_CARA_PULANG']=='4' ? 'style="display: show;"' : 'style="display: none"'?>>
+        <div class="card card-secondary" id="form3" style="display: none">
             <div class="card-header card-success">
                 <h3 class="card-title">SURAT RUJUKAN LUAR RS</h3>
                 <div class="card-tools">
@@ -751,20 +730,20 @@
                     <div class="form-group">
                         <label for="FS_TUJUAN_RUJUKAN_LUAR_RS">Kepada : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN_LUAR_RS" id="FS_TUJUAN_RUJUKAN_LUAR_RS" value="<?=$rujukan_rs['FS_TUJUAN_RUJUKAN']?>">
+                            <input type="text" class="form-control" name="FS_TUJUAN_RUJUKAN_LUAR_RS" id="FS_TUJUAN_RUJUKAN_LUAR_RS">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="FS_TUJUAN_RUJUKAN_LUAR_RS2">Rumah Sakit Tujuan : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <input type="text" name="FS_TUJUAN_RUJUKAN_LUAR_RS2" id="FS_TUJUAN_RUJUKAN_LUAR_RS2" value="<?=$rujukan_rs['FS_TUJUAN_RUJUKAN2']?>" class="form-control">
+                        <input type="text" name="FS_TUJUAN_RUJUKAN_LUAR_RS2" id="FS_TUJUAN_RUJUKAN_LUAR_RS2" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="FS_ALASAN_RUJUK_LUAR_RS">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK_LUAR_RS" id="FS_ALASAN_RUJUK_LUAR_RS" placeholder="Masukan ..."><?=$rujukan_rs['FS_ALASAN_RUJUK']?></textarea>
+                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK_LUAR_RS" id="FS_ALASAN_RUJUK_LUAR_RS" value="" placeholder="Masukan ..."></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -772,7 +751,7 @@
             <!-- include form -->
         </div>
 
-        <div class="card card-secondary" id="form4" <?= $asesmen_dokter['FS_CARA_PULANG']=='6' ? 'style="display: show;"' : 'style="display: none"'?>>
+        <div class="card card-secondary" id="form4" style="display: none">
             <div class="card-header card-success">
                 <h3 class="card-title">SURAT RUJUKAN INTERNAL</h3>
                 <div class="card-tools">
@@ -795,7 +774,7 @@
                                 <option value="">-- pilih dokter --</option>
                                 <?php
                                 foreach ($dokters as $dokter) { ?>
-                                    <option value="<?= $dokter['KODE_DOKTER'] ?>" <?=$rujukan_rs['FS_TUJUAN_RUJUKAN']==$dokter['KODE_DOKTER'] ? 'selected' : ''?>><?= $dokter['NAMA_DOKTER'] ?></option>
+                                    <option value="<?= $dokter['KODE_DOKTER'] ?>"><?= $dokter['NAMA_DOKTER'] ?></option>
                                 <?php } ?>
                             </select>
                             <input type="hidden" name="FS_TUJUAN_RUJUKAN2" size="55" value="RSU Muhammadiyah Metro" />
@@ -806,7 +785,7 @@
                 <div class="col-md-6">
                     <label for="FS_ALASAN_RUJUK">Alasan Dirujuk : <code>* Wajib Diisi</code></label>
                     <div class="input-group mb-3">
-                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK" id="FS_ALASAN_RUJUK" value="" placeholder="Masukan ..."><?=$rujukan_rs['FS_ALASAN_RUJUK']?></textarea>
+                        <textarea class="form-control" rows="3" name="FS_ALASAN_RUJUK" id="FS_ALASAN_RUJUK" value="" placeholder="Masukan ..."></textarea>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -814,7 +793,7 @@
             <!-- include form -->
         </div>
 
-        <div class="card card-secondary" id="form5" <?= $asesmen_dokter['FS_CARA_PULANG']=='7' ? 'style="display: show;"' : 'style="display: none"'?>>
+        <div class="card card-secondary" id="form5" style="display: none">
             <div class="card-header card-success">
                 <h3 class="card-title">SURAT DIKEMBALIKAN KE FASKER PRIMER</h3>
                 <div class="card-tools">
@@ -834,7 +813,7 @@
                         <label for="FS_TGL_PRB">Kontrol setelah dari FKTP ke RS tanggal : <code>* Wajib Diisi</code></label>
                         <div class="input-group mb-3">
                         <input type="hidden" name="FS_KD_TRS" value="<?=$biodata['FS_KD_TRS']?>" />
-                            <input type="date" name="FS_TGL_PRB" class="form-control" id="FS_TGL_PRB" value="<?=$prb['FS_TGL_PRB']?>">
+                            <input type="date" name="FS_TGL_PRB" class="form-control" id="FS_TGL_PRB">
                             <input type="hidden" name="FS_TUJUAN" value="-" />
                         </div>
                     </div>
@@ -860,6 +839,7 @@
 
     </div>
 </section>
+
 
 <script type="text/javascript">
     function click_kondisi_pulang(selected) {
@@ -892,7 +872,6 @@
         var resep = $(".resep").val();
         var pilihan_resep = selected.value
 
- 
         if (pilihan_resep == "Dkd/ckd") {
       $(".resep").val(
         resep +
@@ -1582,17 +1561,6 @@
                     $("#rencana_skdp").html(msg);
                 }
             });
-    }
-
-    $("#form_lab").hide();
-    function click_lab(){
-        var x = document.getElementById("form_lab");
-
-            if (x.style.display === "none") {
-            x.style.display = "block";
-            } else {
-            x.style.display = "none";
-            }
     }
    
 </script>

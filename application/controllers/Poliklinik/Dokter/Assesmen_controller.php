@@ -67,6 +67,7 @@ class Assesmen_controller extends CI_Controller
             'content' => 'poliklinik/dokter/assesmen_pasien',
             'kode_dokter' => $kode_dokter,
             'no_reg' => $no_register,
+            'hasil_labs' => $this->Rawat_jalan_model->get_data_lab_by_noreg(array($no_register)),
             'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register)),
             'vital_sign' => $this->Pasien_model->get_vital_sign_by_noreg(array($no_register)),
             'nyeri' => $this->Pasien_model->get_nyeri_by_noreg(array($no_register)),
@@ -86,12 +87,49 @@ class Assesmen_controller extends CI_Controller
         $this->load->view('layouts/dashboard', $data);
     }
 
-    public function edit($no_register, $kode_dokter)
+    public function copy_pemeriksaan($no_register,$no_register_lama, $kode_dokter)
     {
 
         $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
         $mr = $get_mr_pasien['No_MR'];
 
+        $datenow = date('Y-m-d');
+
+        $data = [
+            'header' => datatable_header(),
+            'footer' => datatable_footer(),
+            'title' => 'Tambah Data',
+            'content' => 'poliklinik/dokter/copy_asesmen_pasien',
+            'kode_dokter' => $kode_dokter,
+            'no_reg' => $no_register,
+            'hasil_labs' => $this->Rawat_jalan_model->get_data_lab_by_noreg(array($no_register)),
+            'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register)),
+            'biodata_sebelumnya' => $this->Pasien_model->get_biodata_pasien_by_mr_dokter(array($no_register_lama)),
+            'vital_sign' => $this->Pasien_model->get_vital_sign_by_noreg(array($no_register)),
+            'nyeri' => $this->Pasien_model->get_nyeri_by_noreg(array($no_register)),
+            'nutrisi' => $this->Pasien_model->get_nutrisi_by_noreg(array($no_register)),
+            'alergi' => $this->Pasien_model->get_data_alergi_by_rg(array($mr)),
+            'labs' => $this->Laboratorium_model->list_pemeriksaan_lab(),
+            'radiologis' => $this->Radiologi_model->list_pemeriksaan_rad(),
+            'obats' => $this->Obat_model->list_nama_obat(),
+            'dokters' => $this->Dokter_model->list_nama_dokter_spesialis(),
+            'alasan_skdp' => $this->Rawat_jalan_model->get_alasan_skdp(),
+            'asesmen_perawat' => $this->Rawat_jalan_model->get_asesmen_perawat(array($no_register)),
+            'asesmen_dokter' => $this->Rawat_jalan_model->get_data_asesmen_dokter_by_noreg(array($no_register_lama)),
+            'histori_pasiens' => $this->Rawat_jalan_model->get_history_pasien_by_noreg(array($datenow, $kode_dokter, $mr)),
+
+
+        ];
+
+        $this->load->view('layouts/dashboard', $data);
+    }
+
+    public function edit($no_register, $kode_dokter)
+    {
+
+        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
+        $mr = $get_mr_pasien['No_MR'];
+   
         $data = [
             'title' => 'Tambah Data',
             'content' => 'poliklinik/dokter/edit_assesmen_pasien',
@@ -101,6 +139,7 @@ class Assesmen_controller extends CI_Controller
             'vital_sign' => $this->Pasien_model->get_vital_sign_by_noreg(array($no_register)),
             'nyeri' => $this->Pasien_model->get_nyeri_by_noreg(array($no_register)),
             'nutrisi' => $this->Pasien_model->get_nutrisi_by_noreg(array($no_register)),
+            'hasil_labs' => $this->Rawat_jalan_model->get_data_lab_by_noreg(array($no_register)),
             'alergi' => $this->Pasien_model->get_data_alergi_by_rg(array($mr)),
             'labs' => $this->Laboratorium_model->list_pemeriksaan_lab(),
             'radiologis' => $this->Radiologi_model->list_pemeriksaan_rad(),

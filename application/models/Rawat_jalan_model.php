@@ -776,6 +776,23 @@ class Rawat_jalan_model extends CI_Model
         }
     }
 
+    // get data hasil  lab pasien
+    function get_data_pemeriksaan_dokter($params = "")
+    {
+        $sql = "SELECT A.FS_KD_REG
+        FROM PKU.dbo.TAC_RJ_MEDIS A
+        WHERE  A.FS_KD_REG = ?  
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->num_rows();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
     //get data berkas by no register
     function get_berkas_by_noreg($params = "")
     {
@@ -879,6 +896,26 @@ class Rawat_jalan_model extends CI_Model
             return $result;
         } else {
             return 0;
+        }
+    }
+
+    function get_data_lab_by_noreg($params="") {
+        $sql = "SELECT A.*,B.Kode_Hasil,B.Hasil, C.Nama_Pasien, D.Jenis, E.Nilai_Normal, E.Pemeriksaan, F.Nama_Dokter,B.Status 
+        FROM DB_RSMM.dbo.TR_MASTER_LAB A, DB_RSMM.dbo.TR_DETAIL_LAB B, DB_RSMM.dbo.REGISTER_PASIEN C, DB_RSMM.dbo.LAB_JENISPERIKSA D, DB_RSMM.dbo.LAB_HASIL E, DB_RSMM.dbo.DOKTER F 
+        WHERE A.Id_Lab=B.Id_Lab 
+        AND A.No_MR=C.No_MR AND A.No_Kelompok=D.No_Kelompok 
+        AND A.No_Jenis=D.No_Jenis AND B.Kode_Hasil=E.Kode_Hasil 
+        AND A.Pengirim=F.Kode_Dokter 
+        AND A.No_Reg = ?  
+        Order By A.No_Kelompok,A.No_Jenis,A.Tanggal
+        ";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
         }
     }
 }

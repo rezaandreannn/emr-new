@@ -112,13 +112,8 @@ $dayList = array(
         
       </table>
       <table width="100%">
-   
       <?php 
-               
-                      
-               if($skdp['FS_SKDP_FASKES']==''){?>
-    
-                
+               if($skdp['FS_SKDP_FASKES']==''){?>    
              <tr>
              <td class="text3" style="font-size: 12px;"><br> 
                 <?php if($skdp['FS_SKDP_KONTROL']==''){ ?>

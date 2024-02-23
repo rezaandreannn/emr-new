@@ -58,23 +58,69 @@
             <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-histori">
                 <i class="fas fa-history"></i> Histori
             </button>
+            <button type="button" class="btn btn-sm btn-warning" onclick="click_lab(this)">
+                <i class="fas fa-history"></i> Hasil Lab
+            </button>
             <a href="#" class="btn btn-sm btn-info">
                 <i class="fas fa-download"></i> Resume Rawat Jalan
             </a>
         </div>
         <!-- button -->
         <!-- form -->
-        <div class="card card-secondary">
-        <?php if ($this->session->flashdata('success')) : ?>
-                <div class="alert alert-success">
-                    <?php echo $this->session->flashdata('success'); ?>
+     
+            <?php if ($this->session->flashdata('success')) : ?>
+                    <div class="alert alert-success">
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->session->flashdata('warning')) : ?>
+                    <div class="alert alert-warning">
+                        <?php echo $this->session->flashdata('warning'); ?>
+                    </div>
+                <?php endif; ?>
+
+        
+        <section id="form_lab" style="display: none">
+            <div class="card card-secondary" >
+                <div class="card-header card-success">
+                    <h3 class="card-title">Pemeriksaan Laboratorium Hari Ini</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('warning')) : ?>
-                <div class="alert alert-warning">
-                    <?php echo $this->session->flashdata('warning'); ?>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                    <thead>
+
+
+                            <tr>
+                                <th>NO</th>
+                                <th>Jenis Pemeriksaan</th>
+                                <th>Hasil Pemeriksaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $no=1;
+                        foreach($hasil_labs as $hasil_lab){?>
+                            <tr>
+                                <td><?=$no++?></td>
+                                <td><?=$hasil_lab['Pemeriksaan']?></td>
+                                <td><?=$hasil_lab['Hasil']?></td>
+                            </tr>
+                        </tbody>
+                        <?php } ?>
+                    </table>
                 </div>
-            <?php endif; ?>
+            </div>
+        </section>
+
+        <div class="card card-secondary">            
             <div class="card-header card-success">
                 <h3 class="card-title">Pemeriksaan Dokter</h3>
                 <div class="card-tools">
@@ -845,6 +891,7 @@
                                  $cek_resep = $this->Rawat_jalan_model->get_data_resep_pasien(array($history['NO_REG']));
                                  $cek_konsulan = $this->Rawat_jalan_model->get_data_konsulan_dokter(array($history['NO_REG']));
                                  $cek_visite = $this->Rawat_jalan_model->get_data_visite_dokter(array($history['NO_REG'])); 
+                                 $cek_pemeriksaan_dokter = $this->Rawat_jalan_model->get_data_pemeriksaan_dokter(array($history['NO_REG'])); 
                                  
                                  ?>
                                     <tr>
@@ -876,11 +923,15 @@
                                         <td>
                                             <?php if ($cek_lab>='1'){?>
                                                 <a href="" >- Hasil Laboratorium</a>
-                                                <?php }?>
+                                                <?php } else {
+                                                    
+                                                }?>
                                                 <br>
                                                 <?php if($cek_resep>='1'){ ?>
                                                     <a href="" >- Resep</a>
-                                                    <?php }?>
+                                                    <?php } else {
+                                                        
+                                                    }?>
                                                 </td>
                                                 <td>
                                                     <?php if ($history['KODE_RUANG'] == '') { ?>
@@ -895,10 +946,18 @@
                                         </td>
                                         <td>
                                             <?php if ($history['KODE_RUANG']==''){?>
-                                                <a href="" class="btn btn-warning btn-sm">RM </a>
+                                                <a href="" class="btn btn-warning btn-xs"><i class="fa fa-download"> RM</i></a>
+                                                <?php if ($cek_pemeriksaan_dokter>='1'){?>
+                                                    <a href="<?php echo base_url('poliklinik/copy_pemeriksaan/'.$no_reg.'/'.$history['NO_REG'].'/'.$biodata['KODE_DOKTER']);?>" class="btn btn-info btn-xs">Copy Pemeriksaan</a>
+
+                                                <?php }?>
                                                 <?php } else {?>
-                                                <a href="" class="btn btn-info btn-sm">Detail</a>
+                                                <a href="" class="btn btn-info btn-xs">Detail</a>
+                                                <a href="" class="btn btn-secondary btn-xs"><i class="fa fa-edit"> Cppt</i></a>
+                                                <a href="" class="btn btn-secondary btn-xs"><i class="fa fa-download"> Resume Pasien Pulang</i></a>
+                                                
                                             <?php }?>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -939,23 +998,73 @@
         }
     }
 
+    
+    $("#form_lab").hide();
+    function click_lab(){
+        var x = document.getElementById("form_lab");
+
+            if (x.style.display === "none") {
+            x.style.display = "block";
+            } else {
+            x.style.display = "none";
+            }
+    }
 
     //paket obat dr toumi
     function click_terapi_dr_toumi(selected) {
         var resep = $(".resep").val();
         var pilihan_resep = selected.value
 
+ 
         if (pilihan_resep == "Dkd/ckd") {
-
-            $(".resep").val(
-                resep +
-                "\n /R   Asam folat \n  S 1x1 mg   \n ---------------------------------------- \n \n /R   Bicnat \n  S 2x1  \n ---------------------------------------- \n \n /R   Erkade \n  S 1x1  \n ---------------------------------------- \n"
-            );
-            $("#namapaketdrtoumi").select2("data", null);
-
-        } else {
-            $("#form2").hide();
-        }
+      $(".resep").val(
+        resep +
+          "\n /R   Asam folat 1 mg No XXX \n  S 1dd1   \n ---------------------------------------- \n \n /R   Bicnat No LX \n  S 2dd1  \n ---------------------------------------- \n \n /R   Erkade XXX \n  S 1dd1  \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Neuropati") {
+      $(".resep").val(
+        resep +
+          "\n /R   Gabapentin 300mg X \n  S 0-0-1 (K/P Kesemutan)  \n ---------------------------------------- \n \n /R   Mecobalamin XXX \n  S 1-0-0   \n ---------------------------------------- \n \n /R   Eperison XXX \n   S 0-0-1    \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "ISPA") {
+      $(".resep").val(
+        resep +
+          "\n /R   Azitromicin 500mg V \n  S 1dd1  \n ---------------------------------------- \n \n /R   Acetylsistein 200mg XV  \n  S 3dd1  \n ---------------------------------------- \n \n /R   Ceterizin 10mg V \n  S 0-0-1  \n ---------------------------------------- \n \n /R   Boost D 1000 V \n  S 1dd1  \n ---------------------------------------- \n \n /R   Erlamol XV \n  S 3dd1  \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Kapsul batuk") {
+      $(".resep").val(
+        resep +
+          "\n /R   Salbutamol 1 mg \n  S   \n ---------------------------------------- \n \n /R   Ceterizin 5 mg \n  S   \n ---------------------------------------- \n \n /R   Ambroxol 15mg \n  S   \n ---------------------------------------- \n \n /R   Mfla da in cap No XXX \n S 3dd1  \n---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Dispepsia") {
+      $(".resep").val(
+        resep +
+          "\n /R   Lansoprazol 30mg XXX \n  S 1-0-0  \n ---------------------------------------- \n \n /R   Sucralfat syrup No III \n S 3ddC1 ac  \n ---------------------------------------- \n \n /R   Antasid syrup No I \n S 4ddCII kp mual kembung perih \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Kapsul cemas") {
+      $(".resep").val(
+        resep +
+          "\n /R   Alprazolam 0,5mg 1/2tab \n  S  \n ---------------------------------------- \n \n /R   Ranitidin 150g 1/2 tab \n S  \n ---------------------------------------- \n \n /R   Domperidon 1/2 tab \n S  \n ---------------------------------------- \n \n R   Mfla da in cap No X \n S 0-0-1 Kp Cemas \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Dermatitis alergi") {
+      $(".resep").val(
+        resep +
+          "\n /R   Clobetazol zalf No I \n S 22ddue  \n ---------------------------------------- \n \n /R   Ceterizin 10mg X \n S 0-0-1 \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    } else if (pilihan_resep == "Tinea") {
+      $(".resep").val(
+        resep +
+          "\n /R   Ketokenazol zalf No I \n S 2ddue  \n ---------------------------------------- \n \n /R   Ceterizin 10 mg X \n S 0-0-1  \n ---------------------------------------- \n"
+      );
+      $("#namapaketdrtoumi").select2("data", null);
+    }
     }
 
 
