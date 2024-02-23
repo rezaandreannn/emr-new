@@ -39,13 +39,13 @@ class Berkas_controller extends CI_Controller
         $this->load->library('pdfgenerator');
 
         $data = [
-            'title' => 'Cetak',
+            'title' => 'Cetak Profil Ringkas',
             'rs_pasien' => $this->Rawat_jalan_model->get_px_by_dokter_by_rm_cetak(array($FS_MR)),
             'rs_resume' => $this->Rawat_jalan_model->get_px_profil(array($FS_MR)),
         ];
 
         // filename dari pdf ketika didownload
-        $file_pdf = 'Cetak';
+        $file_pdf = 'Profil Ringkas Medis Rawat Jalan';
 
         $paper = 'A4';
         $orientation = "potrait";
@@ -53,30 +53,6 @@ class Berkas_controller extends CI_Controller
 
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }
-
-    public function verif($FS_KD_REG = "", $FS_KD_TRS = "")
-    {
-        $this->load->library('pdfgenerator');
-
-        $data = [
-            'title' => 'Cetak',
-            'rs_pasien' => $this->Rawat_jalan_model->get_px_by_dokter_by_rg2(array($FS_KD_REG)),
-            'rs_resep' => $this->Rawat_jalan_model->get_data_terapi_by_rg(array($FS_KD_REG)),
-            'asal' => $this->Rawat_jalan_model->get_px_history_verif(array($FS_KD_REG)),
-            'inap' => $this->Rawat_jalan_model->get_lama_inap(array($FS_KD_REG)),
-            'result' => $this->Rawat_jalan_model->get_data_medis_by_rg23(array($FS_KD_REG)),
-        ];
-
-        // filename dari pdf ketika didownload
-        $file_pdf = 'Cetak';
-
-        $paper = 'A4';
-        $orientation = "potrait";
-        $html = $this->load->view('rm/berkas/cetak/verif', $data, true);
-
-        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
-    }
-
 
     public function login()
     {
