@@ -85,13 +85,23 @@
                                         <td width="40%">
                                             <a href="#" onclick="" class="btn btn-xs btn-success"> <i class="nav-icon fas fa-download"></i> RM</a>
                                             <?php if ($pasien['KODEREKANAN'] == '032') { ?>
-                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Lmbr Verif</a>
+                                                <?php
+                                                $button_url = 'cetak_rm/rajal/verif2/' . $pasien['NO_REG'];
+                                                ?>
+                                                <a href="<?= base_url($button_url) ?>" class="btn btn-xs btn-primary">
+                                                    <i class="fas fa-download"></i>Lmbr Verif
+                                                </a>
                                             <?php } ?>
                                             <?php if ($pasien['FS_CARA_PULANG'] == '1') { ?>
                                                 <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> RB</a>
                                             <?php } ?>
                                             <?php if ($pasien['FS_CARA_PULANG'] == '2') { ?>
-                                                <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> SKDP</a>
+                                                <?php
+                                                $button_url = 'cetak_rm/rajal/skdp/' . $pasien['NO_REG'];
+                                                ?>
+                                                <a href="<?= base_url($button_url) ?>" class="btn btn-xs btn-info">
+                                                    <i class="nav-icon fas fa-notes-medical"></i>SKDP
+                                                </a>
                                             <?php } ?>
                                             <?php if ($pasien['FS_CARA_PULANG'] == '3') { ?>
                                                 <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Rawat Inap</a>
@@ -105,6 +115,12 @@
                                             <?php if ($pasien['FS_CARA_PULANG'] == '6') { ?>
                                                 <a href="" class="btn btn-xs btn-info"> <i class="nav-icon fas fa-notes-medical"></i> Rujukan Internal</a>
                                             <?php } ?>
+                                            <?php
+                                            $button_url = 'cetak_rm/rajal/lab2/' . $pasien['NO_REG'];
+                                            ?>
+                                            <a href="<?= base_url($button_url) ?>" class="btn btn-xs btn-info">
+                                                <i class="nav-icon fas fa-notes-medical"></i>Lab
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php } ?>

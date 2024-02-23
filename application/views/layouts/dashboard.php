@@ -83,6 +83,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/AdminLTE/dist/js/adminlte.js'); ?>"></script>
     <script src="<?= base_url('assets/AdminLTE/dist/js/demo.js'); ?>"></script>
+    <script src="<?= base_url('assets/qrcode/qrcode.min.js'); ?>"></script>
     <!-- select2 -->
     <script src="<?= base_url('assets/AdminLTE/plugins/select2/js/select2.full.min.js'); ?>"></script>
 

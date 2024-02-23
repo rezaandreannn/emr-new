@@ -60,7 +60,7 @@ $route['logout'] = 'Login_controller/Logout';
 $route['login'] = 'Login_controller/Login_proses';
 
 // -- POLIKLINIK -- //
-// Nurse Rajal Routes
+// Nurse Rajal Routes //
 $route['prwt/rajal'] = 'Nurse/Rajal_controller';
 $route['prwt/rajal/add'] = 'Nurse/Rajal_controller/add';
 $route['prwt/rajal/cetak-profil/(:any)'] = 'Nurse/Rajal_controller/resume/$1';
@@ -71,11 +71,11 @@ $route['prwt/rajal/edit/(:any)/(:any)'] = 'Nurse/Rajal_controller/edit/$1/$2';
 $route['prwt/rajal/edit_skdp/(:any)'] = 'Nurse/Rajal_controller/edit_skdp/$1';
 
 
-// Nurse Bidan Routes
+// Nurse Bidan Routes //
 $route['prwt/bidan'] = 'Nurse/Bidan_controller';
 $route['prwt/bidan/create/(:any)/(:any)'] = 'Nurse/Bidan_controller/create/$1/$2';
 
-// dokter routes
+// dokter routes //
 // -- Dokter -- //
 $route['igd/medis'] = 'Poliklinik/Dokter/Medis_controller';
 $route['igd/cppt-igd'] = 'Poliklinik/Dokter/Cppt_controller';
@@ -89,17 +89,16 @@ $route['poliklinik/update'] = 'Poliklinik/Dokter/Assesmen_controller/update';
 $route['poliklinik/copy_pemeriksaan/(:any)/(:any)/(:any)'] = 'Poliklinik/Dokter/Assesmen_controller/copy_pemeriksaan/$1/$2/$3';
 // -- POLIKLINIK -- //
 
-// Nurse Rencana OP Routes
+// Nurse Rencana OP Routes //
 $route['prwt/rencana_op'] = 'Nurse/RencanaController';
 
 
-// RM Berkas Harian Routes
+// RM Berkas Harian Routes //
 $route['rm/berkas_harian'] = 'Rm/Harian_controller';
 
-// RM Berkas Rekam Medis
+// RM Berkas Rekam Medis //
 $route['rm/berkas'] = 'Rm/Berkas_controller';
 $route['rm/berkas/cetak-profil/(:any)'] = 'Rm/Berkas_controller/resume/$1';
-$route['rm/berkas/berkas-verif/(:any)/(:any)'] = 'Rm/Berkas_controller/verif/$1/$2';
 
 $route['dashboard'] = 'Dashboard_controller';
 
@@ -108,8 +107,12 @@ $route['dashboard'] = 'Dashboard_controller';
 $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 
 
-// cetak berkas rekam medis
+// cetak berkas rekam medis //
+$route['cetak_rm/rajal/lab/qrcode/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/QRcode/$1';
 $route['cetak_rm/rajal/lab/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab/$1/$2';
+$route['cetak_rm/rajal/lab2/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab2/$1';
 $route['cetak_rm/rajal/rad/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_radiologi/$1/$2';
+$route['cetak_rm/rajal/verif/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_verif/$1/$2';
+$route['cetak_rm/rajal/verif2/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_verif2/$1';
 $route['cetak_rm/rajal/resep/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_resep/$1/$2';
 $route['cetak_rm/rajal/skdp/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_surat_skdp/$1/$2';

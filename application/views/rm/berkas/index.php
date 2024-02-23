@@ -117,10 +117,10 @@
                                 </td>
                                 <td width="30%"><?php if ($pasien['KODEREKANAN'] == '032') { ?>
                                         <?php
-                                                    $button_url = 'rm/berkas/berkas-verif/' . $pasien['NO_REG'] . '/' . $this->input->get('No_MR');
+                                                    $button_url = 'cetak_rm/rajal/verif/' . $pasien['NO_REG'] . '/' . $this->input->get('No_MR');
                                         ?>
                                         <a href="<?= base_url($button_url) ?>" class="btn btn-xs btn-primary">
-                                            <i class="fas fa-download"></i> Verif
+                                            <i class="fas fa-download"></i>Lmbr Verif
                                         </a>
                                     <?php } ?>
                                     <?php if ($pasien['MEDIS'] == 'RAWAT JALAN') { ?>
