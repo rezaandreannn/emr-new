@@ -121,8 +121,7 @@ class Berkas_rm_controller extends CI_Controller
     {
         $this->load->library('pdfgenerator');
 
-        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_registrasi);
-        $mr = $get_mr_pasien['No_MR'];
+
         $data = [
             'title' => 'Cetak',
             'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
@@ -170,8 +169,7 @@ class Berkas_rm_controller extends CI_Controller
     {
         $this->load->library('pdfgenerator');
 
-        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_registrasi);
-        $mr = $get_mr_pasien['No_MR'];
+
         $data = [
             'title' => 'Cetak',
             'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
@@ -186,6 +184,58 @@ class Berkas_rm_controller extends CI_Controller
         $paper = 'A5';
         $orientation = "portait";
         $html = $this->load->view('report_rekam_medis/rawat_jalan/pengantar_radiologi', $data, true);
+
+        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    }
+    
+    //Cetak pengantar resep
+    public function cetak_pengantar_resep($no_registrasi, $kode_transaksi)
+    {
+        $this->load->library('pdfgenerator');
+
+      
+        $data = [
+            'title' => 'Cetak',
+            'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
+            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi,$kode_transaksi)),
+            'alamat' => $this->Rekam_medis_model->get_alamat(),
+            'rekanan' => $this->Rekam_medis_model->get_pasien_by_rekanan(array($no_registrasi)),
+            'antrian' => $this->Rekam_medis_model->get_antrian_obat_by_kode_transaksi(array($kode_transaksi)),
+        ];
+
+
+        // filename dari pdf ketika didownload
+        $file_pdf = 'Cetak';
+
+        $paper = 'A5';
+        $orientation = "portait";
+        $html = $this->load->view('report_rekam_medis/rawat_jalan/resep', $data, true);
+
+        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    }
+
+    //Cetak pengantar skdp
+    public function cetak_surat_skdp($no_registrasi, $kode_transaksi)
+    {
+        $this->load->library('pdfgenerator');
+
+      
+        $data = [
+            'title' => 'Cetak',
+            'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
+            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi,$kode_transaksi)),
+            'alamat' => $this->Rekam_medis_model->get_alamat(),
+            'skdp' => $this->Rekam_medis_model->get_data_skdp_by_rg(array($no_registrasi)),
+            'antrian' => $this->Rekam_medis_model->get_antrian_obat_by_kode_transaksi(array($kode_transaksi)),
+        ];
+
+
+        // filename dari pdf ketika didownload
+        $file_pdf = 'Cetak';
+
+        $paper = 'A5';
+        $orientation = "portait";
+        $html = $this->load->view('report_rekam_medis/rawat_jalan/skdp', $data, true);
 
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }

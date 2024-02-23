@@ -86,6 +86,53 @@ class Rekam_medis_model extends CI_Model
             return array();
         }
     }
+<<<<<<< HEAD
+=======
+
+    function get_pasien_by_rekanan($params) {
+        $sql = "SELECT b.NO_REG,b.KODEREKANAN,a.KODEREKANAN,a.NAMAREKANAN
+        FROM  DB_RSMM.dbo.PENDAFTARAN b 
+        LEFT JOIN DB_RSMM.dbo.REKANAN a ON a.KODEREKANAN=b.KODEREKANAN
+        WHERE b.NO_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_antrian_obat_by_kode_transaksi($params) {
+        $sql = "SELECT * FROM PKU.dbo.TAC_RJ_ANTRIAN_OBAT WHERE FS_KD_RJ_MEDIS = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function get_data_skdp_by_rg($params) {
+        $sql = "SELECT a.*,b.FS_NM_SKDP_ALASAN,c.FS_NM_SKDP_RENCANA
+        FROM PKU.dbo.TAC_RJ_SKDP a
+        LEFT JOIN PKU.dbo.TAC_COM_PARAMETER_SKDP_ALASAN b ON a.FS_SKDP_1=b.FS_KD_TRS
+        LEFT JOIN PKU.dbo.TAC_COM_PARAMETER_SKDP_RENCANA c ON a.FS_SKDP_2=c.FS_KD_TRS
+        WHERE a.FS_KD_REG = ?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+}
+>>>>>>> 32eac3804db3d59c4d1fe68233f3f224718cd11c
 
     //Cetak Lembar Verif
     function get_px_by_dokter_by_rg2($params)

@@ -110,6 +110,11 @@ $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 $route['cetak_rm/rajal/lab/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab/$1/$2';
 $route['cetak_rm/rajal/lab2/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_lab2/$1';
 $route['cetak_rm/rajal/rad/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_radiologi/$1/$2';
+<<<<<<< HEAD
 $route['cetak_rm/rajal/verif/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_verif/$1/$2';
 $route['cetak_rm/rajal/verif2/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_verif2/$1';
 $route['cetak_rm/rajal/skdp/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_skdp/$1/$2';
+=======
+$route['cetak_rm/rajal/resep/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_pengantar_resep/$1/$2';
+$route['cetak_rm/rajal/skdp/(:any)/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/cetak_surat_skdp/$1/$2';
+>>>>>>> 32eac3804db3d59c4d1fe68233f3f224718cd11c
