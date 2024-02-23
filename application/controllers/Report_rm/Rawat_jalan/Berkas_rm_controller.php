@@ -16,6 +16,7 @@ class Berkas_rm_controller extends CI_Controller
         $this->load->model('Perawat_model');
         $this->load->model('Dokter_model');
         $this->load->model('Rekam_medis_model');
+        $this->load->library('Ciqrcode');
     }
 
     //Cetak Profil Singkat
@@ -37,6 +38,17 @@ class Berkas_rm_controller extends CI_Controller
         $html = $this->load->view('nurse/rajal/cetak/profil', $data, true);
 
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    }
+
+    public function qr_testing($kodenya)
+    {
+        QRcode::png(
+            $kodenya,
+            $outfile = false,
+            $level = QR_ECLEVEL_H,
+            $size = 5,
+            $margin = 2
+        );
     }
 
     //Cetak Lembar Verif di rekam medis
@@ -187,17 +199,17 @@ class Berkas_rm_controller extends CI_Controller
 
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }
-    
+
     //Cetak pengantar resep
     public function cetak_pengantar_resep($no_registrasi, $kode_transaksi)
     {
         $this->load->library('pdfgenerator');
 
-      
+
         $data = [
             'title' => 'Cetak',
             'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
-            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi,$kode_transaksi)),
+            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi, $kode_transaksi)),
             'alamat' => $this->Rekam_medis_model->get_alamat(),
             'rekanan' => $this->Rekam_medis_model->get_pasien_by_rekanan(array($no_registrasi)),
             'antrian' => $this->Rekam_medis_model->get_antrian_obat_by_kode_transaksi(array($kode_transaksi)),
@@ -219,11 +231,11 @@ class Berkas_rm_controller extends CI_Controller
     {
         $this->load->library('pdfgenerator');
 
-      
+
         $data = [
             'title' => 'Cetak',
             'biodata' => $this->Rekam_medis_model->get_pasien_by_dokter_by_noreg(array($no_registrasi)),
-            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi,$kode_transaksi)),
+            'medis_by_noreg' => $this->Rekam_medis_model->get_medis_by_noreg(array($no_registrasi, $kode_transaksi)),
             'alamat' => $this->Rekam_medis_model->get_alamat(),
             'skdp' => $this->Rekam_medis_model->get_data_skdp_by_rg(array($no_registrasi)),
             'antrian' => $this->Rekam_medis_model->get_antrian_obat_by_kode_transaksi(array($kode_transaksi)),
