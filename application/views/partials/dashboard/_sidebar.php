@@ -154,7 +154,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('fisioterapi/list-pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'list-pasien'  ? 'active' : '') ?>">
+                            <a href="<?= base_url('fisioterapi/list_pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'list-pasien'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>CPPT Fisioterapi</p>
                             </a>

@@ -108,7 +108,11 @@ $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 
 
 // Fisioterapi
-$route['fisioterapi/list-pasien'] = 'Fisioterapi/Terapis/Terapis_controller';
+$route['fisioterapi/list_pasien'] = 'Fisioterapi/Terapis/Terapis_controller';
+$route['fisioterapi/cari_pasien'] = 'Fisioterapi/Terapis/Terapis_controller/cari_proses';
+$route['fisioterapi/cppt/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/create/$1';
+$route['fisioterapi/store'] = 'Fisioterapi/Terapis/Terapis_controller/store';
+$route['fisioterapi/delete_cppt/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/delete/$1/$2';
 
 // cetak berkas rekam medis //
 $route['cetak_rm/rajal/lab/qrcode/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/QRcode/$1';

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="" class="form-horizontal">
+                    <form action="<?php echo base_url('fisioterapi/cari_pasien'); ?>" class="form-horizontal" method="post">
                         <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-6">
@@ -35,10 +35,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                                 </div>
-                                    <select name="namapasien" id="" class="form-control select2bs4">       
-                                            <option value="tes">tes</option>
-                                            <option value="tes">tes</option>
-                                            <option value="tes">tes</option>
+                                    <select name="pasien" id="" class="form-control select2bs4"> 
+                                        <option value="" selected    disabled>-- Pilih Pasien --</option>
+                                        <?php foreach($pasiens as $pasien){?>
+                                            <option value="<?=$pasien['NO_REG']?>"><?=$pasien['NAMA_PASIEN']?></option>
+
+                                        <?php } ?>
                                     </select>
                                  </div>
                             </div>

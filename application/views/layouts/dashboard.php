@@ -87,6 +87,9 @@
     <!-- select2 -->
     <script src="<?= base_url('assets/AdminLTE/plugins/select2/js/select2.full.min.js'); ?>"></script>
 
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -107,6 +110,29 @@
             return true;
         }
     </script>
+
+<script>
+            function click_lab(){
+                
+                var getLink = $(this).attr('href');
+                Swal.fire({
+                    title: "Yakin hapus data?",            
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ya',
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: "Batal"
+                
+                }).then(result => {
+                    //jika klik ya maka arahkan ke proses.php
+                    if(result.isConfirmed){
+                        window.location.href = getLink
+                    }
+                })
+                return false;
+            };
+        </script>
 
     <?php echo footer_assets(!empty($footer) ? $footer : array()) ?>
 
