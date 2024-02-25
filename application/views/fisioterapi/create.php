@@ -74,7 +74,7 @@
             <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Tanggal dan jam Terapi</label>
+                            <label>Tanggal dan jam Terapi </label>
                             <?php 
                             $date=date('Y-m-d');
                             $time=date('h:i');
