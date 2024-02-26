@@ -13,7 +13,7 @@ class Fisioterapi_model extends CI_Model
                 LEFT JOIN DB_RSMM.dbo.REGISTER_PASIEN b ON a.NO_MR=b.NO_MR
                 LEFT JOIN DB_RSMM.dbo.PENDAFTARAN c ON a.NO_MR=c.NO_MR
                 WHERE 
-                a.TANGGAL= ? AND c.TANGGAL = ? AND c.Kode_Dokter in ('028','151')
+                a.TANGGAL= ? AND c.TANGGAL = ? AND c.Kode_Dokter in ('028','151') AND c.Status='1'
                 ORDER BY a.NOMOR";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
