@@ -38,7 +38,7 @@
                                     <select name="pasien" id="" class="form-control select2bs4"> 
                                         <option value="" selected    disabled>-- Pilih Pasien --</option>
                                         <?php foreach($pasiens as $pasien){?>
-                                            <option value="<?=$pasien['NO_REG']?>"><?=$pasien['NAMA_PASIEN']?></option>
+                                            <option value="<?=$pasien['NO_MR']?>"><?=$pasien['NAMA_PASIEN']?></option>
 
                                         <?php } ?>
                                     </select>

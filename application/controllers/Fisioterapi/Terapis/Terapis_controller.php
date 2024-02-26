@@ -29,7 +29,7 @@ class Terapis_controller extends CI_Controller
 
         $data = [
             'title' => 'Cppt Fisioterapi',
-            'content' => 'fisioterapi/cppt_fisioterapi',
+            'content' => 'fisioterapi/list_pasien_fisioterapi',
             'header' => datatable_header(),
             'footer' => datatable_footer(),
             'select2Header' => select2_header(),
@@ -44,29 +44,43 @@ class Terapis_controller extends CI_Controller
 
     public function cari_proses(){
 
-        redirect('fisioterapi/cppt/' . $this->input->post('pasien'));
+        redirect('fisioterapi/transaksi_fisio/' . $this->input->post('pasien'));
 
     }
 
-    public function create($no_register)
+    public function create($mr)
     {
 
-        $get_mr_pasien = $this->Pasien_model->find_pasien_by_register($no_register);
-        $mr = $get_mr_pasien['No_MR'];
-        // var_dump($this->input->post('pasien'));
-        // die;
         $data = [
-            'no_reg' => $no_register,
             'title' => 'Cppt Fisioterapi',
-            'content' => 'fisioterapi/create',
+            'content' => 'fisioterapi/create_transaksi',
+            'header' => datatable_header(),
+            'footer' => datatable_footer(),
+            'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr(array($mr)),
+            'transaksis' => $this->Fisioterapi_model->get_transaksi_fisioterapi_by_mr(array($mr)),
+            // 'tr_fisio' => $this->Fisioterapi_model->get_transaksi_fisioterapi_by_mr(array($mr)),
+            // 'tr_fisio' => $this->Fisioterapi_model->count_fisio_by_kode_transaksi(array('FISIO-24-00003')),
+        ];
+        // var_dump($data['tr_fisio']);
+        // die;
+        $this->load->view('layouts/dashboard', $data);
+    }
+
+    public function create_cppt($mr,$kode_transaksi)
+    {
+
+        $data = [
+            'kode_transaksi' => $kode_transaksi,
+            'title' => 'Cppt Fisioterapi',
+            'content' => 'fisioterapi/create_cppt',
             'header' => datatable_header(),
             'footer' => datatable_footer(),
             'biodata' => $this->Pasien_model->get_biodata_pasien_by_mr(array($mr)),
             'fisioterapis' => $this->Fisioterapi_model->get_medis_fisioterapi_by_mr(array($mr)),
+            
 
         ];
-        // var_dump($data['pasiens']);
-        // die;
+   
         $this->load->view('layouts/dashboard', $data);
     }
 
@@ -75,29 +89,74 @@ class Terapis_controller extends CI_Controller
 
      
 
+        $kode_transaksi = $this->Fisioterapi_model->generate_kode_transaksi_fisio();
+
+        // var_dump($this->session->userdata('user_name'));
+        // die;
+        
+        $transaksi_fisio = array(
+            $kode_transaksi,
+            $this->input->post('NO_MR_PASIEN'),
+            $this->input->post('JUMLAH_TOTAL_FISIO'),
+            date('Y-m-d'),
+            $this->session->userdata('user_name')
+        );
+
+        $this->Fisioterapi_model->insert_transaksi_fisioterapi($transaksi_fisio);
+
+        redirect ('fisioterapi/transaksi_fisio/' . $this->input->post('NO_MR_PASIEN'));
+    }
+
+    public function store_cppt(){
+
+        $jenis_terapi = $this->input->post('JENIS_TERAPI');
+        $terapi='';
+        if (!empty($jenis_terapi)) {
+            foreach ($jenis_terapi as  $value) {
+                $terapi=$value.', '.$terapi;
+            }
+        }
+
+        // var_dump($kd);
+        // die;
+        
         $cppt_fisio = array(
-            $this->input->post('ANAMNESA'),
+            $this->input->post('KD_TRANSAKSI_FISIO'),
+            $this->input->post('NO_MR'),
             $this->input->post('TEKANAN_DARAH'),
             $this->input->post('NADI'),
             $this->input->post('SUHU'),
-            $this->input->post('URUTAN_FISIO'),
-            $this->input->post('NO_MR_PASIEN'),
-            $this->input->post('TANGGAL'),
-            $this->input->post('JAM'),
-            'TERAPIS'
+            $terapi,
+            $this->input->post('TANGGAL_FISIO'),
+            $this->input->post('JAM_FISIO'),
+            $this->input->post('CARA_PULANG'),
+            date('Y-m-d'),
+            $this->session->userdata('user_name'),
+            $this->input->post('ANAMNESA')
         );
+
+        // var_dump($cppt_fisio);
+        // die;
 
         $this->Fisioterapi_model->insert_cppt_fisioterapi($cppt_fisio);
 
-        redirect ('fisioterapi/cppt/' . $this->input->post('NO_REG'));
+        redirect ('fisioterapi/cppt/' . $this->input->post('NO_MR').'/'. $this->input->post('KD_TRANSAKSI_FISIO'));
     }
 
-    public function delete($id_cppt_fisio,$no_register){
+    public function delete($id_cppt_fisio,$no_mr){
+
+
+        $this->Fisioterapi_model->delete_transaksi_fisio($id_cppt_fisio);
+
+        redirect ('fisioterapi/transaksi_fisio/' . $no_mr);
+    }
+
+    public function delete_cppt($no_mr,$kode_transaksi,$id_cppt_fisio){
 
 
         $this->Fisioterapi_model->delete_cppt_fisio($id_cppt_fisio);
 
-        redirect ('fisioterapi/cppt/' . $no_register);
+        redirect ('fisioterapi/cppt/' . $no_mr.'/'.$kode_transaksi);
     }
 
 }

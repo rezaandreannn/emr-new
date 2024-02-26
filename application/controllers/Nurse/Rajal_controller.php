@@ -498,7 +498,7 @@ class Rajal_controller extends CI_Controller
                     $this->input->post('FS_NUTRISI_ANAK2_0') ? $this->input->post('FS_NUTRISI_ANAK2_0') : '',
                     $this->input->post('FS_NUTRISI_ANAK3_0') ? $this->input->post('FS_NUTRISI_ANAK1_0') : '',
                     $this->input->post('FS_NUTRISI_ANAK4_0') ? $this->input->post('FS_NUTRISI_ANAK1_0') : '',
-                    $this->com_user['user_name'],
+                    $this->session->userdata('user_name'),
                     date('Y-m-d H:i:s'),
                 );
 

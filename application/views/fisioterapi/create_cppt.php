@@ -68,23 +68,28 @@
             </div>
 
             <div class="card-body">
-            <form action="<?php echo base_url('fisioterapi/store'); ?>" method="POST">
-            <input type="hidden" name="NO_MR_PASIEN" class="form-control" value="<?= $biodata['NO_MR'] ?>">
-            <input type="hidden" name="NO_REG" class="form-control" value="<?= $no_reg ?>">    
+            <form action="<?php echo base_url('fisioterapi/store_cppt'); ?>" method="POST">
+            <input type="hidden" name="NO_MR" class="form-control" value="<?= $biodata['NO_MR'] ?>">  
             <div class="row">
+            <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Kode Transaksi </label>
+                            <input type="text" name="KD_TRANSAKSI_FISIO" class="form-control" value="<?=$kode_transaksi?>" readonly>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tanggal dan jam</label>
                             <?php 
                             $date=date('Y-m-d');
-                            $time=date('h:i');
+                            $time=date('G:i');
                             ?>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" name="TANGGAL" class="form-control" value="<?=$date?>" readonly>
+                                    <input type="date" name="TANGGAL_FISIO" class="form-control" value="<?=$date?>" readonly>
                                 </div>
                                 <div class="col-md-6">
-                                <input type="time" name="JAM" class="form-control" value="<?=$time?>">
+                                <input type="time" name="JAM_FISIO" class="form-control" value="<?=$time?>">
                                 </div>
                             </div>
                         </div>
@@ -115,8 +120,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Jenis Terapi</label>
-                            <select name="JENIS_TERAPI" multiple id="" class="form-control select2bs4">
+                            <label>Jenis Fisio</label>
+                            <select name="JENIS_TERAPI[]" multiple id="" class="form-control select2bs4">
                                 <option value="" disabled>--Pilih--</option>
                                 <option value="TENS">TENS</option>
                                 <option value="ES">ES</option>
@@ -134,23 +139,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Fisio Yang ke : </label>
-                            <select name="URUTAN_FISIO" id="" class="form-control">
-                                <option value=""  selected disabled>--Pilih--</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                            </select>
-                           
-                        </div>
-                    </div>
+     
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Cara Pulang </label>
@@ -198,7 +187,6 @@
                         <th>Diagnosa</th>
                         <th>Terapi</th>
                         <th>Dokter</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -208,16 +196,15 @@
                     foreach($fisioterapis as $fisio){?>          
                         <tr>
                             <td width="5%"><?=$no++?></td>
-                            <td width="10%"><?=$fisio['TANGGAL']?> / <?=$fisio['JAM']?></td>
+                            <td width="10%"><?=$fisio['TANGGAL_FISIO']?> / <?=$fisio['JAM_FISIO']?></td>
                             <td width="20%"><?=$fisio['ANAMNESA']?></td>
                             <td width="20%"><?=$fisio['DIAGNOSA']?></td>
-                            <td width="20%"><?=$fisio['TERAPI']?></td>
-                            <td width="10%"><?=$fisio['DOKTER']?></td>
-                            <td width="5%"><span class="badge badge-pill badge-info"><?=$fisio['STATUS']?></span></td>
+                            <td width="20%"><?=$fisio['JENIS_FISIO']?></td>
+                            <td width="15%"><?=$fisio['KODE_DOKTER']?></td>
                             
                             <td width="30%"><a href="" class="btn btn-xs btn-warning"><i class="fa fa-edit"> Edit</i></a>
                         
-                            <a href="<?php echo base_url('fisioterapi/delete_cppt/'.$fisio['ID_CPPT_FISIO'].'/'.$no_reg); ?>" class="btn btn-xs btn-danger" onclick="click_hapus(this)"><i class="fa fa-trash"> Hapus</i></a></td>
+                            <a href="<?php echo base_url('fisioterapi/delete_cppt/'.$biodata['NO_MR'].'/'.$fisio['KD_TRANSAKSI_FISIO'].'/'.$fisio['ID_CPPT_FISIO']); ?>" class="btn btn-xs btn-danger" onclick="click_hapus(this)"><i class="fa fa-trash"> Hapus</i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
