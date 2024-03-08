@@ -179,9 +179,13 @@
 					<td width="300">Fisioterapis</td>
 					<td>Yang membuat pernyataan</td>
 				</tr>
+				<?php 
+					$get_ttd = $this->Tanda_tangan_model->get_ttd(array($informed_concent['CREATE_BY']));
+					$get_ttd_pasien = $this->Tanda_tangan_model->get_ttd_pasien(array($biodata['NO_MR']));
+				?>
 				<tr>
-					<td><img src="barcode.png" alt="" width="90" height="90" /></td>
-					<td><img src="barcode.png" alt="" width="90" height="90" /></td>
+					<td><img src="<?php echo base_url($get_ttd['IMAGE'])?>" alt="" width="90" height="90" /></td>
+					<td><img src="<?php echo base_url($get_ttd_pasien['IMAGE'])?>" alt="" width="90" height="90" /></td>
 				</tr>
 				<tr>
 					<td width="300">(<?=$informed_concent['NamaLengkap']?>)</td>

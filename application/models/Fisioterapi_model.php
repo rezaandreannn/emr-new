@@ -189,6 +189,23 @@ class Fisioterapi_model extends CI_Model
             return array();
         }
     }
+    
+    //get data transaksi fisio rajal by kode transaksi
+    function get_transaksi_fisioterapi_by_kode_transaksi($params="")
+    {
+
+        
+        $sql = "SELECT * FROM PKU.dbo.TRANSAKSI_FISIOTERAPI
+                WHERE KODE_TRANSAKSI_FISIO=?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
 
        // get data INFORMED CONCENT
        function get_informed_concent_by_noreg($params = "")

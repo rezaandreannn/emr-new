@@ -62,6 +62,20 @@ class Tanda_tangan_model extends CI_Model
         return 0;
      }
  }
+ function cek_ttd_dokter($params="")
+ {
+     $sql = "SELECT a.*
+             FROM PKU.dbo.TTD_PETUGAS_MASTER a
+             where a.USERNAME=? and a.STATUS='Dokter'";
+     $query = $this->db->query($sql, $params);
+     if ($query->num_rows() > 0) {
+         $result = $query->num_rows();
+         $query->free_result();
+         return $result;
+     } else {
+        return 0;
+     }
+ }
 
  function cek_ttd_pasien($params="")
  {
@@ -87,7 +101,24 @@ class Tanda_tangan_model extends CI_Model
                  WHERE a.USERNAME=? ";
          $query = $this->db->query($sql, $params);
          if ($query->num_rows() > 0) {
-             $result = $query->result_array();
+             $result = $query->row_array();
+             $query->free_result();
+             return $result;
+         } else {
+             return array();
+         }
+     }
+
+     //get ttd petugas
+     function get_ttd_pasien($params="")
+     {
+ 
+         
+         $sql = "SELECT a.* from PKU.dbo.TTD_PASIEN_MASTER a
+                 WHERE a.NO_MR_PASIEN=? ";
+         $query = $this->db->query($sql, $params);
+         if ($query->num_rows() > 0) {
+             $result = $query->row_array();
              $query->free_result();
              return $result;
          } else {
@@ -103,7 +134,7 @@ class Tanda_tangan_model extends CI_Model
                  WHERE a.USERNAME=? AND STATUS='Dokter'";
          $query = $this->db->query($sql, $params);
          if ($query->num_rows() > 0) {
-             $result = $query->result_array();
+             $result = $query->row_array();
              $query->free_result();
              return $result;
          } else {

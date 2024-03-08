@@ -43,7 +43,7 @@
        
                     <div class="card-footer">
                         <div class="text-right">
-                        <a href="<?php echo base_url('fisioterapi/transaksi_fisio/'.$biodata['NO_MR'])?>"class="btn btn-sm btn-info"><i class="fas fa-arrow-left"> Kembali</i></a>
+                        <a href="<?php echo base_url('fisioterapi/cppt/'.$biodata['NO_MR'].'/'.$kode_transaksi)?>"class="btn btn-sm btn-info"><i class="fas fa-arrow-left"> Kembali</i></a>
                             <a href="#" class="btn btn-sm btn-primary">
                                 <i class="fas fa-user"></i> Detail
                             </a>
@@ -126,11 +126,11 @@
                         <div class="form-group">
                             <label>Jenis Fisio</label>
                             <select name="JENIS_TERAPI[]" multiple id="" class="form-control select2bs4">
-                            {if in_array('Asi Ekslusif', $discharge)}checked="checked"{/if}
+                          
                                 <option value="" disabled>--Pilih--</option>
                                 
-
-                                <option value="TENS" <?php if (in_array('TENS',$jenis_fisio)){echo 'selected';}?>>TENS</option>
+                                
+                                <option value="TENS" <?php if  (in_array('TENS',$jenis_fisio)){echo 'selected';}?>>TENS</option>
                                 <option value="ES" <?php if (in_array('ES',$jenis_fisio)){echo 'selected';}?>>ES</option>
                                 <option value="INFRARED" <?php if (in_array('INFRARED',$jenis_fisio)){echo 'selected';}?>>INFRARED</option>
                                 <option value="MWD" <?php if (in_array('MWD',$jenis_fisio)){echo 'selected';}?>>MWD</option>

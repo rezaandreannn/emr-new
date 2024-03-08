@@ -75,7 +75,7 @@
         <td>S = <?= $cppt['ANAMNESA']?>
             <br>O = TD = <?= $cppt['TEKANAN_DARAH']?>, N = <?= $cppt['NADI']?> , T = <?= $cppt['SUHU']?></td>
         <td><?= $cppt['DIAGNOSA']?></td>
-        <td></td>
+        <td><?= $cppt['JENIS_FISIO']?></td>
         <td><?php if ($cppt['KODE_DOKTER']!=''){
            echo $dokter['Nama_Dokter'];
         }else {

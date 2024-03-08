@@ -154,7 +154,7 @@ class Terapis_controller extends CI_Controller
          $data = array();
          $string = $jenis_terapi_fisio['JENIS_FISIO'];
          $string = trim($string, ','); // Menghapus koma di awal dan akhir string (jika ada)
- 
+        $jenis_fisio=array();
          if (!empty($string)) {
              $jenis_fisio = explode(', ', $string);
          }
@@ -268,45 +268,62 @@ class Terapis_controller extends CI_Controller
 
     public function store_cppt(){
 
-        $jenis_terapi = $this->input->post('JENIS_TERAPI');
-        $terapi='';
-        if (!empty($jenis_terapi)) {
-            foreach ($jenis_terapi as  $value) {
-                $terapi=$value.', '.$terapi;
-            }
-        }
-
-        // var_dump($kd);
-        // die;
-        
-        $cppt_fisio = array(
-            $this->input->post('KD_TRANSAKSI_FISIO'),
-            $this->input->post('NO_MR'),
-            $this->input->post('TEKANAN_DARAH'),
-            $this->input->post('NADI'),
-            $this->input->post('SUHU'),
-            $terapi,
-            $this->input->post('TANGGAL_FISIO'),
-            $this->input->post('JAM_FISIO'),
-            $this->input->post('CARA_PULANG'),
-            date('Y-m-d'),
-            $this->session->userdata('user_name'),
-            $this->input->post('ANAMNESA')
-        );
-
-        // var_dump($cppt_fisio);
-        // die;
-
-        $this->Fisioterapi_model->insert_cppt_fisioterapi($cppt_fisio);
-        $cek_ttd_pasien = $this->Tanda_tangan_model->cek_ttd_pasien(array($this->input->post('NO_MR')));
-        if($cek_ttd_pasien<'1'){
-       
-            redirect('fisioterapi/ttd_pasien/'.$this->input->post('NO_MR').'/'.$this->input->post('KD_TRANSAKSI_FISIO'));
-        }
-        else {
-            echo $this->session->set_flashdata('success', 'Data telah berhasil di simpan');
+        $this->form_validation->set_rules('ANAMNESA', 'ANAMNESA', 'required');
+        if ($this->form_validation->run() !== false) {
+            $cek_jumlah_fisio = $this->Fisioterapi_model->count_fisio_by_kode_transaksi(array($this->input->post('KD_TRANSAKSI_FISIO')));  
+            $transaksis = $this->Fisioterapi_model->get_transaksi_fisioterapi_by_kode_transaksi(array($this->input->post('KD_TRANSAKSI_FISIO')));
+            $jumlah_transaksi=$transaksis['JUMLAH_TOTAL_FISIO'];
+     
+        if($cek_jumlah_fisio>=$jumlah_transaksi){
+            echo $this->session->set_flashdata('warning', 'jumlah cppt tidak boleh melebihi maksimal terapi yaitu '.$jumlah_transaksi . ' kali');
             redirect ('fisioterapi/cppt/' . $this->input->post('NO_MR').'/'. $this->input->post('KD_TRANSAKSI_FISIO'));
         }
+        else{
+            $jenis_terapi = $this->input->post('JENIS_TERAPI');
+            $terapi='';
+            if (!empty($jenis_terapi)) {
+                foreach ($jenis_terapi as  $value) {
+                    $terapi=$value.', '.$terapi;
+                }
+            }
+    
+            // var_dump($kd);
+            // die;
+            
+            $cppt_fisio = array(
+                $this->input->post('KD_TRANSAKSI_FISIO'),
+                $this->input->post('NO_MR'),
+                $this->input->post('TEKANAN_DARAH'),
+                $this->input->post('NADI'),
+                $this->input->post('SUHU'),
+                $terapi,
+                $this->input->post('TANGGAL_FISIO'),
+                $this->input->post('JAM_FISIO'),
+                $this->input->post('CARA_PULANG'),
+                date('Y-m-d'),
+                $this->session->userdata('user_name'),
+                $this->input->post('ANAMNESA')
+            );
+    
+            // var_dump($cppt_fisio);
+            // die;
+    
+            $this->Fisioterapi_model->insert_cppt_fisioterapi($cppt_fisio);
+            $cek_ttd_pasien = $this->Tanda_tangan_model->cek_ttd_pasien(array($this->input->post('NO_MR')));
+            if($cek_ttd_pasien<'1'){
+           
+                redirect('fisioterapi/ttd_pasien/'.$this->input->post('NO_MR').'/'.$this->input->post('KD_TRANSAKSI_FISIO'));
+            }
+            else {
+                echo $this->session->set_flashdata('success', 'Data telah berhasil di simpan');
+                redirect ('fisioterapi/cppt/' . $this->input->post('NO_MR').'/'. $this->input->post('KD_TRANSAKSI_FISIO'));
+            }
+        }
+        
+    }else{
+        echo $this->session->set_flashdata('warning', 'pastikan data sudah di isi dengan sesuai');
+        redirect ('fisioterapi/cppt/' . $this->input->post('NO_MR').'/'. $this->input->post('KD_TRANSAKSI_FISIO'));
+    }
     }
 
 

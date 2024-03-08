@@ -144,29 +144,32 @@
             <?php $no=1; 
             foreach ($medis_cppt_fisio as $cppt){
             $cek_ttd = $this->Tanda_tangan_model->cek_ttd_petugas(array($cppt['CREATE_BY']));
+            $cek_ttd_dokter = $this->Tanda_tangan_model->cek_ttd_dokter(array($cppt['KODE_DOKTER']));
             $get_ttd = $this->Tanda_tangan_model->get_ttd(array($cppt['CREATE_BY']));
+            $get_ttd_pasien = $this->Tanda_tangan_model->get_ttd_pasien(array($cppt['NO_MR']));
             $get_ttd_dokter = $this->Tanda_tangan_model->get_ttd_dokter(array($cppt['KODE_DOKTER']));
             ?>
             <tr>
               <td style="text-align: center"><?= $no++?></td>
               <td style="text-align: center"><?= $cppt['JENIS_FISIO']?></td>
               <td style="text-align: center"><?= $cppt['TANGGAL_FISIO']?></td>
-              <td style="text-align: center"></td>
+              <td style="text-align: center"> 
+              <img src="<?php echo base_url($get_ttd_pasien['IMAGE'])?>" width="35" height="35" /></td>
               <td style="text-align: center">
-              <?php if ($cek_ttd>='1'){
-              foreach ($get_ttd_dokter as $ttd_dokter){?>
-            <img src="<?php echo base_url($ttd_dokter['IMAGE'])?>" width="35" height="35" />
-             <?php }
+              <?php if ($cek_ttd_dokter>='1'){?>
+             
+            <img src="<?php echo base_url($get_ttd_dokter['IMAGE'])?>" width="35" height="35" />
+             <?php 
               } else {
                 echo '';
               } ?>
             </td>
               <td style="text-align: center">
-              <?php if ($cek_ttd>='1'){
-              foreach ($get_ttd as $ttd){?>
-            <img src="<?php echo base_url($ttd['IMAGE'])?>" width="35" height="35" />
-             <?php }
-              } else {
+              <?php if ($cek_ttd>='1'){?>
+            
+            <img src="<?php echo base_url($get_ttd['IMAGE'])?>" width="35" height="35" />
+            
+             <?php  } else {
                 echo '';
               } ?>
               </td>
@@ -187,7 +190,11 @@
         </tr>
         <tr>
           <td width="60%" class="text5"></td>
-          <td class="text5" style="padding-top: 50px;">(<?=$dokter['Nama_Dokter']?>)</td>
+          <td class="text5" style="padding-top: 10px;"><img src="<?php echo base_url($get_ttd_dokter['IMAGE'])?>" width="65" height="65" /></td>
+        </tr>
+        <tr>
+          <td width="60%" class="text5"></td>
+          <td class="text5" style="padding-top: 15px;">(<?=$dokter['Nama_Dokter']?>)</td>
         </tr>
       </table>
   </body>
