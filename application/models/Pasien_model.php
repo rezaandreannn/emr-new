@@ -109,7 +109,26 @@ class Pasien_model extends CI_Model
         }
     }
 
-    function get_biodata_pasien_by_mr_dokter($params)
+    function get_biodata_pasien_by_mr_datenow($params)
+    {
+
+     
+        $sql = "SELECT top 1 a.NAMA_PASIEN,a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI,JENIS_KELAMIN,
+        a.TGL_LAHIR,FS_ALERGI,a.FS_REAK_ALERGI,a.FS_RIW_PENYAKIT_DAHULU,a.FS_RIW_PENYAKIT_DAHULU2, b.No_MR, b.No_Reg
+        FROM DB_RSMM.dbo.REGISTER_PASIEN a
+        LEFT JOIN DB_RSMM.dbo.PENDAFTARAN b ON a.NO_MR = b.No_MR 
+        WHERE a.NO_MR = ? and b.Tanggal=?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    function get_biodata_pasien_by_noreg_dokter($params)
     {
         $sql = "SELECT b.NO_REG,a.NAMA_PASIEN, a.NO_MR,a.HP2,a.HP1, a.ALAMAT, a.KOTA, a.PROVINSI, A.JENIS_KELAMIN,
         a.TGL_LAHIR,c.SPESIALIS, c.NAMA_DOKTER, E.NAMAREKANAN,

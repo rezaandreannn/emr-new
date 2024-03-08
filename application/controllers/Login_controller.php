@@ -34,6 +34,8 @@ class Login_controller extends CI_Controller
                     'user_id' => $User['user_id'],
                     'role_id' => $User['role_id'],
                     'user_name' => $User['user_name'],
+                    'role_nm' => $User['role_nm'],
+                    'portal_id' => $User['portal_id'],
 
                 );
 

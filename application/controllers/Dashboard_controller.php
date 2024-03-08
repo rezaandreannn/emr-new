@@ -14,12 +14,16 @@ class Dashboard_controller extends CI_Controller
             redirect($url);
         }
         $this->load->model('Login_model');
+        $this->load->model('Permissions_model');
     }
 
 
 
     public function index()
     {
+
+        // var_dump($this->session->userdata('portal_id'));
+        // die;
 
         $data = [
             'title' => 'Rawat Jalan',

@@ -41,6 +41,7 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
+      
                 <li class="nav-item <?= ($this->uri->segment(1) == 'prwt'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'prwt'  ? 'active' : '') ?>">
                         <i class="nav-icon fas fa-user-nurse"></i>
@@ -72,7 +73,7 @@
                 </li>
                 <li class="nav-item <?= ($this->uri->segment(1) == 'igd'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'igd'  ? 'active' : '') ?>">
-                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <i class="nav-icon fas fa-hospital"></i>
                         <p>
                             Layanan IGD
                             <i class="right fas fa-angle-left"></i>
@@ -120,9 +121,10 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item <?= ($this->uri->segment(1) == 'rm'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'rm'  ? 'active' : '') ?>">
-                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <i class="nav-icon fas fa-history"></i>
                         <p>
                             Riwayat Rekam Medis
                             <i class="right fas fa-angle-left"></i>
@@ -146,7 +148,7 @@
 
                 <li class="nav-item <?= ($this->uri->segment(1) == 'fisioterapi'  ? 'menu-open' : '') ?>">
                     <a href="#" class="nav-link <?= ($this->uri->segment(1) == 'fisioterapi'  ? 'active' : '') ?>">
-                        <i class="nav-icon fas fa-user-nurse"></i>
+                        <i class="nav-icon fas fa-notes-medical"></i>
                         <p>
                             Fisioterapi
                             <i class="right fas fa-angle-left"></i>
@@ -154,13 +156,28 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('fisioterapi/list_pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'list-pasien'  ? 'active' : '') ?>">
+                            <a href="<?= base_url('fisioterapi/list_pasien') ?>" class="nav-link <?= ($this->uri->segment(2) == 'list_pasien'  ? 'active' : '') ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>CPPT Fisioterapi</p>
                             </a>
                         </li>
 
                     </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('fisioterapi/informed_concent') ?>" class="nav-link <?= ($this->uri->segment(2) == 'informed_concent'  ? 'active' : '') ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Informed Concent</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('ttd/list-ttd') ?>" class="nav-link <?= ($this->uri->uri_string() === 'ttd/list-ttd') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-signature"></i>
+                        <p> Tanda Tangan Petugas</p>
+                    </a>
                 </li>
                 <li class="nav-header">ADMINISTRATOR</li>
                 <li class="nav-item">

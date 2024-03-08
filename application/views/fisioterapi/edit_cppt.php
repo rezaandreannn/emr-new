@@ -57,18 +57,6 @@
 
 
     <div class="card card-secondary">
-        <div class="container">
-        <?php if ($this->session->flashdata('warning')) : ?>
-                        <div class="alert alert-warning">
-                            <?php echo $this->session->flashdata('warning'); ?>
-                        </div>
-                    <?php endif; ?>
-                    <?php if ($this->session->flashdata('success')) : ?>
-                        <div class="alert alert-success">
-                            <?php echo $this->session->flashdata('success'); ?>
-                        </div>
-                    <?php endif; ?>
-        </div>
             <div class="card-header card-success">
                 <h3 class="card-title">Tambah Data CPPT Fisioterapi</h3>
                 <div class="card-tools">
@@ -82,12 +70,13 @@
             </div>
 
             <div class="card-body">
-            <form action="<?php echo base_url('fisioterapi/store_cppt'); ?>" method="POST">
+            <form action="<?php echo base_url('fisioterapi/update_cppt'); ?>" method="POST">
             <input type="hidden" name="NO_MR" class="form-control" value="<?= $biodata['NO_MR'] ?>">  
             <div class="row">
             <div class="col-md-6">
                         <div class="form-group">
                             <label>Kode Transaksi </label>
+                            <input type="hidden" name="ID_CPPT_FISIO" class="form-control" value="<?= $edit_fisioterapi['ID_CPPT_FISIO']  ?>">
                             <input type="text" name="KD_TRANSAKSI_FISIO" class="form-control" value="<?=$kode_transaksi?>" readonly>
                         </div>
                     </div>
@@ -112,45 +101,48 @@
                     <div class="col-md-6">
                             <div class="form-group">
                                 <label>Anamnesa / Allow Anamnesa <code>*</code></label>
-                                <textarea class="form-control" rows="2" name="ANAMNESA" value="<?= set_value('FS_ANAMNESA'); ?>" placeholder="Masukan ..."></textarea>
+                                <textarea class="form-control" rows="2" name="ANAMNESA"><?= $edit_fisioterapi['ANAMNESA']  ?></textarea>
                             </div>
                         </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tekanan Darah</label>
-                            <input type="text" name="TEKANAN_DARAH" class="form-control">
+                            <input type="text" name="TEKANAN_DARAH" class="form-control" value="<?= $edit_fisioterapi['TEKANAN_DARAH']  ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nadi</label>
-                            <input type="text" name="NADI" class="form-control">
+                            <input type="text" name="NADI" class="form-control" value="<?= $edit_fisioterapi['NADI']  ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Suhu</label>
-                            <input type="text" name="SUHU" class="form-control">
+                            <input type="text" name="SUHU" class="form-control" value="<?= $edit_fisioterapi['SUHU']  ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Jenis Fisio</label>
                             <select name="JENIS_TERAPI[]" multiple id="" class="form-control select2bs4">
+                            {if in_array('Asi Ekslusif', $discharge)}checked="checked"{/if}
                                 <option value="" disabled>--Pilih--</option>
-                                <option value="TENS">TENS</option>
-                                <option value="ES">ES</option>
-                                <option value="INFRARED">INFRARED</option>
-                                <option value="MWD">MWD</option>
-                                <option value="SWD">SWD</option>
-                                <option value="ULTRASOND">ULTRASOND</option>
-                                <option value="ICING">ICING</option>
-                                <option value="KINESIOTAPING">KINESIOTAPING</option>
-                                <option value="EXERCISE">EXERCISE</option>
-                                <option value="FASILITASI & STIMULASI">FASILITASI & STIMULASI</option>
-                                <option value="ROM EXERCISE">ROM EXERCISE</option>
-                                <option value="STRENGTHNING">STRENGTHNING</option>
-                                <option value="CHEST THERAPY">CHEST THERAPY</option>
+                                
+
+                                <option value="TENS" <?php if (in_array('TENS',$jenis_fisio)){echo 'selected';}?>>TENS</option>
+                                <option value="ES" <?php if (in_array('ES',$jenis_fisio)){echo 'selected';}?>>ES</option>
+                                <option value="INFRARED" <?php if (in_array('INFRARED',$jenis_fisio)){echo 'selected';}?>>INFRARED</option>
+                                <option value="MWD" <?php if (in_array('MWD',$jenis_fisio)){echo 'selected';}?>>MWD</option>
+                                <option value="SWD" <?php if (in_array('SWD',$jenis_fisio)){echo 'selected';}?>>SWD</option>
+                                <option value="ULTRASOND" <?php if (in_array('ULTRASOND',$jenis_fisio)){echo 'selected';}?>>ULTRASOND</option>
+                                <option value="ICING" <?php if (in_array('ICING',$jenis_fisio)){echo 'selected';}?>>ICING</option>
+                                <option value="KINESIOTAPING" <?php if (in_array('KINESIOTAPING',$jenis_fisio)){echo 'selected';}?>>KINESIOTAPING</option>
+                                <option value="EXERCISE" <?php if (in_array('EXERCISE',$jenis_fisio)){echo 'selected';}?>>EXERCISE</option>
+                                <option value="FASILITASI & STIMULASI" <?php if (in_array('FASILITASI & STIMULASI',$jenis_fisio)){echo 'selected';}?>>FASILITASI & STIMULASI</option>
+                                <option value="ROM EXERCISE" <?php if (in_array('ROM EXERCISE',$jenis_fisio)){echo 'selected';}?>>ROM EXERCISE</option>
+                                <option value="STRENGTHNING" <?php if (in_array('STRENGTHNING',$jenis_fisio)){echo 'selected';}?>>STRENGTHNING</option>
+                                <option value="CHEST THERAPY" <?php if (in_array('CHEST THERAPY',$jenis_fisio)){echo 'selected';}?>>CHEST THERAPY</option>
                             </select>
                         </div>
                     </div>
@@ -160,8 +152,8 @@
                             <label>Cara Pulang </label>
                             <select name="CARA_PULANG" id="" class="form-control" >
                                 <option value=""  selected disabled>--Pilih--</option>
-                                <option value="KONSULTASI">KONSULTASI</option>
-                                <option value="RUJUK">RUJUK</option>
+                                <option value="KONSULTASI" <?=$edit_fisioterapi['CARA_PULANG']=='KONSULTASI' ? 'selected' : ''?>>KONSULTASI</option>
+                                <option value="RUJUK" <?=$edit_fisioterapi['CARA_PULANG']=='RUJUK' ? 'selected' : ''?>>RUJUK</option>
                             </select>
                            
                         </div>
@@ -191,136 +183,9 @@
     </div>
 
 
-    
-    <div class="card bg-light d-flex flex-fill">
-    <div class="card-body">
-
-        <div class="table-responsive">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>Tanggal & jam</th>
-                        <th>Anamnesa & Pemeriksaan</th>
-                        <th>Diagnosa</th>
-                        <th>Terapi</th>
-                        <th>Dokter</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $date=date('Y-m-d');
-                    $no=1; 
-                    foreach($fisioterapis as $fisio){?>          
-                        <tr>
-                            <td width="5%"><?=$no++?></td>
-                            <td width="10%"><?= date('d-m-Y', strtotime($fisio['TANGGAL_FISIO'])) ?>/ <?= date('G:i', strtotime($fisio['JAM_FISIO'])) ?></td>
-                            <td width="20%"><?=$fisio['ANAMNESA']?></td>
-                            <td width="20%"><?=$fisio['DIAGNOSA']?></td>
-                            <td width="20%"><?=$fisio['JENIS_FISIO']?></td>
-                            <td width="15%">
-                            <?php if ($fisio['KODE_DOKTER']!=''){
-                                    echo $dokter['Nama_Dokter'];
-                                    }else {
-                                        echo '';
-                                    } ?>
-                            </td>
-                            
-                            <td width="30%">
-                            <?php if ($date==$fisio['TANGGAL_FISIO']){?>
-
-                                <a href="<?php echo base_url('fisioterapi/edit_cppt/'.$biodata['NO_MR'].'/'.$fisio['KD_TRANSAKSI_FISIO'].'/'.$fisio['ID_CPPT_FISIO']); ?>" class="btn btn-xs btn-warning"><i class="fa fa-edit"> Edit</i></a>
-                            
-                                <a href="<?php echo base_url('fisioterapi/delete_cppt/'.$biodata['NO_MR'].'/'.$fisio['KD_TRANSAKSI_FISIO'].'/'.$fisio['ID_CPPT_FISIO']); ?>" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="fa fa-trash"> Hapus</i></a>
-                            <?php } else{
-
-                            } ?>    
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-
-
 </section>
 
-<!-- modal cppt -->
-<div class="modal fade" id="modal-cppt">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Cetak CPPT</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Awal Fisioterapi </label>
-                                <input type="date" name="TANGGAL_AWAL" class="form-control">      
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Akhir Fisioterapi </label>
-                                <input type="date" name="TANGGAL_AKHIR" class="form-control">      
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class="card-footer text-left">
-                <button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- modal bukti-pelayanan -->
-<div class="modal fade" id="modal-bukti-pelayanan">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Cetak Bukti Pelayanan</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Awal Fisioterapi </label>
-                                <input type="date" name="TANGGAL_AWAL" class="form-control">      
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Akhir Fisioterapi </label>
-                                <input type="date" name="TANGGAL_AKHIR" class="form-control">      
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card-footer text-left">
-                <button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
          // Mendapatkan elemen input waktu

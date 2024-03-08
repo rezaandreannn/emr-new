@@ -176,6 +176,7 @@ class Berkas_rm_controller extends CI_Controller
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }
 
+
     //Cetak pengantar radiologi
     public function cetak_pengantar_radiologi($no_registrasi, $kode_transaksi)
     {

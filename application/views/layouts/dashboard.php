@@ -29,6 +29,15 @@
     <!-- select2 -->
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/select2/css/select2.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
+
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/ttd/css/jquery.signature.css');?>">
+    <style>
+        .kbw-signature { width: 250px; height: 250px;}
+        #sig canvas{
+            width: 100% !important;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -89,6 +98,11 @@
 
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+        
+    <script type="text/javascript" src="<?= base_url('assets/ttd/js/jquery.signature.min.js');?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/ttd/js/jquery.ui.touch-punch.min.js');?>"></script>
+
+  
 
     <script>
         $(function() {
@@ -110,6 +124,16 @@
             return true;
         }
     </script>
+
+
+<script type="text/javascript">
+    var sig =  $("#signat").signature({syncField: "#signature64", syncFormat: "PNG"});
+    $('#clear').click(function(e) {
+        e.preventDefault();
+        sig.signature('clear');
+        $("#signature64").val('');
+    });
+</script>
 
 <script>
             function click_lab(){

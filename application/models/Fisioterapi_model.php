@@ -42,6 +42,126 @@ class Fisioterapi_model extends CI_Model
         }
     }
 
+    //get data medis fisio rajal by id (edit)
+    function get_medis_fisioterapi_by_id($params="")
+    {
+
+        
+        $sql = "SELECT * FROM PKU.dbo.TR_CPPT_FISIOTERAPI
+                WHERE ID_CPPT_FISIO=?";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    //get data medis fisio rajal by dokter
+    function get_medis_fisioterapi_by_kode_transaksi($params="")
+    {
+
+        
+        $sql = "SELECT top 1 a.* from PKU.dbo.TR_CPPT_FISIOTERAPI a
+                WHERE a.KD_TRANSAKSI_FISIO=? ORDER BY a.ID_CPPT_FISIO ASC";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    //get data medis fisio rajal by dokter
+    function get_dokter_by_mr_transaksi_fisio($params="")
+    {
+
+        
+        $sql = "SELECT top 1 a.*, c.Nama_Dokter from PKU.dbo.TR_CPPT_FISIOTERAPI a
+                LEFT JOIN DB_RSMM.dbo.DOKTER c ON a.Kode_Dokter=c.Kode_Dokter
+                WHERE a.KD_TRANSAKSI_FISIO=? ORDER BY a.ID_CPPT_FISIO ASC";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+    //get data medis fisio rajal by dokter
+    function get_medis_fisioterapi_by_kode_transaksi_max($params="")
+    {
+
+        
+        $sql = "SELECT top 1 a.* from PKU.dbo.TR_CPPT_FISIOTERAPI a
+                WHERE a.KD_TRANSAKSI_FISIO=? ORDER BY a.ID_CPPT_FISIO desc";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    //get data medis fisio rajal by dokter
+    function get_medis_cppt_fisioterapi_by_kode_transaksi($params="")
+    {
+
+        
+        $sql = "SELECT a.*, b.IMAGE from PKU.dbo.TR_CPPT_FISIOTERAPI a
+                    LEFT JOIN PKU.dbo.TTD_PETUGAS_MASTER b on a.CREATE_BY=b.USERNAME
+                WHERE a.KD_TRANSAKSI_FISIO=? ORDER BY a.ID_CPPT_FISIO desc";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+
+    //get data medis fisio rajal by dokter
+    function get_medis_cppt_fisioterapi_by_kode_transaksi_cppt($params="")
+    {
+
+        
+        $sql = "SELECT a.* from PKU.dbo.TR_CPPT_FISIOTERAPI a
+                WHERE a.KD_TRANSAKSI_FISIO=? ORDER BY a.ID_CPPT_FISIO asc";
+        $query = $this->db->query($sql, $params);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    function update_total_cppt_fisioterapi($params)
+    {
+        $sql = "UPDATE PKU.dbo.TRANSAKSI_FISIOTERAPI SET JUMLAH_TOTAL_FISIO = ?
+        WHERE ID_TRANSAKSI = ?";
+        return $this->db->query($sql, $params);
+
+    }   
+ 
+
+    function update_cppt_fisioterapi($params)
+    {
+        $sql = "UPDATE PKU.dbo.TR_CPPT_FISIOTERAPI SET KD_TRANSAKSI_FISIO = ?,NO_MR= ?,TEKANAN_DARAH = ?,NADI = ?,SUHU = ?,JENIS_FISIO = ?,TANGGAL_FISIO = ?,JAM_FISIO = ?,CARA_PULANG = ?,CREATE_AT = ?,CREATE_BY = ?,ANAMNESA = ?
+         WHERE ID_CPPT_FISIO = ?";
+        return $this->db->query($sql, $params);
+    }
+
     //hitung fisio yang sudah dilakukan by mr
     function count_fisio_by_kode_transaksi($params="")
     {
@@ -70,11 +190,49 @@ class Fisioterapi_model extends CI_Model
         }
     }
 
+       // get data INFORMED CONCENT
+       function get_informed_concent_by_noreg($params = "")
+       {
+           $sql = "SELECT A.*
+           FROM PKU.dbo.INFORMED_CONCENT_FISIOTERAPI A
+           WHERE  A.KODE_REGISTER = ? ";
+           $query = $this->db->query($sql, $params);
+           if ($query->num_rows() > 0) {
+               $result = $query->num_rows();
+               $query->free_result();
+               return $result;
+           } else {
+               return 0;
+           }
+       }
+
+       function get_data_informed_concent_by_noreg($params = "")
+       {
+           $sql = "SELECT A.*, B.NamaLengkap
+           FROM PKU.dbo.INFORMED_CONCENT_FISIOTERAPI A
+           LEFT JOIN DB_RSMM.dbo.TUSER B on A.CREATE_BY = B.NamaUser
+           WHERE  A.KODE_REGISTER = ? ";
+           $query = $this->db->query($sql, $params);
+           if ($query->num_rows() > 0) {
+               $result = $query->row_array();
+               $query->free_result();
+               return $result;
+           } else {
+               return array();
+           }
+       }
     
     function insert_cppt_fisioterapi($params)
     {
         $sql = "INSERT INTO PKU.dbo.TR_CPPT_FISIOTERAPI(KD_TRANSAKSI_FISIO,NO_MR,TEKANAN_DARAH,NADI,SUHU,JENIS_FISIO,TANGGAL_FISIO,JAM_FISIO,CARA_PULANG, CREATE_AT,CREATE_BY,ANAMNESA)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return $this->db->query($sql, $params);
+    }
+
+    function insert_inform_concent_fisioterapi($params)
+    {
+        $sql = "INSERT INTO PKU.dbo.INFORMED_CONCENT_FISIOTERAPI(KODE_REGISTER,CREATE_AT,CREATE_BY,IDENTIFIKASI,RUANGAN, JAM)
+    VALUES (?,?,?,?,?,?)";
         return $this->db->query($sql, $params);
     }
 

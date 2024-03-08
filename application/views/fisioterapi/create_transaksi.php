@@ -54,6 +54,16 @@
     
     <div class="card bg-light d-flex flex-fill">
     <div class="card-body">
+    <?php if ($this->session->flashdata('warning')) : ?>
+                        <div class="alert alert-warning">
+                            <?php echo $this->session->flashdata('warning'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($this->session->flashdata('success')) : ?>
+                        <div class="alert alert-success">
+                            <?php echo $this->session->flashdata('success'); ?>
+                        </div>
+                    <?php endif; ?>
     <div class="text-left mb-2">
             <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-add-tranksasi">
                 <i class="fas fa-plus"></i> TAMBAH TRANSAKSI
@@ -103,11 +113,11 @@
                                 
                               <?php  }?>
                               
-                              <a href="<?php echo base_url('fisioterapi/delete_transaksi/'.$transaksi['ID_TRANSAKSI'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-secondary" ><i class="fa fa-print"> CPPT</i></a>
-                              <a href="<?php echo base_url('fisioterapi/delete_transaksi/'.$transaksi['ID_TRANSAKSI'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-secondary" ><i class="fa fa-print"> Bukti Pelayanan</i></a>
+                              <a href="<?php echo base_url('fisioterapi/cetak_cppt/'.$transaksi['KODE_TRANSAKSI_FISIO'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-secondary" ><i class="fa fa-print"> CPPT</i></a>
+                              <a href="<?php echo base_url('fisioterapi/cetak_bukti_pelayanan/'.$transaksi['KODE_TRANSAKSI_FISIO'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-secondary" ><i class="fa fa-print"> Bukti Pelayanan</i></a>
                                 <button class="btn btn-xs btn-warning"><i class="fa fa-edit"  data-toggle="modal" data-target="#modal-edit-tranksasi<?=$transaksi['ID_TRANSAKSI']?>"> Edit</i></button>
                         
-                            <a href="<?php echo base_url('fisioterapi/delete_transaksi/'.$transaksi['ID_TRANSAKSI'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-danger" onclick="click_hapus(this)"><i class="fa fa-trash"> Hapus</i></a>
+                            <a href="<?php echo base_url('fisioterapi/delete_transaksi/'.$transaksi['ID_TRANSAKSI'].'/'.$biodata['NO_MR']); ?>" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="fa fa-trash"> Hapus</i></a>
                         </td>
                         </tr>
                     <?php } ?>
@@ -143,7 +153,7 @@
                     </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Jumlah Maksimal Fisio </label>
+                                <label>Jumlah Maksimal Fisio <code>jika tidak terapi isi dengan 0</code> </label>
                                 <input type="number" name="JUMLAH_TOTAL_FISIO" class="form-control" placeholder="Di isi dengan angka">      
                             </div>
                         </div>
@@ -166,7 +176,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Cetak CPPT</h4>
+                    <h4 class="modal-title">Edit Transaksi CPPT</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -178,7 +188,8 @@
                     <div class="col-md-12">
                             <div class="form-group">
                                 <label>Kode Transaksi </label>
-                                <input type="text" name="NO_MR_PASIEN" class="form-control" value="<?=$transaksi['KODE_TRANSAKSI_FISIO']?>" readonly>      
+                                <input type="hidden" name="ID_TRANSAKSI" class="form-control" value="<?=$transaksi['ID_TRANSAKSI']?>" readonly>      
+                                <input type="text" name="KODE_TRANSAKSI_FISIO" class="form-control" value="<?=$transaksi['KODE_TRANSAKSI_FISIO']?>" readonly>      
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -109,13 +109,30 @@ $route['satu-sehat/encounter'] = 'SatuSehat/Kunjungan_controller';
 
 // Fisioterapi
 $route['fisioterapi/list_pasien'] = 'Fisioterapi/Terapis/Terapis_controller';
+$route['fisioterapi/informed_concent'] = 'Fisioterapi/Terapis/Terapis_controller/informed_concent';
 $route['fisioterapi/cari_pasien'] = 'Fisioterapi/Terapis/Terapis_controller/cari_proses';
 $route['fisioterapi/transaksi_fisio/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/create/$1';
 $route['fisioterapi/cppt/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/create_cppt/$1/$2';
 $route['fisioterapi/store'] = 'Fisioterapi/Terapis/Terapis_controller/store';
 $route['fisioterapi/store_cppt'] = 'Fisioterapi/Terapis/Terapis_controller/store_cppt';
+$route['fisioterapi/store_informed_concent'] = 'Fisioterapi/Terapis/Terapis_controller/store_informed_concent';
+$route['fisioterapi/update_cppt'] = 'Fisioterapi/Terapis/Terapis_controller/update_cppt';
 $route['fisioterapi/delete_transaksi/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/delete/$1/$2';
+$route['fisioterapi/update_transaksi'] = 'Fisioterapi/Terapis/Terapis_controller/update_transaksi_cppt';
 $route['fisioterapi/delete_cppt/(:any)/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/delete_cppt/$1/$2/$3';
+$route['fisioterapi/edit_cppt/(:any)/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/edit_cppt/$1/$2/$3';
+$route['fisioterapi/cetak_bukti_pelayanan/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/cetak_bukti_pelayanan/$1/$2';
+$route['fisioterapi/cetak_cppt/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/cetak_cppt/$1/$2';
+$route['fisioterapi/cetak_informed_concent/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/cetak_informed_concent/$1';
+$route['fisioterapi/ttd_pasien/(:any)/(:any)'] = 'Fisioterapi/Terapis/Terapis_controller/ttd_pasien/$1/$2';
+$route['fisioterapi/store_ttd_pasien'] = 'Fisioterapi/Terapis/Terapis_controller/store_ttd_pasien';
+
+// tanda tangan petugas
+$route['ttd/list-ttd'] = 'Tanda_tangan/Tanda_tangan_controller';
+$route['ttd/add'] = 'Tanda_tangan/Tanda_tangan_controller/proses_ttd';
+$route['ttd/update_ttd'] = 'Tanda_tangan/Tanda_tangan_controller/proses_edit_ttd';
+$route['ttd/delete_ttd/(:any)'] = 'Tanda_tangan/Tanda_tangan_controller/delete_ttd/$1';
+$route['ttd/edit_ttd/(:any)'] = 'Tanda_tangan/Tanda_tangan_controller/edit_ttd/$1';
 
 // cetak berkas rekam medis //
 $route['cetak_rm/rajal/lab/qrcode/(:any)'] = 'Report_rm/Rawat_jalan/Berkas_rm_controller/QRcode/$1';

@@ -16,9 +16,7 @@
 </div>
 <section class="content">
     <div class="container-fluid">
-        <div class="card">
-
-        </div>
+    <div class="card card-secondary" >
         <div class="card-body">
             <?php if ($this->session->flashdata('danger')) : ?>
                 <div class="alert alert-danger">
@@ -76,6 +74,6 @@
                 </tbody>
             </table>
         </div>
-
+    </div>
     </div><!-- /.container-fluid -->
 </section>
